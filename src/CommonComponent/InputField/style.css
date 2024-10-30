@@ -1,0 +1,23 @@
+
+
+.styleBox {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: "56px";
+  border: "1px solid red"
+}
+
+.passwordstyle{
+  cursor: pointer;
+}
+
+.errorStyle{
+  color: red;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 3px;
+}
+
