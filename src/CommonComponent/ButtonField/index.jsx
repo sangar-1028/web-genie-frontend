@@ -1,12 +1,14 @@
 import { Button } from "antd";
-const ButtonField = ({ type, onClick, text, isLoading, buttonStyle }) => {
+import React from "react";
+const ButtonField = ({ type, onClick, text, isLoading, buttonStyle, icon, iconPosition }) => {
   return (
     <Button
       type={type}
       onClick={onClick}
       loading={isLoading}
-      iconPosition={"end"}
+      iconPosition={iconPosition ? iconPosition : null}
       style={{ ...buttonStyle }}
+      icon={icon ? icon : null}
     >
       {isLoading ? "Loading..." : text}
     </Button>

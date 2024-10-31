@@ -1,0 +1,72 @@
+@import "../../utilies/colors.scss";
+
+$background-image: url("../../assests/images/background.svg");
+
+.mainContainer {
+  background-color: $backgroundScreenColor;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border: 1px solid $backgroundScreenColor;
+  background-color: white;
+  border-radius: 20px;
+  width: 50%;
+  height: 50%;
+  box-shadow: 8px 4px 8px 4px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.halfBox {
+  width: 50%;
+  display: flex;
+}
+
+.imageBox {
+  background-image: $background-image; // Set the background image
+  background-size: cover; // Ensures the image covers the entire container
+  background-position: center; // Centers the image
+  background-repeat: no-repeat;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-left-width: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detailBox {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.heading {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.subHeading {
+  padding: 1rem 0rem !important;
+  font-size: 0.9rem;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1rem 0rem;
+}
+
+.subImageHeading {
+  font-size: 32px;
+  font-weight: 600;
+  width: 80%;
+  text-align: center;
+}

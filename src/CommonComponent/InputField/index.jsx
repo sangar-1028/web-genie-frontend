@@ -38,7 +38,7 @@ const InputField = ({
   };
   return (
     <>
-      <div className="styleBox">
+      <div className="mainContianer">
         {inputLabel && <div style={{ ...inputLabelStyle }}>{inputLabel}</div>}
         <Input
           placeholder={placeholder}
