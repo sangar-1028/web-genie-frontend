@@ -1,5 +1,5 @@
 .mainContainer {
-  height: 100vh;
+  height: "auto";
   background: linear-gradient(45deg, #0a0010, #1a0024, #2e003e, #270d2f);
 }
 
@@ -52,17 +52,80 @@
   text-align: center;
 }
 
-.secondFreeText{
-    box-shadow: 0px 16px 48px 20px #D323E71A;
-    background: #D11CE9;
-    padding:  12px;
-    border: 1px solid #D11CE9;
-    border-radius: 20px;
-    margin-top: 2%;
-    font-size: 16px;
-    font-weight: 500;
-    font-style: italic;
-    font: "Instrument Sans";
-    color: linear-gradient(93.32deg, #ffffff 60.45%, #b4b4b4 99.76%);
-    
+.secondFreeText {
+  box-shadow: 0px 16px 48px 20px #d323e71a;
+  background: #d11ce9;
+  padding: 12px;
+  border: 1px solid #d11ce9;
+  border-radius: 20px;
+  margin-top: 2%;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: italic;
+  font: "Instrument Sans";
+  color: linear-gradient(93.32deg, #ffffff 60.45%, #b4b4b4 99.76%);
+}
+
+// third container
+
+.thirdContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin: 4% 0%;
+  width: 100%;
+}
+
+.thirdBoxContainer {
+  width: 25%;
+  height: 268px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.thirdIconBox {
+  width: 56px;
+  height: 56px;
+  border: 1px solid #d11ce9;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1%;
+  background: #d11ce91a;
+}
+
+.thirdTextBox {
+  font-family: Instrument Sans;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24.4px;
+  text-align: center;
+  margin-bottom: 1%;
+}
+
+.thirdSubTextBox {
+  font-family: Instrument Sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  color: #7b7b7b;
+  width: 50%;
+}
+
+// fourth container
+
+.fourthSubHeader {
+  font-family: Instrument Sans;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 39.04px;
+  text-align: center;
+  margin-bottom: 50px;
 }
