@@ -1,10 +1,9 @@
 import React from "react";
 import "./style.scss";
-import ButtonField from "../../CommonComponent/ButtonField";
+import { ButtonField, InputField } from "../../CommonComponent";
 import { FcGoogle } from "react-icons/fc";
 import { IoLogoGithub } from "react-icons/io";
 import { Divider } from "antd";
-import InputField from "../../CommonComponent/InputField";
 const LoginScreen = () => {
   const onClickGoogle = () => {
     console.log("google");
