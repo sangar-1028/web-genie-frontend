@@ -1,40 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.scss";
 import { ButtonField } from "../../CommonComponent";
+import Playground from "../../Screen/Playground";
+import { Icon } from "../../assests/images/constant";
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <>
       <div className="header">
         <div className="headerContainer">
           <div className="headerLogo">
             Web&nbsp;
-            <span
-              style={{ color: "#D11CE9", fontSize: "32px", fontWeight: "bold" }}
-            >
-              g
-            </span>
+            <img src={Icon.logo} alt="logo style" />
             enie
           </div>
           <ButtonField
             text="Use playground"
-            buttonStyle={{
-                width: "20%",
-                height: "48px",
-                border: "1px solid transparent",
-                borderBottom: "1px solid",
-                borderRadius: "14px",
-                borderImageSlice: 1,
-                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
-                background: "linear-gradient(to right, #808080, #555555)",
-                borderColor: "#FFFFFF1A",
-                borderWidth: 2,
-                color: "white",
-                fontSize: "16px",
-                fontWeight: "500",
-              }}
+            buttonStyle={"buttonStyle"}
+            onClick={openModal}
           />
         </div>
       </div>
+
+      <Playground modalOpen={isOpen} onClose={openModal} />
     </>
   );
 };

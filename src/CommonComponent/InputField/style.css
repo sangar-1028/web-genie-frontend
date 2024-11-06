@@ -19,3 +19,9 @@
   margin-left: 3px;
 }
 
+
+.mainContianer .ant-input::placeholder {
+  color: #727272!important; /* Force white color for placeholder */
+  opacity: 1; /* Ensure full opacity */
+  font-size: 14px !important;
+}

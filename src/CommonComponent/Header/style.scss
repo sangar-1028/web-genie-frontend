@@ -49,3 +49,19 @@
     font-weight: bold;
     color: white;
 }
+
+.buttonStyle{
+  width: 20%;
+  height: 48px;
+  border: 1px solid transparent;
+  border-bottom: 1px solid;
+  border-radius: 14px;
+border-image-slice: 1;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, #808080, #555555);
+  border-color: #FFFFFF1A;
+  border-width: 2;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+}
