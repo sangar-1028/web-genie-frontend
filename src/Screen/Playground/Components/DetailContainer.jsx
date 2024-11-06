@@ -8,7 +8,7 @@ const DetailContainer = () => {
 
   return (
     <>
-      <div className="headerLogo">
+      <div className="headerLogoStyle">
         Web&nbsp;
         <img src={Icon.logo} alt="logo style" />
         enie

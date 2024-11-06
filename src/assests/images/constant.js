@@ -3,6 +3,10 @@ import EditText from "./GenerateText.svg";
 import ImageUploader from "./ImageUpload.svg"
 import logo from "./WebgenieLogo.svg";
 import star from "./star.svg";
+import react from "./react.svg";
+import mic from "./mic.svg";
+import figmaLogo from "./figmaLogo.svg";
+import folderDownload from "./folderDownload.svg"
 
 export const Icon = {
     Brush : Brush,
@@ -10,4 +14,8 @@ export const Icon = {
     ImageUploader : ImageUploader,
     logo : logo,
     star:star,
+    react:react,
+    mic:mic,
+    figmaLogo:figmaLogo,
+    folderDownload:folderDownload
 }
