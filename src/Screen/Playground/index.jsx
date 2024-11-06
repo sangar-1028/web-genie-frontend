@@ -4,11 +4,12 @@ import { calculateSize } from "../../utilies/constantFuntion";
 import "./style.scss";
 import { CgClose } from "react-icons/cg";
 import { Divider } from "antd";
-import {  DetailContainer, MenuContainer } from "./Components";
+import { DetailContainer, MenuContainer, RotateContainer } from "./Components";
 const Playground = ({ modalOpen, onClose }) => {
   const [screenSize, setScreenSize] = useState({
     width: calculateSize(window.innerWidth),
     height: window.innerHeight,
+    size: window.innerWidth,
   });
 
   useEffect(() => {
@@ -16,6 +17,7 @@ const Playground = ({ modalOpen, onClose }) => {
       setScreenSize({
         width: calculateSize(window.innerWidth),
         height: window.innerHeight,
+        size: window.innerWidth,
       });
     };
 
@@ -43,7 +45,11 @@ const Playground = ({ modalOpen, onClose }) => {
           <div className="playgroudContentContainer">
             <DetailContainer />
           </div>
-          <div className="playgroudSizeContainer"> sara</div>
+          {screenSize.size > 1024 && (
+            <div className="playgroudSizeContainer">
+              <RotateContainer />
+            </div>
+          )}
         </div>
       </>
     </Modal>

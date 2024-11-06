@@ -103,7 +103,6 @@
 }
 
 .button_Style {
-  
   height: 48px;
   border: 1px solid transparent;
   border-bottom: 1px solid;
@@ -118,6 +117,43 @@
   font-weight: 500;
 }
 
+// rotate container
+.rotateSignContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.rotateSignStyle {
+  width: 44px;
+  height: 44px;
+  border-radius: 90px;
+  border: 1px solid #ffffff1a;
+  opacity: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rotateValueContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: 80%;
+  height: 44px;
+  border-radius: 20px;
+  border: 1px solid #ffffff1a;
+  opacity: 0px;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  font-family: "Instrument Sans";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.52px;
+  text-align: left;
+}
 /* Tablet screens and smaller */
 @media (max-width: 1024px) {
   .itemContainer {

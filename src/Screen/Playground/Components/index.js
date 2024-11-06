@@ -1,4 +1,5 @@
 import MenuContainer from "./MenuContainer";
 import DetailContainer from "./DetailContainer";
+import RotateContainer from "./RotateContainer";
 
-export { MenuContainer, DetailContainer }
+export { MenuContainer, DetailContainer, RotateContainer }

@@ -30,11 +30,10 @@ const DetailContainer = () => {
 
       </div>
       <ButtonField
-            text="Use playground"
+            text="Generate"
             buttonStyle={"button_Style"}
             icon={<img src={Icon.star} alt="playground" />}
             iconPosition={"start"}
-            disabled={true}
           />
     </>
   );
