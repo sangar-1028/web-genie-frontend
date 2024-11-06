@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "./style.scss";
 import { Icon } from "../../assests/images/constant";
 const FourthContainer = () => {
-
   const [selectPhase, setSelectPhase] = useState("phase1");
   const itemArray = [
     {
@@ -46,8 +45,17 @@ const FourthContainer = () => {
 
   const boxItem = (item) => {
     return (
-      <div key={item.key} className={selectPhase===item.key ? "boxItemFilled" : "boxItemUnfilled"} onClick={() => setSelectPhase(item.key)}>
-        <img src={item.icon} alt="edit icon"  width={32} height={32} />
+      <div
+        key={item.key}
+        className={`boxItem ${
+          selectPhase === item.key ? "boxItemFilled" : "boxItemUnfilled"
+        }`}
+        onClick={() => setSelectPhase(item.key)}
+      >
+        <div className="timeline">
+          <div className="circle"></div>
+        </div>
+        <img src={item.icon} alt="edit icon" width={32} height={32} />
         <div className="boxItemText">{item.Title}</div>
         <div className="boxItemSubText">{item.subTitle}</div>
       </div>
@@ -66,7 +74,7 @@ const FourthContainer = () => {
 
       <div className="boxItemsContainer">
         {itemArray.map((item) => {
-         return boxItem(item);
+          return boxItem(item);
         })}
       </div>
     </div>
