@@ -7,6 +7,7 @@ import react from "./react.svg";
 import mic from "./mic.svg";
 import figmaLogo from "./figmaLogo.svg";
 import folderDownload from "./folderDownload.svg"
+import cloudPlus from "./cloudPlus.svg"
 
 export const Icon = {
     Brush : Brush,
@@ -17,5 +18,6 @@ export const Icon = {
     react:react,
     mic:mic,
     figmaLogo:figmaLogo,
-    folderDownload:folderDownload
+    folderDownload:folderDownload,
+    cloudPlus:cloudPlus
 }
