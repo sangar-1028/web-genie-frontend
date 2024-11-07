@@ -1,10 +1,10 @@
 import "./App.css";
-import Dashboard from "./Screen/Dashboard";
+import Routes from "./Routes";
 
 function App() {
   return (
     <>
-<Dashboard/>
+<Routes/>
     
     </>
   );

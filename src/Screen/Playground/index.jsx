@@ -1,11 +1,21 @@
 import React, { useEffect, useState } from "react";
-import Modal from "antd/es/modal/Modal";
 import { calculateSize } from "../../utilies/constantFuntion";
 import "./style.scss";
 import { CgClose } from "react-icons/cg";
-import { Divider } from "antd";
-import { DetailContainer, MenuContainer, RotateContainer } from "./Components";
-const Playground = ({ modalOpen, onClose }) => {
+
+import {
+  DetailContainer,
+  MenuContainer,
+  RotateContainer,
+  UploadImageContainer,
+} from "./Components";
+import { useNavigate } from "react-router-dom";
+const Playground = () => {
+  const navigate = useNavigate();
+
+  const [enableUploadImage, setEnableUploadImage] = useState(false);
+  const [uploadedImage, setUploadedImage] = useState(null);
+
   const [screenSize, setScreenSize] = useState({
     width: calculateSize(window.innerWidth),
     height: window.innerHeight,
@@ -27,32 +37,57 @@ const Playground = ({ modalOpen, onClose }) => {
   }, []);
 
   return (
-    <Modal
-      title="Playground"
-      visible={modalOpen}
-      footer={null}
-      onCancel={onClose}
-      width={screenSize.width}
-      className="custom-modal custom-modal-title"
-      closeIcon={<CgClose color="#939393" size={24} />}
-    >
-      <>
-        <Divider style={{ borderColor: "#939393" }} />
-        <div className="playgroundContainer">
-          <div className="playgroudMenuContainer">
-            <MenuContainer screenSize={screenSize} />
+    <div className="playgroundModal">
+      <div className="playgroundHeader">
+        <div className="PlaygroundTitle">Playground</div>
+        <CgClose
+          color="#939393"
+          size={24}
+          onClick={() => navigate("/dashboard")}
+        />
+      </div>
+
+      <div className="playgroundContainer">
+        <div className="playgroudMenuContainer">
+          <MenuContainer
+            screenSize={screenSize}
+            setEnableUploadImage={setEnableUploadImage}
+            enableUploadImage={enableUploadImage}
+          />
+        </div>
+        {enableUploadImage && (
+          <div className="playgroundModalUploadContainer">
+            <UploadImageContainer
+              setEnableUploadImage={setEnableUploadImage}
+              setUploadedImage={setUploadedImage}
+            />
           </div>
-          <div className="playgroudContentContainer">
+        )}
+
+        <div
+          className="playgroudContentContainer"
+          style={{
+            width:
+              screenSize.size > 1024 && enableUploadImage
+                ? "70%"
+                : screenSize.size > 1024
+                ? "85%"
+                : "100%",
+          }}
+        >
+          {uploadedImage ? (
+            <img src={URL.createObjectURL(uploadedImage)} alt="uploadedimage" />
+          ) : (
             <DetailContainer />
-          </div>
-          {screenSize.size > 1024 && (
-            <div className="playgroudSizeContainer">
-              <RotateContainer />
-            </div>
           )}
         </div>
-      </>
-    </Modal>
+        {screenSize.size > 1024 && (
+          <div className="playgroudSizeContainer">
+            <RotateContainer />
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 

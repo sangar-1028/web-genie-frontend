@@ -31,11 +31,11 @@
   align-items: center;
   gap: 6px;
   color: antiquewhite;
-  margin-top: 2rem;
+  margin-top: 60px;
 }
 
 .itemText {
-  font-family: Instrument Sans;
+  font-family: "Instrument Sans";
   font-size: 11px;
   font-weight: 500;
   line-height: 13.42px;
@@ -61,7 +61,7 @@
   font-size: x-large;
   font-weight: bold;
   color: white;
-  font-family: "Logo word mark";
+  font-family: "Instrument Sans";
 }
 
 .subHeaderText {
@@ -124,6 +124,82 @@
   gap: 1rem;
 }
 
+//upload container
+
+.uploadImageContainer {
+  height: auto;
+  width: 100%;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.uploadHeaderText {
+  font-family: "Instrument Sans";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.52px;
+}
+
+.uploadImageItemStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border: 1px dashed #270d2f;
+  border-radius: 20px;
+  height: 120px;
+}
+
+.uploadText {
+  font-family: "Instrument Sans";
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 19.52px;
+  color: #9d9d9d;
+  width: 70%;
+  text-align: center;
+}
+.uploadButtonContainer {
+  height: 36px;
+  color: white;
+  background: #d11ce9;
+  border-color: #ffffff1a;
+  border-width: 2;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 20px;
+  box-shadow: 0px 16px 48px 20px #d323e71a;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-top: 2rem;
+  cursor: pointer;
+  gap: 0.5rem;
+}
+
+.imageStyle {
+  width: 140px;
+  height: 140px;
+  object-fit: 'contain'; // Ensures the image scales proportionally
+  border-radius: 8px; // Optional: rounded corners
+}
+
+.preCautionText{
+  font-family: "Instrument Sans";
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 19.52px;
+  color: #9d9d9d;
+  width: 70%;
+  text-align: center;
+  width: 100%;
+  margin-top: 1rem;
+}
 .rotateSignStyle {
   width: 44px;
   height: 44px;
@@ -138,7 +214,7 @@
 .rotateValueContainer {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: 5px;
   width: 80%;
   height: 44px;
   border-radius: 20px;
@@ -146,8 +222,8 @@
   opacity: 0px;
   justify-content: space-between;
   align-items: center;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   font-family: "Instrument Sans";
   font-size: 16px;
   font-weight: 500;
