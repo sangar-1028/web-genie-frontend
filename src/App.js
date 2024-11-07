@@ -4,7 +4,7 @@ import Dashboard from "./Screen/Dashboard";
 function App() {
   return (
     <>
-      <Dashboard/>
+<Dashboard/>
     
     </>
   );

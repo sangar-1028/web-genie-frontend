@@ -1,6 +1,6 @@
 .mainContainer {
-  height: "auto";
   background: linear-gradient(45deg, #0a0010, #1a0024, #2e003e, #270d2f);
+  padding-bottom: 50px;
 }
 
 // Second container
@@ -74,7 +74,7 @@
   align-items: center;
   justify-content: center;
   color: white;
-  margin: 4% 0%;
+  margin-top: 2%;
   width: 100%;
 }
 
@@ -101,7 +101,7 @@
 }
 
 .thirdTextBox {
-  font-family: Instrument Sans;
+  font-family: "Instrument Sans";
   font-size: 20px;
   font-weight: 600;
   line-height: 24.4px;
@@ -110,7 +110,7 @@
 }
 
 .thirdSubTextBox {
-  font-family: Instrument Sans;
+  font-family: "Instrument Sans";
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -122,10 +122,183 @@
 // fourth container
 
 .fourthSubHeader {
-  font-family: Instrument Sans;
+  font-family: "Instrument Sans";
   font-size: 32px;
   font-weight: 600;
   line-height: 39.04px;
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 1%;
+  margin-top: 1%;
+}
+
+.fourthSubText {
+  font-family: "Instrument Sans";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  color: #7b7b7b;
+  width: 30%;
+}
+
+.boxItemsContainer {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.boxItemUnfilled {
+  width: 50%;
+  height: 144px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid #313131;
+  border-radius: 12px;
+}
+
+.boxItemFilled {
+  width: 50%;
+  height: 144px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid #d11ce9;
+  border-radius: 12px;
+  background: #d11ce933;
+}
+
+.boxItemText {
+  font-family: "Instrument Sans";
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 24.4px;
+  color: #ffffff;
+}
+
+.boxItemSubText {
+  font-family: "Instrument Sans";
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #7b7b7b;
+}
+
+
+.timeline {
+  position: absolute;
+  left: 20%; 
+  height: 350px;
+  width: 2px;
+  background-color: #d1d1d1; 
+}
+
+.boxItem:last-child .timeline {
+  background-color: transparent;
+}
+
+.circle {
+  position: relative;
+  top: 0;
+  left: -7px;
+  width: 14px;
+  height: 14px;
+  background-color: #484848;
+  border: 2px solid #7b7b7b;
+  border-radius: 50%;
+}
+
+.boxItemText, .boxItemSubText {
+  margin-left: 10px; 
+}
+
+.boxItemFilled .circle {
+  background-color: #d11ce9; 
+  border: 1px solid #d11ce9;
+
+}
+
+/* Tablet screens and smaller */
+@media (max-width: 1024px) {
+  .secondSubHeaderContainer {
+    gap: 5px;
+  }
+
+  .secondSubHeaderText {
+    font-size: 32px;
+  }
+
+  .secondSubText {
+    width: 50%;
+  }
+  .thirdTextBox {
+    font-size: 18px;
+    line-height: 10px;
+  }
+
+  .thirdSubTextBox {
+    font-size: 14px;
+    line-height: 15px;
+    width: 80%;
+  }
+
+  .fourthSubHeader {
+    font-size: 28px;
+  }
+
+  .fourthSubText {
+    font-size: 12px;
+    width: 70%;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 768px) {
+  .secondSubHeaderContainer {
+    gap: 2px;
+  }
+  .secondSubHeaderText {
+    font-size: 20px;
+  }
+  .secondSubText {
+    width: 90%;
+    font-size: 124x;
+  }
+
+  .thirdTextBox {
+    font-size: 12px;
+    line-height: 10px;
+  }
+
+  .thirdSubTextBox {
+    font-size: 10px;
+    line-height: 15px;
+    width: 80%;
+  }
+  .thirdBoxContainer {
+    width: 33%;
+    gap: 15px;
+  }
+  .fourthSubHeader {
+    font-size: 20px;
+  }
+
+  .fourthSubText {
+    font-size: 12px;
+    width: 60%;
+    line-height: 15px;
+  }
+
+  .timeline {
+    position: absolute;
+    left: 10%;
+    height: 350px;
+    width: 2px;
+    background-color: #d1d1d1; 
+  }
 }

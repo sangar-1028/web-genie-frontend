@@ -21,7 +21,8 @@ const InputField = ({
   variant,
   isError,
   errorMessage,
-  status
+  status,
+  prefix
 }) => {
   const [inputType, setInputType] = useState(type ? type : "text");
   const SettingOutlined = () => {
@@ -42,17 +43,19 @@ const InputField = ({
         {inputLabel && <div style={{ ...inputLabelStyle }}>{inputLabel}</div>}
         <Input
           placeholder={placeholder}
+          
           onChange={onChange}
           onFocus={onFocus}
           onBlur={onBlur}
           type={inputType}
           maxRows={maxRows}
-          style={styleBox}
+          className={`custom-input ${styleBox}`}
           readOnly={readOnly}
           required={required}
           disabled={disabled}
           value={value}
           multiline={multiline}
+          prefix ={prefix}
           variant={variant}
           suffix={type === PASSWORD && <SettingOutlined />}
           status={status}

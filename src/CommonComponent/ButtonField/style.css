@@ -1,0 +1,14 @@
+/* Custom disabled button style */
+.custom-button.ant-btn[disabled] {
+  background-color: #b7b2b2 !important;
+  color: white !important;
+  cursor: not-allowed;
+  height: 48px !important;
+  border-radius: 20px !important;
+}
+
+/* Optional: remove default hover/focus effects when disabled */
+.custom-button.ant-btn[disabled]:hover,
+.custom-button.ant-btn[disabled]:focus {
+  box-shadow: none;
+}

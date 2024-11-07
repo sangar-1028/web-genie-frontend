@@ -1,51 +1,91 @@
 .headerContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1rem;
-    height: 80px;
-    border: 1px solid transparent; /* Adds transparent borders on all sides */
-    border-bottom: 1px solid;       /* Bottom border */
-    border-radius: 50px;
-    border-image-source: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.5) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    border-image-slice: 1; /* Ensures the gradient is applied only on the bottom border */
-    border-image-width: 1px; /* Sets the width of the border gradient */
-    backdrop-filter: blur(100px); /* Adds the blur effect */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Adds shadow effect */
-  }
-  
-
-.header {
-    padding: 3%  20%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  height: 80px;
+  border: 1px solid transparent; /* Adds transparent borders on all sides */
+  border-bottom: 1px solid; /* Bottom border */
+  border-radius: 50px;
+  border-image-source: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-image-slice: 1; /* Ensures the gradient is applied only on the bottom border */
+  border-image-width: 1px; /* Sets the width of the border gradient */
+  backdrop-filter: blur(100px); /* Adds the blur effect */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Adds shadow effect */
 }
 
-.headerLogo{ 
-    padding: 0rem 1.25rem;
-    border: 1px solid transparent; /* Adds transparent borders on all sides */
-    border-bottom: 1px solid;       /* Bottom border */
-    border-radius: 12px;
-    border-image-source: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0) 20%,
-      rgba(255, 255, 255, 0.5) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    border-image-slice: 1; /* Ensures the gradient is applied only on the bottom border */
-    border-image-width: 1px;
-    backdrop-filter: blur(60px); 
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    height: 48px;
-    margin-left: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: x-large;
-    font-weight: bold;
-    color: white;
+.header {
+  padding: 3% 20%;
+}
+
+.headerLogo {
+  padding: 0rem 1.25rem;
+  border: 1px solid transparent; /* Adds transparent borders on all sides */
+  border-bottom: 1px solid; /* Bottom border */
+  border-radius: 12px;
+  border-image-source: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 20%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-image-slice: 1; /* Ensures the gradient is applied only on the bottom border */
+  border-image-width: 1px;
+  backdrop-filter: blur(60px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  height: 48px;
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
+  font-weight: bold;
+  color: white;
+}
+
+.buttonStyle {
+  width: auto;
+  height: 48px;
+  border: 1px solid transparent;
+  border-bottom: 1px solid;
+  border-radius: 14px;
+  border-image-slice: 1;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, #808080, #555555);
+  border-color: #ffffff1a;
+  border-width: 2;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.footerText {
+font-family: "Instrument Sans";
+font-size: 16px;
+font-weight: 500;
+line-height: 19.52px;
+text-align: center;
+color: white;
+
+}
+
+/* Tablet screens and smaller */
+@media (max-width: 1024px) {
+  .header {
+    padding: 2rem;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 768px) {
+
+  .header {
+    padding: 0.5rem;
+  }
 }
