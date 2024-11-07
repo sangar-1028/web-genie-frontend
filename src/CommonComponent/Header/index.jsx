@@ -1,14 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.scss";
 import { ButtonField } from "../../CommonComponent";
-import Playground from "../../Screen/Playground";
 import { Icon } from "../../assests/images/constant";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = () => {
-    setIsOpen(!isOpen);
-  };
+ const navigate = useNavigate()
   return (
     <>
       <div className="header">
@@ -21,12 +17,11 @@ const Header = () => {
           <ButtonField
             text="Use playground"
             buttonStyle={"buttonStyle"}
-            onClick={openModal}
+            onClick={() => navigate("/playground")}
           />
         </div>
       </div>
 
-      <Playground modalOpen={isOpen} onClose={openModal} />
     </>
   );
 };
