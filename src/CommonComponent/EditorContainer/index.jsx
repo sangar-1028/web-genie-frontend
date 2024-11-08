@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.scss";
 import { BiCopy, BiDownload } from "react-icons/bi";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { Icon } from "../../assests/images/constant";
 import { toast, ToastContainer } from "react-toastify";
 const EditorContainer = ({ uploadedImg, searchText }) => {
-  const [codeText, setCodeText] =
-    useState(` <p><span class="line-number">1</span> {"import React from 'react';"}</p>
+  const codeText =
+    (` <p><span class="line-number">1</span> {"import React from 'react';"}</p>
   <p><span class="line-number">2</span> {"const App = () => {"}</p>
   <p><span class="line-number">3</span> {"  return ("}</p>
   <p><span class="line-number">4</span> {"    <h1>Hello, world!</h1>"}</p>
@@ -60,7 +60,7 @@ const EditorContainer = ({ uploadedImg, searchText }) => {
         <div className="actionConatiner">
           <div className="actionSelectionContainer">
             <div>
-              <img src={Icon.ReactColorVector} />
+              <img src={Icon.ReactColorVector} alt="react icon"/>
             </div>
 
             <p className="actionText"> React</p>

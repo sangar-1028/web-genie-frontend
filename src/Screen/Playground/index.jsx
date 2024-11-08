@@ -11,7 +11,7 @@ import {
   CollapseContainer,
 } from "./Components";
 import { useNavigate } from "react-router-dom";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 const Playground = () => {
   const navigate = useNavigate();
 
