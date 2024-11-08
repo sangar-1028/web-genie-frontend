@@ -117,6 +117,8 @@
   font-weight: 500;
 }
 
+
+
 // rotate container
 .rotateSignContainer {
   display: flex;
@@ -230,6 +232,22 @@
   line-height: 19.52px;
   text-align: left;
 }
+
+.custom .ant-collapse-item >.ant-collapse-header{
+  color: #C6C6C6;
+
+font-family: "Instrument Sans";
+font-size: 16px;
+font-weight: 600;
+line-height: 19.52px;
+
+}
+
+.customContainer .ant-collapse-content-box {
+  padding: 0px !important;
+}
+
+
 /* Tablet screens and smaller */
 @media (max-width: 1024px) {
   .itemContainer {

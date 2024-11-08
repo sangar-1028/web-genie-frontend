@@ -3,9 +3,13 @@ import { CgClose } from "react-icons/cg";
 import "./style.scss";
 import { Divider } from "antd";
 import { Icon } from "../../../assests/images/constant";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-export const UploadImageContainer = ({ setEnableUploadImage, setUploadedImage }) => {
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+export const UploadImageContainer = ({
+  setEnableUploadImage,
+  setUploadedImage,
+  handleGenerateButton,
+}) => {
   const fileInputRef = useRef(null);
   const [image, setImage] = useState(null);
 
@@ -33,16 +37,11 @@ export const UploadImageContainer = ({ setEnableUploadImage, setUploadedImage })
       if (file.size > 1024 * 1024) {
         handleGenerateError();
       } else {
-        setImage(file); 
+        setImage(file);
         setUploadedImage(file);
       }
     }
   };
-
-  const handleGenerateImage = () => {};
-
-
-
 
   return (
     <>
@@ -76,7 +75,7 @@ export const UploadImageContainer = ({ setEnableUploadImage, setUploadedImage })
 
             <div
               className="uploadButtonContainer"
-              onClick={handleGenerateImage}
+              onClick={handleGenerateButton}
               style={{
                 cursor: "pointer",
                 display: "flex",
@@ -118,7 +117,7 @@ export const UploadImageContainer = ({ setEnableUploadImage, setUploadedImage })
                 id="upload"
                 accept=".jpg, .jpeg, .png"
                 style={{ display: "none" }}
-                onChange={handleFileChange} // Handle file selection
+                onChange={handleFileChange}
               />
               <img
                 src={Icon.ImageUploader}
@@ -129,9 +128,7 @@ export const UploadImageContainer = ({ setEnableUploadImage, setUploadedImage })
               <span>Upload Image</span>
             </div>
 
-            <div className="preCautionText">
-            Maximum size: 1MB
-            </div>
+            <div className="preCautionText">Maximum size: 1MB</div>
           </>
         )}
       </div>
