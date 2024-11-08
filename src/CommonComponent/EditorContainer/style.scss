@@ -1,0 +1,89 @@
+.editorContainer {
+  background: #0f0f0f;
+  border-top: 1px solid #ffffff1a;
+  color: white;
+  display: flex;
+}
+
+.editorHeaderContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actionConatiner {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.CodePathContainer {
+  width: 50%;
+  padding: 1rem 2rem;
+}
+
+.CSSPathContainer {
+  width: 50%;
+  border-left: 1px solid #ffffff1a;
+  padding: 1rem 2rem;
+}
+
+.headerText {
+  font-family: "Instrument Sans";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.52px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+.headerItem {
+    height: 36px;
+    width: 36px;
+    border: 1px solid #FFFFFF1A;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    
+}
+
+.actionSelectionContainer {
+    border: 1px solid #FFFFFF1A;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+    font-family: "Instrument Sans";
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.code-block {
+    color: #f8f8f2; /* Light text */
+    font-family: "Instrument Sans";
+    font-size: 14px;
+    padding: 1rem;
+    border-radius: 5px;
+    line-height: 1.5;
+    max-width: 400px;
+    overflow-x: auto; 
+  }
+  
+  .code-block p {
+    margin: 0; /* Remove default paragraph margin */
+    display: flex; /* Align number and code inline */
+  }
+  
+  .line-number {
+    display: inline-block;
+    width: 20px;
+    color: #888888; /* Grey color for line numbers */
+    user-select: none; /* Prevent selection of line numbers */
+  }
+  

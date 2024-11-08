@@ -3,7 +3,7 @@ import { Icon } from "../../../assests/images/constant";
 import "./style.scss";
 import { ButtonField, InputField } from "../../../CommonComponent";
 import { RiAttachment2 } from "react-icons/ri";
-const DetailContainer = () => {
+const DetailContainer = ({ setSearchText, handleGenerateButton}) => {
     const [isFocus, setIsFocus] = useState(false)
 
   return (
@@ -25,15 +25,18 @@ const DetailContainer = () => {
         placeholder="Describe your landing page"
         styleBox={isFocus ? "inputstylefocus" : "inputstyle"}
         prefix={<RiAttachment2 />}
-        onChange={() => {}}
-        onFocus={() => setIsFocus(!isFocus)}/>
+        onChange={(event) => setSearchText(event.target.value)}
+        />
 
       </div>
       <ButtonField
             text="Generate"
-            buttonStyle={"button_Style"}
+            buttonStyle={ "button_Style"}
             icon={<img src={Icon.star} alt="playground" />}
             iconPosition={"start"}
+            onClick={handleGenerateButton}
+            onFocus={() => setIsFocus(!isFocus)}
+            isFocus={isFocus}
           />
     </>
   );
