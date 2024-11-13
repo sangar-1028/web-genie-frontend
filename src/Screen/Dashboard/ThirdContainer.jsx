@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.scss";
 import { LiaPenNibSolid } from "react-icons/lia";
-import { MdElectricBolt } from "react-icons/md";
+import { ReactComponent as LightningBolt } from "../../assests/icons/lightning.svg";
 const ThirdContainer = () => {
   return (
     <div className="thirdContainer">
@@ -29,7 +29,7 @@ const ThirdContainer = () => {
       </div>
       <div className="thirdBoxContainer">
         <div className="thirdIconBox">
-          <MdElectricBolt size={"24px"} color="#D11CE9" />
+          <LightningBolt size={"24px"} color="#D11CE9" />
         </div>
         <div className="thirdTextBox">Instant Generation</div>
         <div className="thirdSubTextBox">

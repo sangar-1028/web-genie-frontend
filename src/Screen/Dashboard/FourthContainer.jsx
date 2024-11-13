@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./style.scss";
 import { Icon } from "../../assests/images/constant";
+import { ReactComponent as Ellipse1 } from "../../assests/icons/ellipse-1.svg";
+import { ReactComponent as Ellipse2 } from "../../assests/icons/ellipse-2.svg";
+
 const FourthContainer = () => {
   const [selectPhase, setSelectPhase] = useState("phase1");
   const itemArray = [
@@ -53,7 +56,9 @@ const FourthContainer = () => {
         onClick={() => setSelectPhase(item.key)}
       >
         <div className="timeline">
-          <div className="circle"></div>
+          <div className="circle">
+            <div className="inner-circle"></div>
+          </div>
         </div>
         <img src={item.icon} alt="edit icon" width={32} height={32} />
         <div className="boxItemText">{item.Title}</div>
@@ -63,9 +68,11 @@ const FourthContainer = () => {
   };
   return (
     <div className="secondContainer">
-      <div className="seoondHeader">The Roadmap of magic</div>
+      <Ellipse1 className="ellipse-1" />
+      <Ellipse2 className="ellipse-2" />
+      <div className="seoondHeader">The roadmap of magic</div>
       <div className="fourthSubHeader">
-        The Evolution of <spna style={{ fontStyle: "italic" }}>Webgenie</spna>
+        The Evolution of <span className="subtext-span">Webgenie</span>
       </div>
       <div className="fourthSubText">
         Discover our plans to continuously expand the power of design-to-code

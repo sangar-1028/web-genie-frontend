@@ -3,23 +3,31 @@ import "./style.scss";
 import { ButtonField } from "../../CommonComponent";
 import { Icon } from "../../assests/images/constant";
 import { useNavigate } from "react-router-dom";
+import {ReactComponent as StarsIllustration} from "../../assests/icons/stars.svg"
+import {ReactComponent as RaysIllustration} from "../../assests/icons/rays.svg"
+import {ReactComponent as Line3} from "../../assests/icons/line-3.svg"
+
 const Header = () => {
  const navigate = useNavigate()
   return (
     <>
       <div className="header">
         <div className="headerContainer">
-          <div className="headerLogo">
-            Web&nbsp;
-            <img src={Icon.logo} alt="logo style" />
-            enie
-          </div>
+          {/* <div className="logo-wrapper"> */}
+            <div className="headerLogo">
+              <img src={Icon.logo} alt="logo style" />
+            </div>
+          {/* </div> */}
           <ButtonField
-            text="Use playground"
             buttonStyle={"buttonStyle"}
             onClick={() => navigate("/playground")}
-          />
+          >
+            Use playground
+            <Line3 className="line-1" />
+          </ButtonField>
         </div>
+        <StarsIllustration className="stars-illustration" />
+        <RaysIllustration className="rays-illustration" />
       </div>
 
     </>
