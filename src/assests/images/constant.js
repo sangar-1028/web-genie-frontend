@@ -2,6 +2,7 @@ import  Brush from "./BrushClear.svg";
 import EditText from "./GenerateText.svg";
 import ImageUploader from "./ImageUpload.svg"
 import logo from "../icons/logo.svg";
+import LogoIcon from "../icons/logo-icon.svg"
 import star from "./star.svg";
 import react from "./react.svg";
 import mic from "./mic.svg";
@@ -15,6 +16,7 @@ export const Icon = {
     EditText : EditText,
     ImageUploader : ImageUploader,
     logo : logo,
+    logoIcon: LogoIcon,
     star:star,
     react:react,
     mic:mic,

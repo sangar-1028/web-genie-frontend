@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { calculateSize } from "../../utilies/constantFuntion";
 import "./style.scss";
 import { CgClose } from "react-icons/cg";
+import { ReactComponent as CodeBlockIcon } from "../../assests/icons/code-block.svg"
 
 import {
   DetailContainer,
@@ -10,10 +11,8 @@ import {
   UploadImageContainer,
   CollapseContainer,
 } from "./Components";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-const Playground = () => {
-  const navigate = useNavigate();
+const Playground = ({ onClose }) => {
 
   const [enableUploadImage, setEnableUploadImage] = useState(false);
   const [uploadedImage, setUploadedImage] = useState(null);
@@ -60,83 +59,87 @@ const Playground = () => {
   }, []);
 
   return (
-    <div className="playgroundModal">
-      <div className="playgroundHeader">
-        <div className="PlaygroundTitle">Playground</div>
-        <CgClose
-          color="#939393"
-          size={24}
-          onClick={() => navigate("/dashboard")}
-        />
-      </div>
-
-      <div className="playgroundContainer">
-        <div className="playgroudMenuContainer">
-          <MenuContainer
-            screenSize={screenSize}
-            setEnableUploadImage={setEnableUploadImage}
-            enableUploadImage={enableUploadImage}
-          />
+    <div className="modal">
+      <div className="playgroundModal">
+        <div className="playgroundHeader">
+          <div className="PlaygroundTitle">Playground</div>
+          <button className="" onClick={onClose}>
+            <CgClose
+              color="#939393"
+              size={24}
+            />
+            {/* <CloseIcon /> */}
+          </button>
         </div>
-        {enableUploadImage && (
-          <div className="playgroundModalUploadContainer">
-            <UploadImageContainer
+
+        <div className="playgroundContainer">
+          <div className="playgroudMenuContainer">
+            <MenuContainer
+              screenSize={screenSize}
               setEnableUploadImage={setEnableUploadImage}
-              setUploadedImage={setUploadedImage}
-              handleGenerateButton={handleGenerateButton}
+              enableUploadImage={enableUploadImage}
             />
           </div>
-        )}
+          {enableUploadImage && (
+            <div className="playgroundModalUploadContainer">
+              <UploadImageContainer
+                setEnableUploadImage={setEnableUploadImage}
+                setUploadedImage={setUploadedImage}
+                handleGenerateButton={handleGenerateButton}
+              />
+            </div>
+          )}
 
-        <div
-          className="playgroudContentContainer"
-          style={{
-            width:
-              screenSize.size > 1024 && enableUploadImage
-                ? "70%"
-                : screenSize.size > 1024
-                ? "85%"
-                : "100%",
-          }}
-        >
-          {uploadedImage ? (
-            <img src={URL.createObjectURL(uploadedImage)} alt="uploadedimage" />
-          ) : (
-            <DetailContainer
-              setSearchText={setSearchText}
-              handleGenerateButton={handleGenerateButton}
-            />
+          <div
+            className="playgroudContentContainer"
+            style={{
+              width:
+                screenSize.size > 1024 && enableUploadImage
+                  ? "70%"
+                  : screenSize.size > 1024
+                  ? "85%"
+                  : "100%",
+            }}
+          >
+            {uploadedImage ? (
+              <img src={URL.createObjectURL(uploadedImage)} alt="uploadedimage" />
+            ) : (
+              <DetailContainer
+                setSearchText={setSearchText}
+                handleGenerateButton={handleGenerateButton}
+              />
+            )}
+          </div>
+          {screenSize.size > 1024 && (
+            <div className="playgroudSizeContainer">
+              <RotateContainer />
+            </div>
           )}
         </div>
-        {screenSize.size > 1024 && (
-          <div className="playgroudSizeContainer">
-            <RotateContainer />
+
+        {enableCollapse ? (
+          <div className="playgroundFooterContainer">
+            <CollapseContainer
+              setEnableCollapse={setEnableCollapse}
+              img={uploadedImage}
+              searchText={searchText}
+              screenSize={screenSize}
+            />
           </div>
+        ) : (
+          <button
+            className="playgroundFooterContainer"
+            onClick={() => setEnableCollapse(!enableCollapse)}
+          >
+            <div className="playgroundFooterBarContainer">
+              <div className="playgroundFooterBar">
+                <CodeBlockIcon />
+                <p>Tap here to open code editor</p>
+              </div>
+            </div>
+          </button>
         )}
       </div>
-
-      {enableCollapse ? (
-        <div className="playgroundFooterContainer">
-          <CollapseContainer
-            setEnableCollapse={setEnableCollapse}
-            img={uploadedImage}
-            searchText={searchText}
-            screenSize={screenSize}
-          />
-        </div>
-      ) : (
-        <div
-          className="playgroundFooterContainer"
-          onClick={() => setEnableCollapse(!enableCollapse)}
-        >
-          <div className="playgroundFooterBarContainer">
-            <div className="playgroundFooterBar">
-              <p>{"</>"}</p>
-              <p>Tap here to open code editor</p>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

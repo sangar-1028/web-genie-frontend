@@ -22,8 +22,8 @@ const SecondContainer = () => {
         <div className="secondSubHeaderContainer">
           <div className="secondSubHeaderText">code</div>
           <img src={image2} alt="image3" />
-          <div className="subtext-span">- Like Magic! </div>
-          <span className="emoji">🧞‍♂️</span>
+          <div className="subtext-span magic-span">- Like Magic! </div>
+          <span className="emoji">🧞</span>
         </div>
         <div className="secondSubText">
           Upload any landing page design and watch WebGenie transform it into

@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { Icon } from "../../../assests/images/constant";
 import "./style.scss";
 import { ButtonField, InputField } from "../../../CommonComponent";
-import { RiAttachment2 } from "react-icons/ri";
+import { ReactComponent as AttachmentIcon } from "../../../assests/icons/attachment.svg";
+import { ReactComponent as GenerateIcon } from "../../../assests/icons/generate.svg";
+import { ReactComponent as Line4 } from "../../../assests/icons/line-4.svg";
+import { ReactComponent as Ellipse3 } from "../../../assests/icons/ellipse-3.svg";
+
 const DetailContainer = ({ setSearchText, handleGenerateButton}) => {
     const [isFocus, setIsFocus] = useState(false)
 
   return (
     <>
       <div className="headerLogoStyle">
-        Web&nbsp;
         <img src={Icon.logo} alt="logo style" />
-        enie
       </div>
 
       <div className="subHeaderText">Your Design-to-Code Genie</div>
@@ -20,24 +22,27 @@ const DetailContainer = ({ setSearchText, handleGenerateButton}) => {
         Upload any landing page design and watch WebGenie transform it into
         clean, responsive HTML & CSS in seconds
       </div>
-      <div style={{width: "80%", display: "flex" , justifyContent: "center"}}>
-      <InputField
-        placeholder="Describe your landing page"
-        styleBox={isFocus ? "inputstylefocus" : "inputstyle"}
-        prefix={<RiAttachment2 />}
-        onChange={(event) => setSearchText(event.target.value)}
-        />
+      <form className="text-form">
+        <div className="inputstyle">
+          <AttachmentIcon />
+          <input placeholder="Describe your landing page" />
+        </div>
+        {/* <InputField
+          placeholder="Describe your landing page"
+          styleBox={isFocus ? "inputstylefocus" : "inputstyle"}
+          prefix={<RiAttachment2 />}
+          onChange={(event) => setSearchText(event.target.value)}
+        /> */}
+        <ButtonField
+          buttonStyle={"buttonStyle generate-btn"}
+        >
+          <GenerateIcon />
+          <Line4 className="line-1" />
+          Generate
+        </ButtonField>
 
-      </div>
-      <ButtonField
-            text="Generate"
-            buttonStyle={ "button_Style"}
-            icon={<img src={Icon.star} alt="playground" />}
-            iconPosition={"start"}
-            onClick={handleGenerateButton}
-            onFocus={() => setIsFocus(!isFocus)}
-            isFocus={isFocus}
-          />
+      </form>
+      <Ellipse3 className="ellipse-3" />
     </>
   );
 };

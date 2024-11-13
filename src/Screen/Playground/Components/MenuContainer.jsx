@@ -14,29 +14,29 @@ const MenuContainer = ({ screenSize, setEnableUploadImage, enableUploadImage }) 
 
   return (
     <>
-      <div className="logoContainer">
-        <img src={Icon.logo} alt="logo style" />
-      </div>
-      <div className="itemContainer">
+      <button className="logoContainer">
+        <img src={Icon.logoIcon} alt="logo style" />
+      </button>
+      <button className="itemContainer">
         <img src={Icon.EditText} alt="edit icon" width={32} height={32} />
-        <div className="itemText">Text to Code</div>
-      </div>
+        <div className="itemText">Text to code</div>
+      </button>
 
-      <div className="itemContainer" onClick={() => setEnableUploadImage(!enableUploadImage)}>
+      <button className="itemContainer" onClick={() => setEnableUploadImage(!enableUploadImage)}>
         <img
           src={Icon.ImageUploader}
           alt="upload icon"
           width={32}
           height={32}
         />
-        <div className="itemText">Image to Code</div>
-      </div>
-      {isScreenSmall && <Divider style={{ borderColor: "#939393", marginTop: "60px" }} />}
+        <div className="itemText">Image to code</div>
+      </button>
+      {isScreenSmall && <Divider style={{ borderColor: "rgba(255, 255, 255, 0.05)", margin: 0 }} />}
 
-      <div className="itemContainer" style={{ marginTop: "20px" }}>
+      <button className="itemContainer">
         <img src={Icon.Brush} alt="clear icon" width={32} height={32} />
         <div className="itemText">Clear Canvas</div>
-      </div>
+      </button>
     </>
   );
 };

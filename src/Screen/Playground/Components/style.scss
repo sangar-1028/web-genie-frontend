@@ -1,26 +1,34 @@
 // menu style
 
 .logoContainer {
-  width: 48px;
-  height: 48px;
-  border: 1px solid rgb(255, 255, 255);
-  border-image-source: linear-gradient(
-    223.71deg,
-    #ffffff99 0%,
-    rgba(255, 255, 255, 0.3) 40%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  width: 52px;
+  height: 52px;
+  // border: 1px solid;
+  padding: 0.625rem;
   background: linear-gradient(
     213.23deg,
     rgba(0, 0, 0, 0.1) 28.44%,
     rgba(255, 255, 255, 0) 72.58%
   );
   border-radius: 12px;
-  box-shadow: 0px 2px 2px rgba(255, 255, 255, 0.3),
-    0px -2px 2px rgba(255, 255, 255, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.logoContainer::before {
+  content: "";
+  position: absolute;
+  backdrop-filter: blur(2px);
+  inset: 0;
+  border-radius: 12px; 
+  padding: 1.5px; 
+  mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  mask-composite: exclude; 
+  background: linear-gradient(223.71deg, rgba(255, 255, 255, 0.5) 7.24%, rgba(255, 255, 255, 0.2) 24.31%, rgba(255, 255, 255, 0.05) 100%);
 }
 
 .itemContainer {
@@ -31,7 +39,6 @@
   align-items: center;
   gap: 6px;
   color: antiquewhite;
-  margin-top: 60px;
 }
 
 .itemText {
@@ -45,11 +52,15 @@
 
 // text container
 
+.ellipse-3 {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
 .headerLogoStyle {
-  padding: 0rem 2rem;
   width: 161px;
   height: 48px;
-  margin-left: 5px;
   border-radius: 24px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(60px);
@@ -58,21 +69,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: x-large;
-  font-weight: bold;
-  color: white;
-  font-family: "Instrument Sans";
+  margin-bottom: 1.25rem;
 }
 
 .subHeaderText {
-  font-family: " Playfair Display";
+  font-family: "Playfair Display";
   font-size: 45px;
   font-style: italic;
   font-weight: 600;
-  line-height: 59.99px;
-  text-align: center;
-  color: whitesmoke;
-  margin-top: 0.5rem;
+  line-height: 60px;
+  background-image: linear-gradient(93.32deg, #FFFFFF 0.24%, #B4B4B4 99.76%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+  margin-bottom: 1.25rem;
 }
 
 .subHeading {
@@ -82,17 +94,61 @@
   line-height: 24px;
   text-align: center;
   color: #9a9a9a;
-  width: 60%;
+  width: 100%;
+  max-width: 475px;
+  margin-bottom: 2.5rem;
+}
+
+.text-form {
+  width: 100%;
+  max-width: 622px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // box-shadow: 0px 16px 48px 20px #D323E71A;
 }
 
 .inputstyle {
+  width: 100%;
   height: 48px;
-  background: linear-gradient(135deg, #0a0a0a 20%, #2e002e 50%, #0a0a0a 80%);
-  color: #727272;
-  border: 1px solid #ffffff1a;
-  border-radius: 20px;
-  margin-top: 1rem;
+  padding: 10px 16px;
+  border-radius: 100px;
+  border: 1px solid #FFFFFF1A;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: transparent;
+  margin-bottom: 1.25rem;
 }
+
+.inputstyle input {
+  flex: 1 0 0;
+  height: 100%;
+  font-family: "Instrument Sans";
+  font-weight: 400;
+  font-size: 16px;
+  color: white;
+}
+
+.generate-btn {
+  height: unset;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 100px;
+  background: #D11CE9;
+  box-shadow: 0px 16px 48px 20px #D323E71A;
+  font-family: "Instrument Sans";
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.inputstyle input::placeholder {
+  font-weight: 500;
+}
+
 .inputstylefocus {
   height: 48px;
   background: linear-gradient(135deg, #0a0a0a 20%, #2e002e 50%, #0a0a0a 80%);
@@ -123,7 +179,8 @@
 .rotateSignContainer {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
+  gap: 1.25rem;
+  padding: 0 1.125rem;
 }
 
 //upload container
@@ -203,8 +260,8 @@
   margin-top: 1rem;
 }
 .rotateSignStyle {
-  width: 44px;
-  height: 44px;
+  width: 2.75rem;
+  height: 2.5rem;
   border-radius: 90px;
   border: 1px solid #ffffff1a;
   opacity: 0px;
@@ -214,23 +271,24 @@
 }
 
 .rotateValueContainer {
+  padding: 0.25rem 0.5rem;
   display: flex;
   flex-direction: row;
-  gap: 5px;
-  width: 80%;
-  height: 44px;
-  border-radius: 20px;
+  gap: 0.5rem;
+  border-radius: 100px;
   border: 1px solid #ffffff1a;
   opacity: 0px;
-  justify-content: space-between;
   align-items: center;
-  padding-left: 1rem;
-  padding-right: 1rem;
   font-family: "Instrument Sans";
   font-size: 16px;
   font-weight: 500;
-  line-height: 19.52px;
-  text-align: left;
+  line-height: 20px;
+  background: linear-gradient(85.77deg, rgba(255, 255, 255, 0) 0.1%, rgba(255, 255, 255, 0.04) 99.9%);
+}
+
+.rotateValueContainer .value-update-btn {
+  padding: 0.5rem 0.75rem;
+  height: 2rem;
 }
 
 .custom .ant-collapse-item >.ant-collapse-header{

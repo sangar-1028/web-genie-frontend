@@ -1,11 +1,17 @@
+.modal {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  padding: 94px 56px;
+  background: rgba(0, 0, 0, 0.8);
+  overflow: auto;
+}
+
 .playgroundModal {
-  border: none;
-  background: linear-gradient(135deg, #0a0a0a 20%, #2e002e 50%, #0a0a0a 80%);
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden  ;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 4px 4px 0px rgba(209, 28, 233, 1);
+  border-radius: 20px;
 }
 
 .playgroundHeader {
@@ -13,20 +19,20 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-left: 1rem;
-  padding-right: 2rem;
-  height: 50px;
-  border-bottom: 1px solid #939393;
+  padding: 1.25rem 2rem;
+  height: 72px;
+  background: rgba(10, 10, 10, 1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .PlaygroundTitle {
-  color: #c6c6c6;
-  background: linear-gradient(135deg, #0a0a0a 20%, #2e002e 50%, #0a0a0a 80%);
   font-family: "Instrument Sans";
-  font-size: 23px;
+  font-size: 22px;
   font-weight: 400;
   line-height: 28.06px;
-  text-align: start;
+  color: rgba(198, 198, 198, 1);
 }
 
 .playgroundContainer {
@@ -35,7 +41,8 @@
   justify-items: space-between;
   padding: 1rem;
   gap: 2rem;
-  height: 85vh;
+  background: rgba(10, 10, 10, 1);
+  position: relative;
 }
 
 .playgroundModalUploadContainer {
@@ -49,41 +56,48 @@
   height: 295px;
 }
 .playgroudMenuContainer {
-  width: 5%;
+  height: fit-content;
+  position: relative;
+  z-index: 2;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #ffffff0d;
+  gap: 2.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 20px;
-  padding: 1rem;
-  box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5);
-  height: 55vh;
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .playgroudContentContainer {
-  margin-top: 2rem;
+  margin-top: 133px;
+  margin-bottom: 196px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 20px;
-  padding: 1rem;
-  gap: 1rem;
+}
+
+.playgroudContentContainer > * {
+  position: relative;
+  z-index: 2;
 }
 
 .playgroudSizeContainer {
-  width: 10%;
   height: 144px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 20px;
   border: 1px solid #ffffff0d;
-  padding: 1rem;
-  gap: 3rem;
+  padding: 1.25rem;
+  gap: 1.5rem;
   background: #ffffff05;
   border-radius: 20px;
   color: white;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  z-index: 3;
 }
 
 /* Tablet screens and smaller */
@@ -112,9 +126,12 @@
   }
 }
 
-.playgroudFooterContainer {
-  width: 100%; 
+.playgroundFooterContainer {
+  width: 100%;
+  position: relative;
+  z-index: 3;
 }
+
 .playgroundFooterBarContainer {
   width: 100%; /* First div takes the full width */
   display: flex;  
@@ -137,10 +154,11 @@
   font-family: "Instrument Sans";
   font-size: 16px;
   font-weight: 500;
-  line-height: 19.52px;
+  line-height: 20px;
   text-align: left;
   gap: 0.5rem;
   cursor: pointer;
+  //styleName: Instrument Sans/16/16px: SemiBold;
 }
 
 /* Mobile screens */
