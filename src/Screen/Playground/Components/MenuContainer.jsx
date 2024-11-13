@@ -13,7 +13,7 @@ const MenuContainer = ({ screenSize, setEnableUploadImage, enableUploadImage }) 
   }, [screenSize]);
 
   return (
-    <>
+    <div className="playgroudMenuContainer">
       <button className="logoContainer">
         <img src={Icon.logoIcon} alt="logo style" />
       </button>
@@ -22,22 +22,22 @@ const MenuContainer = ({ screenSize, setEnableUploadImage, enableUploadImage }) 
         <div className="itemText">Text to code</div>
       </button>
 
-      <button className="itemContainer" onClick={() => setEnableUploadImage(!enableUploadImage)}>
+      <button className={`itemContainer ${enableUploadImage ? "is-active" : ""}`} onClick={() => setEnableUploadImage(!enableUploadImage)}>
         <img
-          src={Icon.ImageUploader}
+          src={enableUploadImage ? Icon.ImageUploaderLight : Icon.ImageUploader}
           alt="upload icon"
           width={32}
           height={32}
         />
         <div className="itemText">Image to code</div>
       </button>
-      {isScreenSmall && <Divider style={{ borderColor: "rgba(255, 255, 255, 0.05)", margin: 0 }} />}
+      {isScreenSmall && <Divider className="divider" style={{ borderColor: "rgba(255, 255, 255, 0.05)", minWidth: "unset", maxWidth: "73px" }} />}
 
       <button className="itemContainer">
         <img src={Icon.Brush} alt="clear icon" width={32} height={32} />
         <div className="itemText">Clear Canvas</div>
       </button>
-    </>
+    </div>
   );
 };
 

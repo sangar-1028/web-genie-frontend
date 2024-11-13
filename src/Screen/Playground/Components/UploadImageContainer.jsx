@@ -5,10 +5,14 @@ import { Divider } from "antd";
 import { Icon } from "../../../assests/images/constant";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ReactComponent as Line3 } from "../../../assests/icons/line-2.svg"
+import { ReactComponent as LoadingIcon } from "../../../assests/icons/loading.svg"
+
 export const UploadImageContainer = ({
   setEnableUploadImage,
   setUploadedImage,
   handleGenerateButton,
+  isGenerating
 }) => {
   const fileInputRef = useRef(null);
   const [image, setImage] = useState(null);
@@ -48,47 +52,56 @@ export const UploadImageContainer = ({
       <div>
         <div className="uploadImageContainer">
           <div className="uploadHeaderText">Upload Image</div>
-          <CgClose
-            color="#939393"
-            size={24}
-            onClick={() => setEnableUploadImage(false)}
-          />
+          <button onClick={() => setEnableUploadImage(false)}>
+            <CgClose
+              color="#939393"
+              size={18}
+            />
+          </button>
         </div>
 
-        <Divider style={{ borderColor: "#FFFFFF0D" }} />
+        <Divider style={{ borderColor: "#FFFFFF0D", margin: "1.25rem 0" }} />
 
         {image ? (
           <>
-            <div
-              style={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-              }}
+            <div className="upload-img-container"
             >
               <img
                 src={URL.createObjectURL(image)}
                 alt="upload icon"
                 className="imageStyle"
+                width={190}
+                height={135}
               />
+              {
+                isGenerating ? (
+                  <div className="img-generating">
+                    <LoadingIcon className="loading-icon" />
+                  </div>
+                ) : ""
+              }
             </div>
 
-            <div
-              className="uploadButtonContainer"
+            <button
+              className={`uploadButtonContainer ${isGenerating ? "is-generating" : ""}`}
               onClick={handleGenerateButton}
-              style={{
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-              }}
             >
-              <img src={Icon.star} alt="upload icon" width={24} height={24} />
-              <span>Generate Code</span>
-            </div>
+              <img
+                src={Icon.star}
+                alt="upload icon"
+                width={16}
+                height={16}
+              />
+              <span>{isGenerating ? "Generating..." : "Generate Code"}</span>
+              {!isGenerating ? <Line3 className="line-1" /> : ""}
+            </button>
+            {
+              isGenerating ? <button className="cancel-generating-btn" onClick={(e) => handleGenerateButton(e, true)}>Cancel</button> : ""
+            }
           </>
         ) : (
           <>
-            <div className="uploadImageItemStyle">
+            <button className="uploadImageItemStyle" onClick={handleClick}>
               <img
                 src={Icon.cloudPlus}
                 alt="upload icon"
@@ -98,35 +111,38 @@ export const UploadImageContainer = ({
               />
 
               <div className="uploadText">
-                Clik here to upload or drag and drop image here
+                Click here to upload or drag and drop image here
               </div>
-            </div>
-
-            <div
-              className="uploadButtonContainer"
-              onClick={handleClick}
-              style={{
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
+              
               <input
+                className="file-upload"
                 type="file"
+                title=" "
                 ref={fileInputRef}
                 id="upload"
                 accept=".jpg, .jpeg, .png"
                 style={{ display: "none" }}
                 onChange={handleFileChange}
               />
+            </button>
+
+            <button
+              className="uploadButtonContainer"
+              style={{
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
               <img
-                src={Icon.ImageUploader}
+                src={Icon.ImageUploaderLight}
                 alt="upload icon"
-                width={24}
-                height={24}
+                width={16}
+                height={16}
               />
               <span>Upload Image</span>
-            </div>
+              <Line3 className="line-1" />
+            </button>
 
             <div className="preCautionText">Maximum size: 1MB</div>
           </>

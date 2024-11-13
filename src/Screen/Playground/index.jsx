@@ -18,6 +18,7 @@ const Playground = ({ onClose }) => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [enableCollapse, setEnableCollapse] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(true)
 
   const [screenSize, setScreenSize] = useState({
     width: calculateSize(window.innerWidth),
@@ -38,9 +39,19 @@ const Playground = ({ onClose }) => {
     });
   };
 
-  const handleGenerateButton = useCallback(() => {
+  const handleGenerateButton = useCallback((event, cancel = false) => {
+    if (cancel) {
+      setIsGenerating(false)
+      setEnableCollapse(false)
+      return;
+    }
+
     if (uploadedImage || searchText) {
-      setEnableCollapse(!enableCollapse);
+      setIsGenerating(true)
+      setTimeout(() => {
+        setEnableCollapse(true);
+        setIsGenerating(false);
+      }, 5000)
     } else handleGenerateInfo();
   }, [searchText, uploadedImage, enableCollapse]);
 
@@ -73,42 +84,43 @@ const Playground = ({ onClose }) => {
         </div>
 
         <div className="playgroundContainer">
-          <div className="playgroudMenuContainer">
+          <div className="playgroundMenus">
             <MenuContainer
               screenSize={screenSize}
               setEnableUploadImage={setEnableUploadImage}
               enableUploadImage={enableUploadImage}
             />
+            {enableUploadImage && (
+              <div className="playgroundModalUploadContainer">
+                <UploadImageContainer
+                  setEnableUploadImage={setEnableUploadImage}
+                  setUploadedImage={setUploadedImage}
+                  handleGenerateButton={handleGenerateButton}
+                  isGenerating={isGenerating}
+                />
+              </div>
+            )}
           </div>
-          {enableUploadImage && (
-            <div className="playgroundModalUploadContainer">
-              <UploadImageContainer
-                setEnableUploadImage={setEnableUploadImage}
-                setUploadedImage={setUploadedImage}
-                handleGenerateButton={handleGenerateButton}
-              />
-            </div>
-          )}
 
           <div
             className="playgroudContentContainer"
             style={{
-              width:
-                screenSize.size > 1024 && enableUploadImage
-                  ? "70%"
-                  : screenSize.size > 1024
-                  ? "85%"
-                  : "100%",
+              // width:
+              //   screenSize.size > 1024 && enableUploadImage
+              //     ? "70%"
+              //     : screenSize.size > 1024
+              //     ? "85%"
+              //     : "100%",
             }}
           >
-            {uploadedImage ? (
+            {/* {uploadedImage ? (
               <img src={URL.createObjectURL(uploadedImage)} alt="uploadedimage" />
-            ) : (
+            ) : ( */}
               <DetailContainer
                 setSearchText={setSearchText}
                 handleGenerateButton={handleGenerateButton}
               />
-            )}
+            {/* )} */}
           </div>
           {screenSize.size > 1024 && (
             <div className="playgroudSizeContainer">

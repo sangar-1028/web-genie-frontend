@@ -7,6 +7,7 @@ body {
   font-family: "Instrument Sans";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: url("./assests/icons/cursor.svg"), auto;
 }
 
 code {
@@ -24,6 +25,7 @@ p{
 }
 
 button {
+  font-family: inherit;
   cursor: pointer;
   background-color: transparent;
   outline: none;

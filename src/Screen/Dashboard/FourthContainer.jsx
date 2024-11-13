@@ -53,7 +53,7 @@ const FourthContainer = () => {
         className={`boxItem ${
           selectPhase === item.key ? "boxItemFilled" : "boxItemUnfilled"
         }`}
-        onClick={() => setSelectPhase(item.key)}
+        onMouseOver={() => setSelectPhase(item.key)}
       >
         <div className="timeline">
           <div className="circle">

@@ -46,20 +46,26 @@
 }
 
 .playgroundModalUploadContainer {
-  width: 15%;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #ffffff0d;
+  width: 230px;
+  height: fit-content;
   border-radius: 20px;
-  padding: 1rem;
-  box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5);
-  height: 295px;
+  background: #FFFFFF05;
+  padding: 1.25rem;
+  border: 1px solid #FFFFFF0D;
 }
+
+.playgroundMenus {
+  position: absolute;
+  z-index: 2;
+  top: 1.25rem;
+  left: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
 .playgroudMenuContainer {
   height: fit-content;
-  position: relative;
-  z-index: 2;
-  padding: 1.25rem;
+  padding: 1.25rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,6 +76,7 @@
 }
 
 .playgroudContentContainer {
+  width: 100%;
   margin-top: 133px;
   margin-bottom: 196px;
   display: flex;
@@ -96,7 +103,9 @@
   background: #ffffff05;
   border-radius: 20px;
   color: white;
-  position: relative;
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
   z-index: 3;
 }
 

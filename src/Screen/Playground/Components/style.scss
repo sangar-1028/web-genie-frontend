@@ -5,6 +5,7 @@
   height: 52px;
   // border: 1px solid;
   padding: 0.625rem;
+  margin: 0 1.25rem;
   background: linear-gradient(
     213.23deg,
     rgba(0, 0, 0, 0.1) 28.44%,
@@ -31,14 +32,35 @@
   background: linear-gradient(223.71deg, rgba(255, 255, 255, 0.5) 7.24%, rgba(255, 255, 255, 0.2) 24.31%, rgba(255, 255, 255, 0.05) 100%);
 }
 
+.playgroudMenuContainer .divider {
+  display: block;
+  margin: 0 1.25rem;
+}
+
 .itemContainer {
-  width: 74px;
+  width: 113px;
+  padding: 0 1.25rem;
   height: 57px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
   color: antiquewhite;
+  position: relative;
+}
+
+.itemContainer.is-active .itemText {
+  color: #FFFFFF;
+}
+
+.itemContainer.is-active::before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 100%;
+  left: 0;
+  border-radius: 0px 20px 20px 0px;
+  background: #D11CE9;
 }
 
 .itemText {
@@ -61,15 +83,24 @@
 .headerLogoStyle {
   width: 161px;
   height: 48px;
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(60px);
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.4), 0px -4px 20px rgba(0, 0, 0, 0.4),
-    4px 0px 20px rgba(0, 0, 0, 0.4), -4px 0px 20px rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 1.25rem;
+}
+
+.headerLogoStyle::before {
+  content: "";
+  position: absolute;
+  backdrop-filter: blur(2px);
+  inset: 0;
+  border-radius: 12px; 
+  padding: 1.2px; 
+  mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  mask-composite: exclude; 
+  background: linear-gradient(223.71deg, rgba(255, 255, 255, 0.5) 7.24%, rgba(255, 255, 255, 0.2) 24.31%, rgba(255, 255, 255, 0) 100%);
 }
 
 .subHeaderText {
@@ -186,7 +217,6 @@
 //upload container
 
 .uploadImageContainer {
-  height: auto;
   width: 100%;
   color: white;
   display: flex;
@@ -198,7 +228,7 @@
 .uploadHeaderText {
   font-family: "Instrument Sans";
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 19.52px;
 }
 
@@ -207,45 +237,103 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  gap: .875rem;
+  padding: 1.25rem;
   border: 1px dashed #270d2f;
   border-radius: 20px;
-  height: 120px;
+  margin-bottom: 1.25rem;
 }
 
+// .uploadImageItemStyle .file-upload {
+//   position: absolute;
+//   inset: 0;
+//   opacity: 0;
+//   cursor: pointer;
+// }
+
 .uploadText {
-  font-family: "Instrument Sans";
   font-size: 11px;
-  font-weight: 400;
-  line-height: 19.52px;
-  color: #9d9d9d;
-  width: 70%;
+  font-weight: 500;
+  line-height: 13.42px;
+  color: rgba(123, 123, 123, 1);
   text-align: center;
 }
+
 .uploadButtonContainer {
-  height: 36px;
+  width: 100%;
+  height: 32px;
   color: white;
   background: #d11ce9;
-  border-color: #ffffff1a;
-  border-width: 2;
-  color: white;
-  font-size: 16px;
+  padding: 0.5rem 1.5rem;
+  font-size: 11px;
   font-weight: 500;
-  border-radius: 20px;
-  box-shadow: 0px 16px 48px 20px #d323e71a;
+  line-height: 13.42px;
+  border-radius: 100px;
+  box-shadow: 0px 16px 48px 20px rgba(211, 35, 231, 0.1);
   justify-content: center;
   align-items: center;
   display: flex;
-  margin-top: 2rem;
   cursor: pointer;
-  gap: 0.5rem;
+  gap: 0.63rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.uploadButtonContainer.is-generating {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: unset;
+  color: rgba(157, 157, 157, 1);
+  box-shadow: none;
+  cursor: inherit;
+}
+
+.uploadButtonContainer.is-generating img {
+  opacity: 0.5;
+}
+
+.upload-img-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.img-generating {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.img-generating .loading-icon {
+  animation: rotating infinite 0.7s linear;
+}
+
+@keyframes rotating {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+.cancel-generating-btn {
+  width: 100%;
+  padding: 0.5rem 1.5rem;
+  margin-top: 0.5rem;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 13.42px;
+  border-radius: 100px;
+  color: rgba(157, 157, 157, 1);
 }
 
 .imageStyle {
-  width: 140px;
-  height: 140px;
-  object-fit: 'contain'; // Ensures the image scales proportionally
-  border-radius: 8px; // Optional: rounded corners
+  max-width: 100%;
+  max-height: 135px;
+  object-fit: contain; // Ensures the image scales proportionally
 }
 
 .preCautionText{
