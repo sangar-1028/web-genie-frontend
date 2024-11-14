@@ -181,7 +181,26 @@
   line-height: 20px;
 }
 
-// .inputstyle .search-input::placeholder {
+.generate-btn.is-generating {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0px 16px 48px 20px rgba(211, 35, 231, 0.1);
+  background-color: transparent;
+}
+
+.generate-btn.is-generating .line-1 {
+  backdrop-filter: blur(12px);
+  opacity: 0.5;
+  top: -1px;
+  left: -1px;
+}
+
+.inputstyle:empty:before{
+  content: attr(placeholder);
+  pointer-events: none;
+  display: block; /* For Firefox */
+}
+// .inputstyle .search-input .placeholder {
+//   color: rgba(114, 114, 114, 1);
 //   font-weight: 500;
 // }
 

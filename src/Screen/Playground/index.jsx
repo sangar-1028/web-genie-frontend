@@ -46,6 +46,7 @@ const Playground = ({ onClose }) => {
   const handleGenerateButton = useCallback((event, cancel = false) => {
     console.log(textGenerate)
     console.log(image)
+    console.log(searchText)
 
     if (cancel) {
       setIsGenerating(false)
@@ -146,8 +147,10 @@ const Playground = ({ onClose }) => {
               <img className="generated-img" src={URL.createObjectURL(generatedImage)} alt="Website generated" />
             ) : (
               <DetailContainer
+                searchText={searchText}
                 setSearchText={setSearchText}
                 handleGenerateButton={handleGenerateButton}
+                isGenerating={isGenerating}
               />
             )}
           </div>

@@ -7,7 +7,7 @@ import { ReactComponent as GenerateIcon } from "../../../assests/icons/generate.
 import { ReactComponent as Line4 } from "../../../assests/icons/line-4.svg";
 import { ReactComponent as Ellipse3 } from "../../../assests/icons/ellipse-3.svg";
 
-const DetailContainer = ({ setSearchText, handleGenerateButton}) => {
+const DetailContainer = ({ searchText, setSearchText, handleGenerateButton, isGenerating}) => {
     const [isFocus, setIsFocus] = useState(false)
 
   return (
@@ -25,7 +25,7 @@ const DetailContainer = ({ setSearchText, handleGenerateButton}) => {
       <div className="text-form">
         <div className="inputstyle">
           <AttachmentIcon />
-          <div className="search-input" contentEditable>Describe your landing page</div>
+          <div className="search-input" placeholder="Describe your landing page" contentEditable onInput={(e) => setSearchText(e.currentTarget.textContent)}>Describe your landing page</div>
         </div>
         {/* <InputField
           placeholder="Describe your landing page"
@@ -34,11 +34,14 @@ const DetailContainer = ({ setSearchText, handleGenerateButton}) => {
           onChange={(event) => setSearchText(event.target.value)}
         /> */}
         <ButtonField
-          buttonStyle={"buttonStyle generate-btn"}
+          buttonStyle={`buttonStyle generate-btn ${isGenerating ? "is-generating" : ""}`}
+          onClick={handleGenerateButton}
         >
           <GenerateIcon />
           <Line4 className="line-1" />
-          Generate
+          {
+            isGenerating ? "Generating..." : "Generate"
+          }
         </ButtonField>
 
       </div>
