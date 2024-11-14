@@ -2,7 +2,18 @@ import React, { useMemo } from "react";
 import { Icon } from "../../../assests/images/constant";
 import "./style.scss";
 import { Divider } from "antd";
-const MenuContainer = ({ screenSize, setEnableUploadImage, enableUploadImage }) => {
+const MenuContainer = ({ screenSize, setEnableUploadImage, enableUploadImage, enableText, setEnableText }) => {
+
+  const openModal = (modal) => {
+    if (modal === "image") {
+      setEnableUploadImage(!enableUploadImage);
+      setEnableText(false);
+    }
+    if (modal === "text") {
+      setEnableUploadImage(false);
+      setEnableText(!enableText);
+    }
+  }
 
   const isScreenSmall = useMemo(() => {
     if (window.innerWidth > 1024) {
@@ -17,12 +28,12 @@ const MenuContainer = ({ screenSize, setEnableUploadImage, enableUploadImage }) 
       <button className="logoContainer">
         <img src={Icon.logoIcon} alt="logo style" />
       </button>
-      <button className="itemContainer">
-        <img src={Icon.EditText} alt="edit icon" width={32} height={32} />
+      <button className={`itemContainer ${enableText ? "is-active" : ""}`} onClick={() => openModal("text")}>
+        <img src={enableText ? Icon.EditTextLight : Icon.EditText} alt="edit icon" width={32} height={32} />
         <div className="itemText">Text to code</div>
       </button>
 
-      <button className={`itemContainer ${enableUploadImage ? "is-active" : ""}`} onClick={() => setEnableUploadImage(!enableUploadImage)}>
+      <button className={`itemContainer ${enableUploadImage ? "is-active" : ""}`} onClick={() => openModal("image")}>
         <img
           src={enableUploadImage ? Icon.ImageUploaderLight : Icon.ImageUploader}
           alt="upload icon"

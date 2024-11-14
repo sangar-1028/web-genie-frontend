@@ -22,10 +22,10 @@ const DetailContainer = ({ setSearchText, handleGenerateButton}) => {
         Upload any landing page design and watch WebGenie transform it into
         clean, responsive HTML & CSS in seconds
       </div>
-      <form className="text-form">
+      <div className="text-form">
         <div className="inputstyle">
           <AttachmentIcon />
-          <input placeholder="Describe your landing page" />
+          <div className="search-input" contentEditable>Describe your landing page</div>
         </div>
         {/* <InputField
           placeholder="Describe your landing page"
@@ -41,7 +41,7 @@ const DetailContainer = ({ setSearchText, handleGenerateButton}) => {
           Generate
         </ButtonField>
 
-      </form>
+      </div>
       <Ellipse3 className="ellipse-3" />
     </>
   );

@@ -12,13 +12,17 @@ import {
   CollapseContainer,
 } from "./Components";
 import { toast } from "react-toastify";
+import { TextGenerateContainer } from "./Components/TextGenerateContainer";
 const Playground = ({ onClose }) => {
 
+  const [image, setImage] = useState(null);
   const [enableUploadImage, setEnableUploadImage] = useState(false);
-  const [uploadedImage, setUploadedImage] = useState(null);
+  const [enableText, setEnableText] = useState(false);
+  const [textGenerate, setTextGenerate] = useState("")
+  const [generatedImage, setGeneratedImage] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [enableCollapse, setEnableCollapse] = useState(false);
-  const [isGenerating, setIsGenerating] = useState(true)
+  const [isGenerating, setIsGenerating] = useState(false)
 
   const [screenSize, setScreenSize] = useState({
     width: calculateSize(window.innerWidth),
@@ -40,20 +44,31 @@ const Playground = ({ onClose }) => {
   };
 
   const handleGenerateButton = useCallback((event, cancel = false) => {
+    console.log(textGenerate)
+    console.log(image)
+
     if (cancel) {
       setIsGenerating(false)
       setEnableCollapse(false)
       return;
     }
 
-    if (uploadedImage || searchText) {
+    if (image || textGenerate || searchText) {
       setIsGenerating(true)
       setTimeout(() => {
-        setEnableCollapse(true);
+        // Display the code editor
+        // setEnableCollapse(true);
+        // Remove all loading UI
         setIsGenerating(false);
+        // Set Image to display
+        setGeneratedImage(image);
+
+        // Close all modals
+        setEnableText(false);
+        setEnableUploadImage(false);
       }, 5000)
     } else handleGenerateInfo();
-  }, [searchText, uploadedImage, enableCollapse]);
+  }, [searchText, generatedImage, textGenerate, enableCollapse, isGenerating, image]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -89,13 +104,27 @@ const Playground = ({ onClose }) => {
               screenSize={screenSize}
               setEnableUploadImage={setEnableUploadImage}
               enableUploadImage={enableUploadImage}
+              enableText={enableText}
+              setEnableText={setEnableText}
             />
             {enableUploadImage && (
               <div className="playgroundModalUploadContainer">
                 <UploadImageContainer
                   setEnableUploadImage={setEnableUploadImage}
-                  setUploadedImage={setUploadedImage}
                   handleGenerateButton={handleGenerateButton}
+                  isGenerating={isGenerating}
+                  image={image}
+                  setImage={setImage}
+                />
+              </div>
+            )}
+            {enableText && (
+              <div className="playgroundModalUploadContainer">
+                <TextGenerateContainer
+                  setEnableText={setEnableText}
+                  setTextGenerate={setTextGenerate}
+                  handleGenerateButton={handleGenerateButton}
+                  textGenerate={textGenerate}
                   isGenerating={isGenerating}
                 />
               </div>
@@ -113,14 +142,14 @@ const Playground = ({ onClose }) => {
               //     : "100%",
             }}
           >
-            {/* {uploadedImage ? (
-              <img src={URL.createObjectURL(uploadedImage)} alt="uploadedimage" />
-            ) : ( */}
+            {generatedImage ? (
+              <img className="generated-img" src={URL.createObjectURL(generatedImage)} alt="Website generated" />
+            ) : (
               <DetailContainer
                 setSearchText={setSearchText}
                 handleGenerateButton={handleGenerateButton}
               />
-            {/* )} */}
+            )}
           </div>
           {screenSize.size > 1024 && (
             <div className="playgroudSizeContainer">
@@ -129,11 +158,11 @@ const Playground = ({ onClose }) => {
           )}
         </div>
 
-        {enableCollapse ? (
+        {generatedImage ? (
           <div className="playgroundFooterContainer">
             <CollapseContainer
               setEnableCollapse={setEnableCollapse}
-              img={uploadedImage}
+              img={generatedImage}
               searchText={searchText}
               screenSize={screenSize}
             />

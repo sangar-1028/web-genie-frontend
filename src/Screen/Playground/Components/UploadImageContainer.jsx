@@ -10,12 +10,12 @@ import { ReactComponent as LoadingIcon } from "../../../assests/icons/loading.sv
 
 export const UploadImageContainer = ({
   setEnableUploadImage,
-  setUploadedImage,
   handleGenerateButton,
-  isGenerating
+  isGenerating,
+  image,
+  setImage
 }) => {
   const fileInputRef = useRef(null);
-  const [image, setImage] = useState(null);
 
   const handleClick = () => {
     fileInputRef.current.click();
@@ -36,13 +36,13 @@ export const UploadImageContainer = ({
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
+    console.log(file, file.size, 1024 * 1024)
 
     if (file) {
       if (file.size > 1024 * 1024) {
         handleGenerateError();
       } else {
         setImage(file);
-        setUploadedImage(file);
       }
     }
   };
@@ -52,7 +52,7 @@ export const UploadImageContainer = ({
       <div>
         <div className="uploadImageContainer">
           <div className="uploadHeaderText">Upload Image</div>
-          <button onClick={() => setEnableUploadImage(false)}>
+          <button onClick={() => {setEnableUploadImage(false); setImage(null)}}>
             <CgClose
               color="#939393"
               size={18}

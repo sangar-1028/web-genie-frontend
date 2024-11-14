@@ -141,24 +141,29 @@
 
 .inputstyle {
   width: 100%;
-  height: 48px;
-  padding: 10px 16px;
-  border-radius: 100px;
+  // height: 48px;
+  padding: 12px 16px;
+  border-radius: 20px;
   border: 1px solid #FFFFFF1A;
   display: flex;
-  align-items: center;
+  align-items: start;
   gap: 0.75rem;
   background-color: transparent;
   margin-bottom: 1.25rem;
 }
 
-.inputstyle input {
+.inputstyle .search-input {
+  outline: none;
+  max-height: 200px;
+  overflow: auto;
   flex: 1 0 0;
   height: 100%;
   font-family: "Instrument Sans";
   font-weight: 400;
   font-size: 16px;
+  line-height: 22px;
   color: white;
+  resize: none;
 }
 
 .generate-btn {
@@ -176,9 +181,9 @@
   line-height: 20px;
 }
 
-.inputstyle input::placeholder {
-  font-weight: 500;
-}
+// .inputstyle .search-input::placeholder {
+//   font-weight: 500;
+// }
 
 .inputstylefocus {
   height: 48px;
@@ -279,6 +284,15 @@
   overflow: hidden;
 }
 
+.text-generate-modal .uploadButtonContainer.is-generating {
+  color: white;
+  opacity: 0.8;
+}
+
+.text-generate-modal .uploadButtonContainer .text-generate-icon {
+  opacity: 0.8;
+}
+
 .uploadButtonContainer.is-generating {
   border: 1px solid rgba(255, 255, 255, 0.1);
   background-color: unset;
@@ -291,12 +305,28 @@
   opacity: 0.5;
 }
 
+.uploadButtonContainer .text-generate-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
 .upload-img-container {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-bottom: 1.25rem;
   position: relative;
+}
+
+.text-generating {
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+  // background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
 }
 
 .img-generating {
@@ -308,7 +338,7 @@
   align-items: center;
 }
 
-.img-generating .loading-icon {
+.img-generating .loading-icon, .text-generating .loading-icon {
   animation: rotating infinite 0.7s linear;
 }
 
@@ -318,6 +348,38 @@
   }
 }
 
+.form-generate {
+  width: 100%;
+}
+
+.form-generate .form-container {
+  position: relative;
+  margin-bottom: 1.25rem;
+}
+
+.form-generate textarea {
+  width: 100%;
+  height: 112px;
+  padding: 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: transparent;
+  font-size: 11px;
+  line-height: 13.42px;
+  outline: none;
+  color: rgba(255, 255, 255, 1);
+  font-family: inherit;
+  resize: none;
+}
+
+.form-generate textarea::placeholder {
+  font-weight: 500;
+  color: rgba(123, 123, 123, 1);
+}
+
+.form-generate.is-generating textarea {
+  color: rgba(49, 49, 49, 1);
+}
 
 .cancel-generating-btn {
   width: 100%;
@@ -381,16 +443,47 @@
 
 .custom .ant-collapse-item >.ant-collapse-header{
   color: #C6C6C6;
-
-font-family: "Instrument Sans";
-font-size: 16px;
-font-weight: 600;
-line-height: 19.52px;
-
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19.52px;
 }
 
 .customContainer .ant-collapse-content-box {
   padding: 0px !important;
+}
+
+.playgroundFooterContainer .collapse-container {
+  width: 100%;
+  margin: 0 1.25rem;
+  border-color: transparent !important;
+}
+
+.playgroundFooterContainer .collapse-container .ant-collapse-header {
+  height: 72px;
+  padding: 20px 32px;
+  border-radius: 20px 20px 0px 0px !important;
+  // border-bottom: 1px solid;
+  background: rgba(15, 15, 15, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.playgroundFooterContainer .collapseExpand {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.playgroundFooterContainer .collapse-container .header-text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19.52px;
+  color: rgba(198, 198, 198, 1);
+}
+
+.collapse-container.ant-collapse .ant-collapse-content {
+  border: none;
 }
 
 
@@ -426,4 +519,10 @@ line-height: 19.52px;
     margin-top: 0rem;
     width: 80%;
   }
+}
+
+.generated-img {
+  max-width: 566px;
+  max-height: 402px;
+  object-fit: contain;
 }

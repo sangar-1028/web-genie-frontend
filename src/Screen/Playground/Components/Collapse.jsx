@@ -1,8 +1,11 @@
 import { Collapse } from "antd";
+import { CgClose } from "react-icons/cg";
 import "./style.scss";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { useMemo } from "react";
 import { EditorContainer } from "../../../CommonComponent";
+import { ReactComponent as CodeBlockPurple } from "../../../assests/icons/code-block-purple.svg"
+
 const CollapseContainer = ({
   setEnableCollapse,
   img,
@@ -11,8 +14,8 @@ const CollapseContainer = ({
 }) => {
   const title = useMemo(() => {
     return (
-      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-        <p style={{ color: "#CB24E0" }}>{"</>"}</p>
+      <div className="header-text" style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+        <CodeBlockPurple />
         <p>Code Editor</p>
       </div>
     );
@@ -27,29 +30,29 @@ const CollapseContainer = ({
   return (
     <>
       <Collapse
-        style={{
-          marginLeft: screenSize.size > 1024 ? "5rem" : "0.5rem",
-          marginRight: screenSize.size > 1024 ? "5rem" : "0.5rem",
-          background: "#1B1B1B",
-          border: "1px solid #1B1B1B",
-        }}
-        className="custom customContainer customContainer2"
+        className="custom collapse-container"
         items={items}
-        defaultActiveKey={["1"]}
-        onChange={() => setEnableCollapse(false)}
-        expandIconPosition="right"
+        // defaultActiveKey={["1"]}
+        activeKey={0}
+        // onChange={() => setEnableCollapse(false)}
+        expandIconPosition="end"
         expandIcon={({ isActive }) => (
-          <span
-            style={{
-              color: isActive ? "white" : "#9d9d9d",
-            }}
-          >
-            {isActive ? (
-              <MdKeyboardArrowDown size={24} color="white" />
-            ) : (
-              <MdKeyboardArrowUp size={24} color="white" />
-            )}
-          </span>
+          <div className="collapseExpand">
+            <button>
+              {isActive ? (
+                <MdKeyboardArrowDown size={32} color="white" />
+              ) : (
+                <MdKeyboardArrowUp size={32} color="white" />
+              )}
+            </button>
+
+            <button>
+              <CgClose
+                color="#939393"
+                size={24}
+              />
+            </button>
+          </div>
         )}
       />
       ;
