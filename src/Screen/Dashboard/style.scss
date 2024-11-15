@@ -261,8 +261,8 @@
 }
 
 .boxItemFilled {
-  border: 1px solid #d11ce9;
-  background: #d11ce933;
+  border: 1px solid #d11ce9 !important;
+  background: #d11ce933 !important;
 }
 
 .boxItemText {
@@ -312,12 +312,12 @@
   background: rgba(72, 72, 72, 1);
 }
 
-.boxItemFilled .circle {
+.phaseFilled .circle {
   background: rgba(209, 28, 233, 0.3);
   border: 0.38px solid rgba(209, 28, 233, 1)
 }
 
-.boxItemFilled .circle .inner-circle {
+.phaseFilled .circle .inner-circle {
   background: rgba(209, 28, 233, 1);
 }
 

@@ -27,6 +27,13 @@ const BoxItem = ({ selectPhase, setSelectPhase, item }) => {
         staggerChildren: 0.5, 
         staggerDirection: -1
       }
+    },
+    hover: {
+      border: selectPhase === item.key ? "1px solid #d11ce9" : "1px solid #313131",
+      background: selectPhase === item.key ? "#d11ce933" : "rgba(0,0,0,0)",
+      transition: {
+        duration: 0.4
+      }
     }
   }
 
@@ -44,23 +51,41 @@ const BoxItem = ({ selectPhase, setSelectPhase, item }) => {
     }
   }
 
+  const circleAnims = {
+    circle: {
+      background: selectPhase === item.key ? "rgba(209, 28, 233, 0.3)" : "rgba(72, 72, 72, 0.3)",
+      border: selectPhase === item.key ? "0.38px solid rgba(209, 28, 233, 1)" : "0.38px solid rgba(72, 72, 72, 1)",
+      transition: {
+        duration: 0.4
+      }
+    },
+    innerCircle: {
+      background: selectPhase === item.key ? "rgba(209, 28, 233, 1)" : "rgba(72, 72, 72, 1)",
+      transition: {
+        duration: 0.4
+      }
+    }
+  }
+
   return (
     <div
-      className="phase"
+      className={`phase ${selectPhase === item.key ? "phaseFilled" : "phaseUnfilled"}`}
       key={item.key}
+      onMouseOver={() => setSelectPhase(item.key)}
     >
       <div className="timeline">
-        <div className="circle">
-          <div className="inner-circle"></div>
-        </div>
+        <motion.div className="circle" variants={circleAnims} animate="circle">
+          <motion.div className="inner-circle" variants={circleAnims} animate="innerCircle"></motion.div>
+        </motion.div>
       </div>
       <motion.div 
-        className={`boxItem ${selectPhase === item.key ? "boxItemFilled" : "boxItemUnfilled"}`} 
-        // onMouseOver={() => setSelectPhase(item.key)}
+        className={`boxItem`}
+        // ${selectPhase === item.key ? "boxItemFilled" : "boxItemUnfilled"}
         variants={animate}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
+        animate="hover"
       >
         <motion.img src={item.icon} alt="edit icon" width={32} height={32} variants={content} />
         <motion.div className="boxItemText" variants={content}>{item.Title}</motion.div>
