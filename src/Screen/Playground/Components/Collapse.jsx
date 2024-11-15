@@ -2,16 +2,20 @@ import { Collapse } from "antd";
 import { CgClose } from "react-icons/cg";
 import "./style.scss";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { EditorContainer } from "../../../CommonComponent";
 import { ReactComponent as CodeBlockPurple } from "../../../assests/icons/code-block-purple.svg"
 
 const CollapseContainer = ({
+  enableCollapse,
   setEnableCollapse,
   img,
   searchText,
   screenSize,
 }) => {
+  const [activeKey, setActiveKey] = useState(0)
+  const [display, setDisplay] = useState("mini")
+
   const title = useMemo(() => {
     return (
       <div className="header-text" style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
@@ -27,36 +31,65 @@ const CollapseContainer = ({
       children: <EditorContainer uploadedImg={img} searchText={searchText} />,
     },
   ];
+
+  useEffect(() => {
+    if (enableCollapse) {
+      setActiveKey(1)
+    } else {
+      setActiveKey(0)
+    }
+  }, [enableCollapse])
+
+  const handleShowing = (action) => {
+    if (action === "up" && !enableCollapse) {
+      setDisplay("mini")
+      setEnableCollapse(true)
+    } else if (action === "up" && enableCollapse) {
+      setDisplay("fullscreen")
+    } else if (action === "down") {
+      setEnableCollapse(false)
+    }
+  }
+
   return (
-    <>
+    <div className={`playgroundFooterContainer ${enableCollapse ? "" : "is-collapsed"} ${display}`}>
       <Collapse
         className="custom collapse-container"
         items={items}
         // defaultActiveKey={["1"]}
-        activeKey={0}
+        activeKey={activeKey}
         // onChange={() => setEnableCollapse(false)}
         expandIconPosition="end"
         expandIcon={({ isActive }) => (
           <div className="collapseExpand">
-            <button>
-              {isActive ? (
-                <MdKeyboardArrowDown size={32} color="white" />
-              ) : (
-                <MdKeyboardArrowUp size={32} color="white" />
-              )}
-            </button>
+              <button onClick={() => handleShowing("up")}>
+                  <MdKeyboardArrowUp size={32} color="white" />
+              </button>
+              {
+                isActive ? (
+                  <>
+                    <button onClick={() => handleShowing("down")}>
+                        <MdKeyboardArrowDown size={32} color="white" />
+                    </button>
+                  </>
+                ) : ""
+              }
 
-            <button>
-              <CgClose
-                color="#939393"
-                size={24}
-              />
-            </button>
+              {
+                !enableCollapse ? (
+                  <button>
+                    <CgClose
+                      color="#939393"
+                      size={24}
+                    />
+                  </button>
+                ) : ""
+              }
           </div>
         )}
       />
       ;
-    </>
+    </div>
   );
 };
 

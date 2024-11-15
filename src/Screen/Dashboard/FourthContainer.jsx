@@ -3,9 +3,76 @@ import "./style.scss";
 import { Icon } from "../../assests/images/constant";
 import { ReactComponent as Ellipse1 } from "../../assests/icons/ellipse-1.svg";
 import { ReactComponent as Ellipse2 } from "../../assests/icons/ellipse-2.svg";
+import { motion } from "framer-motion"
+
+const BoxItem = ({ selectPhase, setSelectPhase, item }) => {
+  const animate = {
+    visible: {
+      opacity: 1,
+      scaleY: 1,
+      originY: 0,
+      transition: {
+        // ease: "linear",
+        duration: 0.5,
+        when: "beforeChildren",
+        staggerChildren: 0.2
+      }
+    },
+    hidden: {
+      opacity: 0,
+      scaleY: 0,
+      originY: 0,
+      transition: {
+        when: "afterChildren",
+        staggerChildren: 0.5, 
+        staggerDirection: -1
+      }
+    }
+  }
+
+  const content = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5
+      }
+    },
+    hidden: {
+      opacity: 0,
+      y: 10
+    }
+  }
+
+  return (
+    <div
+      className="phase"
+      key={item.key}
+    >
+      <div className="timeline">
+        <div className="circle">
+          <div className="inner-circle"></div>
+        </div>
+      </div>
+      <motion.div 
+        className={`boxItem ${selectPhase === item.key ? "boxItemFilled" : "boxItemUnfilled"}`} 
+        // onMouseOver={() => setSelectPhase(item.key)}
+        variants={animate}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        <motion.img src={item.icon} alt="edit icon" width={32} height={32} variants={content} />
+        <motion.div className="boxItemText" variants={content}>{item.Title}</motion.div>
+        <motion.div className="boxItemSubText" variants={content}>{item.subTitle}</motion.div>
+      </motion.div>
+    </div>
+  );
+};
 
 const FourthContainer = () => {
   const [selectPhase, setSelectPhase] = useState("phase1");
+
   const itemArray = [
     {
       key: "phase1",
@@ -46,45 +113,63 @@ const FourthContainer = () => {
     },
   ];
 
-  const boxItem = (item) => {
-    return (
-      <div
-        key={item.key}
-        className={`boxItem ${
-          selectPhase === item.key ? "boxItemFilled" : "boxItemUnfilled"
-        }`}
-        onMouseOver={() => setSelectPhase(item.key)}
-      >
-        <div className="timeline">
-          <div className="circle">
-            <div className="inner-circle"></div>
-          </div>
-        </div>
-        <img src={item.icon} alt="edit icon" width={32} height={32} />
-        <div className="boxItemText">{item.Title}</div>
-        <div className="boxItemSubText">{item.subTitle}</div>
-      </div>
-    );
-  };
+  const variants = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.2,
+        duration: 0.6,
+      }
+    },
+    hidden: {
+      opacity: 0,
+      y: 10,
+      transition: {
+        when: "afterChildren"
+      }
+    }
+  }
+
+  const timeline = {
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 3,
+        duration: 1
+      }
+    },
+    hidden: {
+      opacity: 0,
+      transition: {
+        when: "afterChildren",
+      }
+    }
+  }
+
   return (
-    <div className="secondContainer">
+    <motion.div className="secondContainer" variants={variants} initial="hidden" whileInView="visible">
       <Ellipse1 className="ellipse-1" />
       <Ellipse2 className="ellipse-2" />
-      <div className="seoondHeader">The roadmap of magic</div>
-      <div className="fourthSubHeader">
+      {/* <div className="ellipse-1"></div>
+      <div className="ellipse-2"></div> */}
+      <motion.div className="seoondHeader" variants={variants}>The roadmap of magic</motion.div>
+      <motion.div className="fourthSubHeader" variants={variants}>
         The Evolution of <span className="subtext-span">Webgenie</span>
-      </div>
-      <div className="fourthSubText">
+      </motion.div>
+      <motion.div className="fourthSubText" variants={variants}>
         Discover our plans to continuously expand the power of design-to-code
         automation.
-      </div>
+      </motion.div>
 
-      <div className="boxItemsContainer">
+      <div className="boxItemsContainer" variants={timeline} initial="hidden" whileInView="visible">
         {itemArray.map((item) => {
-          return boxItem(item);
+          return <BoxItem item={item} selectPhase={selectPhase} setSelectPhase={setSelectPhase} />;
         })}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

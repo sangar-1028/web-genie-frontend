@@ -7,6 +7,7 @@ import {ReactComponent as StarsIllustration} from "../../assests/icons/stars.svg
 import {ReactComponent as RaysIllustration} from "../../assests/icons/rays.svg"
 import {ReactComponent as Line3} from "../../assests/icons/line-3.svg"
 import Playground from "../../Screen/Playground";
+import { motion } from "framer-motion"
 
 const Header = () => {
   const [openPlayground, setOpenPlayground] = useState(false);
@@ -15,12 +16,10 @@ const Header = () => {
   return (
     <>
       <div className={`header ${openPlayground ? "playground-open" : ""}`}>
-        <div className="headerContainer">
-          {/* <div className="logo-wrapper"> */}
-            <div className="headerLogo">
-              <img src={Icon.logo} alt="logo style" />
-            </div>
-          {/* </div> */}
+        <motion.div className="headerContainer" initial={{ opacity: 0, y: -70 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 1, ease: "circInOut" }}>
+          <div className="headerLogo">
+            <img src={Icon.logo} alt="logo style" />
+          </div>
           <ButtonField
             buttonStyle={"buttonStyle"}
             onClick={() => setOpenPlayground(true)}
@@ -28,7 +27,7 @@ const Header = () => {
             Use playground
             <Line3 className="line-1" />
           </ButtonField>
-        </div>
+        </motion.div>
         <StarsIllustration className="stars-illustration" />
         <RaysIllustration className="rays-illustration" />
       </div>

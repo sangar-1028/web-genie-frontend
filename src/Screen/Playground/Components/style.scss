@@ -475,6 +475,10 @@
   border-color: transparent !important;
 }
 
+.collapse-container.ant-collapse .ant-collapse-content>.ant-collapse-content-box {
+  padding: unset;
+}
+
 .playgroundFooterContainer .collapse-container .ant-collapse-header {
   height: 72px;
   padding: 20px 32px;

@@ -116,6 +116,7 @@
   position: absolute;
   top: -10px;
   left: -20px;
+  z-index: 0;
 }
 
 .cta-button .line-2 {
@@ -182,6 +183,11 @@
 // fourth container
 
 .ellipse-1 {
+  // width: 276px;
+  // height: 277px;
+  // border-radius: 100%;
+  // background-color: rgba(209, 28, 233, 0.5);
+  // backdrop-filter: blur(400px);
   position: absolute;
   top: -400px;
   left: 0;
@@ -230,10 +236,19 @@
   position: relative;
 }
 
-.boxItem {
+.phase {
   width: 100%;
   max-width: 672px;
   height: 144px;
+}
+
+.phase:last-child .timeline {
+  background-color: transparent;
+}
+
+.boxItem {
+  width: 100%;
+  height: 100%;
   padding: 1rem;
   display: flex;
   flex-direction: column;
@@ -272,10 +287,6 @@
   width: 2px;
   background-color: rgba(49, 49, 49, 1); 
   margin-top: 1rem;
-}
-
-.boxItem:last-child .timeline {
-  background-color: transparent;
 }
 
 .circle {

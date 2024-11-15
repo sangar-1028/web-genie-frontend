@@ -12,6 +12,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0px 4px 4px 0px rgba(209, 28, 233, 1);
   border-radius: 20px;
+  position: relative;
 }
 
 .playgroundHeader {
@@ -85,6 +86,10 @@
   border-radius: 20px;
 }
 
+// .editor-showing .playgroudContentContainer {
+//   margin-top: 73px;
+// }
+
 .playgroudContentContainer > * {
   position: relative;
   z-index: 2;
@@ -137,10 +142,26 @@
 
 .playgroundFooterContainer {
   width: 100%;
-  position: relative;
+  position: absolute;
+  bottom: 0;
   z-index: 3;
   display: flex;
   align-items: flex-end;
+  transition: all 0.3s ease-in-out;
+}
+
+.playgroundFooterContainer.is-collapsed {
+  inset: unset;
+  background: unset !important;
+  backdrop-filter: unset !important;
+  left: 0;
+  bottom: 0;
+}
+
+.playgroundFooterContainer.fullscreen {
+  inset: 0;
+  background: rgba(10, 10, 10, 0.1);
+  backdrop-filter: blur(12px)
 }
 
 .playgroundFooterBarContainer {

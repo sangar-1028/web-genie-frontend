@@ -87,7 +87,7 @@ const Playground = ({ onClose }) => {
 
   return (
     <div className="modal">
-      <div className="playgroundModal">
+      <div className={`playgroundModal ${enableCollapse ? "editor-showing" : ""}`}>
         <div className="playgroundHeader">
           <div className="PlaygroundTitle">Playground</div>
           <button className="" onClick={onClose}>
@@ -133,7 +133,7 @@ const Playground = ({ onClose }) => {
           </div>
 
           <div
-            className="playgroudContentContainer"
+            className={`playgroudContentContainer`}
             style={{
               // width:
               //   screenSize.size > 1024 && enableUploadImage
@@ -159,17 +159,17 @@ const Playground = ({ onClose }) => {
               <RotateContainer />
             </div>
           )}
+          
+          <CollapseContainer
+            enableCollapse={enableCollapse}
+            setEnableCollapse={setEnableCollapse}
+            img={generatedImage}
+            searchText={searchText}
+            screenSize={screenSize}
+          />
         </div>
 
-        {generatedImage ? (
-          <div className="playgroundFooterContainer">
-            <CollapseContainer
-              setEnableCollapse={setEnableCollapse}
-              img={generatedImage}
-              searchText={searchText}
-              screenSize={screenSize}
-            />
-          </div>
+        {/* {generatedImage ? (
         ) : (
           <button
             className="playgroundFooterContainer"
@@ -182,7 +182,7 @@ const Playground = ({ onClose }) => {
               </div>
             </div>
           </button>
-        )}
+        )} */}
       </div>
     </div>
   );
