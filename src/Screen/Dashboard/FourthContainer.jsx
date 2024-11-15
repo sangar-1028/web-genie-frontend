@@ -176,10 +176,8 @@ const FourthContainer = () => {
 
   return (
     <motion.div className="secondContainer" variants={variants} initial="hidden" whileInView="visible">
-      <Ellipse1 className="ellipse-1" />
-      <Ellipse2 className="ellipse-2" />
-      {/* <div className="ellipse-1"></div>
-      <div className="ellipse-2"></div> */}
+      {/* <Ellipse1 className="ellipse-1" />
+      <Ellipse2 className="ellipse-2" /> */}
       <motion.div className="seoondHeader" variants={variants}>The roadmap of magic</motion.div>
       <motion.div className="fourthSubHeader" variants={variants}>
         The Evolution of <span className="subtext-span">Webgenie</span>

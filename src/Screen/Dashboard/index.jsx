@@ -17,6 +17,36 @@ const Dashboard = () => {
       <ThirdContainer />
       <FourthContainer />
       <Footer/>
+
+      <motion.div
+        className="ellipse-1"
+        animate={{
+          x: [0, "50%", "-50%", "0%", "50%", "0%"], // Covers left, center, right
+          y: [0, "50%", "0%", "-50%", "100%", "0%"], // Covers top, middle, bottom
+          scale: [1, 1.5, 1, 1.3, 1], // Varying size
+          borderRadius: ["50%", "30%", "40%", "50%", "50%"], // Morph shapes
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      ></motion.div>
+
+      <motion.div
+        className="ellipse-2"
+        animate={{
+          x: [0, "-50%", "50%", "0%", "-50%", "0%"], // Covers left, center, right
+          y: [0, "-50%", "50%", "0%", "-100%", "0%"], // Covers top, middle, bottom
+          scale: [1, 1.4, 1.2, 1.6, 1], // Varying size
+          borderRadius: ["50%", "30%", "40%", "30%", "50%"], // Morph shapes
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      ></motion.div>
     </motion.div>
   );
 };

@@ -6,6 +6,7 @@ import {ReactComponent as GridIllustration} from "../../assests/icons/grid.svg"
 import {ReactComponent as Line1} from "../../assests/icons/line-1.svg"
 import {ReactComponent as Line2} from "../../assests/icons/line-2.svg"
 import { motion } from "framer-motion"
+import Grid from "./Grid";
 
 const SecondContainer = () => {
   const variants = {
@@ -69,6 +70,7 @@ const SecondContainer = () => {
         </motion.div>
 
         <motion.button className="cta-button" variants={content}>
+          <motion.div className="btn-highlight"></motion.div>
           <Line1 className="line-1" />
           Use Webgenie - <span className="btn-subtext">For Free!</span>
           <Line1 className="line-2" />

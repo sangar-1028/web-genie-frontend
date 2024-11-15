@@ -8,6 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   cursor: url("./assests/icons/cursor.svg"), auto;
+  overflow-x: hidden;
 }
 
 code {
