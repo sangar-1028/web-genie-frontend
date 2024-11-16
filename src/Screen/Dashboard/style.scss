@@ -112,6 +112,73 @@
   overflow: hidden;
 }
 
+// .cta-button {
+//   position: relative;
+//   display: inline-block;
+//   padding: 12px 24px;
+//   font-size: 1rem;
+//   border: 2px solid #d11ce9;
+//   border-radius: 20px; /* Match border-radius */
+//   background: transparent;
+//   color: #fff;
+//   overflow: hidden;
+//   cursor: pointer;
+// }
+
+/* Container to trace the border */
+.streak-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 100px; /* Match the button's border-radius */
+  overflow: hidden;
+  pointer-events: none; /* Prevent interaction */
+}
+
+/* Streak styles */
+.streak {
+  position: absolute;
+  width: 50%; /* Streak size */
+  height: 2px; /* Streak thickness */
+  background: linear-gradient(to right, rgba(209, 28, 233, 1), transparent);
+}
+
+/* Top streak */
+.streak-1 {
+  top: 0;
+  left: 0;
+  animation: move-along-border 4s infinite ease-in-out;
+}
+
+/* Bottom streak */
+.streak-2 {
+  bottom: 0;
+  right: 0;
+  animation: move-along-border 4s infinite ease-in-out reverse;
+}
+
+/* Keyframes to animate along the border */
+@keyframes move-along-border {
+  0% {
+    transform: translate(0%, 0%);
+  }
+  25% {
+    transform: translate(100%, 0%); /* Top-right corner */
+  }
+  50% {
+    transform: translate(100%, 100%); /* Bottom-right corner */
+  }
+  75% {
+    transform: translate(0%, 100%); /* Bottom-left corner */
+  }
+  100% {
+    transform: translate(0%, 0%); /* Return to start */
+  }
+}
+
+
 .btn-highlight {
   flex: none;
   inset: 0;

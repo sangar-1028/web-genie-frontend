@@ -1,17 +1,23 @@
+body::-webkit-scrollbar {
+  display: none;
+  // background: transparent;
+}
+
 .modal {
-  position: fixed;
+  // position: fixed;
   z-index: 100;
   inset: 0;
-  padding: 94px 56px;
-  background: rgba(0, 0, 0, 0.8);
-  overflow: auto;
+  // padding: 94px 56px;
+  // background: rgba(0, 0, 0, 0.8);
+  background: rgba(10, 10, 10, 1);
+  // overflow: auto;
 }
 
 .playgroundModal {
   width: 100%;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0px 4px 4px 0px rgba(209, 28, 233, 1);
-  border-radius: 20px;
+  // border-radius: 20px;
   position: relative;
 }
 
@@ -22,10 +28,10 @@
   align-items: center;
   padding: 1.25rem 2rem;
   height: 72px;
-  background: rgba(10, 10, 10, 1);
+  // background: rgba(10, 10, 10, 1);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  // border-top-left-radius: 20px;
+  // border-top-right-radius: 20px;
 }
 
 .PlaygroundTitle {
@@ -42,7 +48,7 @@
   justify-items: space-between;
   padding: 1rem;
   gap: 2rem;
-  background: rgba(10, 10, 10, 1);
+  // background: rgba(10, 10, 10, 1);
   position: relative;
 }
 

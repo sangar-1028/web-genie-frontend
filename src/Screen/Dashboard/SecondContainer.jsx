@@ -70,7 +70,7 @@ const SecondContainer = () => {
         </motion.div>
 
         <motion.button className="cta-button" variants={content}>
-          <motion.div className="btn-highlight"></motion.div>
+          {/* <motion.div className="btn-highlight"></motion.div> */}
           <Line1 className="line-1" />
           Use Webgenie - <span className="btn-subtext">For Free!</span>
           <Line1 className="line-2" />

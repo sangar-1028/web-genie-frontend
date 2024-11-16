@@ -1,13 +1,12 @@
 import "./App.css";
-import Routes from "./Routes";
+import AnimatedOutlet from "./AnimatedOutlet";
 
 function App() {
   return (
-    <>
-<Routes/>
-    
-    </>
-  );
+    <div>
+      <AnimatedOutlet />
+    </div>
+  )
 }
 
 export default App;

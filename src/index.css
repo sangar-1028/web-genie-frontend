@@ -9,6 +9,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   cursor: url("./assests/icons/cursor.svg"), auto;
   overflow-x: hidden;
+  background: rgba(10, 10, 10, 1);
 }
 
 code {
