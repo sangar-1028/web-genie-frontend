@@ -45,26 +45,26 @@ const SecondContainer = () => {
 
   return (
     <div className="container-2">
-      <motion.div className="secondContainer" variants={variants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+      <motion.div className="secondContainer !py-28 md:pt-32 lg:pt-[136px]" variants={variants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
         <motion.div className="seoondHeader" variants={content}>
           Your Design-to-Code Genie, Just One Wish Away
         </motion.div>
         <motion.div className="flex flex-col items-center" variants={content}>
           <motion.div className="secondSubHeaderContainer">
             <div className="secondSubHeaderText">Turn <span className="subtext-span">landing page design</span></div>
-            <img src={image} alt="image2" />
+            <img className="header-txt-img" src={image} alt="image2" />
           </motion.div>
-          <motion.div className="secondSubHeaderText">images into production-ready</motion.div>
+          <motion.div className="secondSubHeaderText special-part">images into production-ready <span className="hidden screen-text">code <span className="subtext-span magic-span">&nbsp;- Like Magic!</span></span></motion.div>
 
-          <motion.div className="secondSubHeaderContainer">
+          <motion.div className="secondSubHeaderContainer bottom-subheader">
             <div className="secondSubHeaderText">code</div>
-            <img src={image2} alt="image3" />
-            <div className="subtext-span magic-span">- Like Magic! </div>
+            <img className="header-txt-img" src={image2} alt="image3" />
+            <div className="subtext-span magic-span">&nbsp;- Like Magic! </div>
             <span className="emoji">🧞</span>
           </motion.div>
         </motion.div>
 
-        <motion.div className="secondSubText" variants={content}>
+        <motion.div className="mt-4 secondSubText lg:mt-2" variants={content}>
           Upload any landing page design and watch WebGenie transform it into
           clean, responsive HTML & CSS in seconds
         </motion.div>

@@ -11,7 +11,7 @@ import PageTransition from "../../CommonComponent/PageTransition";
 const Dashboard = () => {
   return (
     <PageTransition>
-      <motion.div className="mainContainer">
+      <motion.div className="mainContainer pb-5 xsm:pb-[50px]">
         {/* initial={{opacity: 0}} animate={{opacity: 1}} transition={{ duration: 0.9, ease: "anticipate" }} */}
         {/* <Loader /> */}
         <Header />

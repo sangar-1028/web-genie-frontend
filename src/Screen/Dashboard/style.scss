@@ -1,13 +1,14 @@
 .mainContainer {
   // background: linear-gradient(45deg, #0a0010, #1a0024, #2e003e, #270d2f);
   background: #0D0011;
-  padding-bottom: 50px;
+  // padding-bottom: 50px;
 }
 
 .container-2 {
   position: relative;
   display: flex;
   justify-content: center;
+  padding: 0 30px;
 }
 
 // Second container
@@ -15,7 +16,6 @@
   // background: radial-gradient(59.45% 59.45% at 50% 40.55%, #1F0A26 0%, rgba(31, 10, 38, 0) 100%);
   // background-image: url(../../assests/icons/grid.svg);
   // background-size: cover;
-  padding-top: 136px;
   padding-bottom: 96px;
   border: "1px solid black";
   color: white;
@@ -72,7 +72,10 @@
   font-size: 45px;
   font-weight: 500;
   line-height: 54.9px;
-  color: linear-gradient(93.32deg, #ffffff 60.45%, #b4b4b4 99.76%);
+  background: linear-gradient(93.32deg, #FFFFFF 60.45%, #B4B4B4 99.76%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
 }
 
 .secondSubHeaderContainer .emoji {
@@ -89,7 +92,6 @@
   font-style: normal;
   line-height: 27px;
   font: "Instrument Sans";
-  margin-top: 0.5rem;
   width: 100%;
   max-width: 475px;
   text-align: center;
@@ -215,23 +217,16 @@
 // third container
 
 .thirdContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: white;
   width: 100%;
-  gap: 20px;
 }
 
 .thirdBoxContainer {
   width: 100%;
-  max-width: 333px;
-  height: 268px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2.5rem;
   gap: 1rem;
 }
 
@@ -322,8 +317,6 @@
   line-height: 24px;
   text-align: center;
   color: #7b7b7b;
-  width: 30%;
-  margin-bottom: 5rem;
 }
 
 
@@ -332,16 +325,16 @@
   flex-direction: column;
   align-items: center;
   gap: 3.5rem;
-  width: 720px;
-  max-width: 100%;
-  padding-left: 48px;
+  // width: 100%;
+  // max-width: 720px;
+  // padding-left: 48px;
   position: relative;
 }
 
 .phase {
   width: 100%;
   max-width: 672px;
-  height: 144px;
+  // height: 144px;
 }
 
 .phase:last-child .timeline {
@@ -375,9 +368,9 @@
 }
 
 .boxItemSubText {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
+  // font-size: 16px;
+  // font-weight: 400;
+  // line-height: 24px;
   color: #7b7b7b;
 }
 
@@ -429,31 +422,20 @@
     gap: 5px;
   }
 
-  .secondSubHeaderText {
-    font-size: 32px;
+  .secondSubHeaderText, .subtext-span.magic-span {
+    font-size: 42px;
   }
 
-  .secondSubText {
-    width: 50%;
-  }
-  .thirdTextBox {
-    font-size: 18px;
-    line-height: 10px;
+  .secondSubHeaderContainer .emoji {
+    font-size: 40px;
   }
 
-  .thirdSubTextBox {
-    font-size: 14px;
-    line-height: 15px;
-    width: 80%;
+  .header-txt-img {
+    width: 100px;
   }
 
   .fourthSubHeader {
     font-size: 28px;
-  }
-
-  .fourthSubText {
-    font-size: 12px;
-    width: 70%;
   }
 }
 
@@ -462,44 +444,76 @@
   .secondSubHeaderContainer {
     gap: 2px;
   }
-  .secondSubHeaderText {
-    font-size: 20px;
-  }
-  .secondSubText {
-    width: 90%;
-    font-size: 124x;
+  
+  .secondSubHeaderText, .subtext-span.magic-span {
+    font-size: 36px;
+    line-height: 50px;
   }
 
-  .thirdTextBox {
-    font-size: 12px;
-    line-height: 10px;
-  }
-
-  .thirdSubTextBox {
-    font-size: 10px;
-    line-height: 15px;
-    width: 80%;
-  }
-  .thirdBoxContainer {
-    width: 33%;
-    gap: 15px;
-  }
   .fourthSubHeader {
     font-size: 20px;
   }
 
-  .fourthSubText {
-    font-size: 12px;
-    width: 60%;
-    line-height: 15px;
+  // .timeline {
+  //   position: absolute;
+  //   left: 10%;
+  //   height: 350px;
+  //   width: 2px;
+  //   background-color: #d1d1d1; 
+  // }
+}
+
+@media (max-width: 640px) {
+  .secondSubHeaderText, .subtext-span.magic-span {
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .secondSubHeaderText, .subtext-span.magic-span {
+    font-size: 29px;
+    line-height: 40px;
   }
 
-  .timeline {
-    position: absolute;
-    left: 10%;
-    height: 350px;
-    width: 2px;
-    background-color: #d1d1d1; 
+  .secondSubText {
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 470px) {
+  .container-2 {
+    padding: 0 20px;
+  }
+
+  .secondSubText {
+    padding: 0 10px;
+  }
+
+  .seoondHeader {
+    font-size: 12px;
+  }
+
+  .secondSubHeaderText, .subtext-span.magic-span {
+    font-size: 27px;
+    line-height: 40px;
+  }
+
+  .special-part {
+    line-height: 50px;
+  }
+
+  .screen-text {
+    display: inline-flex !important;
+    align-items: center;
+  }
+
+  .bottom-subheader {
+    display: none;
+  }
+
+  .secondSubHeaderContainer > img {
+    display: none;
   }
 }
 
@@ -516,4 +530,5 @@
   // REMOVE
   z-index: 1;
   // opacity: 0.6;
+  max-width: 100%;
 }

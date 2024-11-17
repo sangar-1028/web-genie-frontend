@@ -15,13 +15,13 @@ const Header = () => {
  const navigate = useNavigate()
   return (
     <>
-      <div className={`header`}> 
+      <div className="xsm:p-5 md:p-10 header"> 
       {/* ${openPlayground ? "playground-open" : ""} */}
-        <motion.div className="headerContainer" initial={{ opacity: 0, y: -70 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 1, ease: "circInOut" }}>
-          <div className="headerLogo">
+        <motion.div className="px-2.5 py-4 xsm:px-5 headerContainer" initial={{ opacity: 0, y: -70 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 1, ease: "circInOut" }}>
+          <div className="w-32 xsm:w-40 xsm:h-12 headerLogo">
             <img src={Icon.logo} alt="logo style" />
           </div>
-          <Link to="/playground">
+          <Link className="scale-95 xsm:scale-100" to="/playground">
             <ButtonField
               buttonStyle={"buttonStyle"}
               // onClick={() => setOpenPlayground(true)}

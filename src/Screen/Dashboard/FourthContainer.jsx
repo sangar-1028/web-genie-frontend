@@ -73,7 +73,7 @@ const BoxItem = ({ selectPhase, setSelectPhase, item }) => {
       key={item.key}
       onMouseOver={() => setSelectPhase(item.key)}
     >
-      <div className="timeline">
+      <div className="hidden timeline xsm:block">
         <motion.div className="circle" variants={circleAnims} animate="circle">
           <motion.div className="inner-circle" variants={circleAnims} animate="innerCircle"></motion.div>
         </motion.div>
@@ -89,7 +89,7 @@ const BoxItem = ({ selectPhase, setSelectPhase, item }) => {
       >
         <motion.img src={item.icon} alt="edit icon" width={32} height={32} variants={content} />
         <motion.div className="boxItemText" variants={content}>{item.Title}</motion.div>
-        <motion.div className="boxItemSubText" variants={content}>{item.subTitle}</motion.div>
+        <motion.div className="text-base font-normal boxItemSubText" variants={content}>{item.subTitle}</motion.div>
       </motion.div>
     </div>
   );
@@ -175,19 +175,19 @@ const FourthContainer = () => {
   }
 
   return (
-    <motion.div className="secondContainer" variants={variants} initial="hidden" whileInView="visible">
+    <motion.div className="pt-28 mx-7 xsm:mx-14 secondContainer" variants={variants} initial="hidden" whileInView="visible">
       {/* <Ellipse1 className="ellipse-1" />
       <Ellipse2 className="ellipse-2" /> */}
       <motion.div className="seoondHeader" variants={variants}>The roadmap of magic</motion.div>
       <motion.div className="fourthSubHeader" variants={variants}>
         The Evolution of <span className="subtext-span">Webgenie</span>
       </motion.div>
-      <motion.div className="fourthSubText" variants={variants}>
+      <motion.div className="fourthSubText mb-14 xsm:mb-20" variants={variants}>
         Discover our plans to continuously expand the power of design-to-code
         automation.
       </motion.div>
 
-      <div className="boxItemsContainer" variants={timeline} initial="hidden" whileInView="visible">
+      <div className="boxItemsContainer w-full max-w-[720px] xsm:pl-12" variants={timeline} initial="hidden" whileInView="visible">
         {itemArray.map((item) => {
           return <BoxItem item={item} selectPhase={selectPhase} setSelectPhase={setSelectPhase} />;
         })}
