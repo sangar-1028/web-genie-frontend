@@ -2,34 +2,82 @@ import React from "react";
 import "./style.scss";
 import image from "../../assests/images/pic1.svg";
 import image2 from "../../assests/images/pic2.svg";
-const SecondContainer = () => {
-  return (
-    <>
-      <div className="secondContainer">
-        <div className="seoondHeader">
-          Your Design-to-Code Genie, Just One Wish Away
-        </div>
-        <div className="secondSubHeaderContainer">
-          <div className="secondSubHeaderText">Turn landing page design</div>
-          <img src={image} alt="image2" />
-        </div>
-        <div className="secondSubHeaderText">images into production-ready</div>
+import {ReactComponent as GridIllustration} from "../../assests/icons/grid.svg"
+import {ReactComponent as Line1} from "../../assests/icons/line-1.svg"
+import {ReactComponent as Line2} from "../../assests/icons/line-2.svg"
+import { motion } from "framer-motion"
+import Grid from "./Grid";
 
-        <div className="secondSubHeaderContainer">
-          <div className="secondSubHeaderText">Code</div>
-          <img src={image2} alt="image3" />
-          <div className="secondSubHeaderText">- Like Magic! </div>
-        </div>
-        <div className="secondSubText">
+const SecondContainer = () => {
+  const variants = {
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        // ease: "circIn",
+        staggerChildren: 0.2,
+        duration: 0.5,
+        delay: 1,
+      }
+    },
+    hidden: {
+      opacity: 0,
+      transition: {
+        when: "afterChildren",
+      }
+    }
+  }
+
+
+  const content = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.65
+      }
+    },
+    hidden: {
+      opacity: 0,
+      y: 10
+    }
+  }
+
+  return (
+    <div className="container-2">
+      <motion.div className="secondContainer" variants={variants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+        <motion.div className="seoondHeader" variants={content}>
+          Your Design-to-Code Genie, Just One Wish Away
+        </motion.div>
+        <motion.div className="flex flex-col items-center" variants={content}>
+          <motion.div className="secondSubHeaderContainer">
+            <div className="secondSubHeaderText">Turn <span className="subtext-span">landing page design</span></div>
+            <img src={image} alt="image2" />
+          </motion.div>
+          <motion.div className="secondSubHeaderText">images into production-ready</motion.div>
+
+          <motion.div className="secondSubHeaderContainer">
+            <div className="secondSubHeaderText">code</div>
+            <img src={image2} alt="image3" />
+            <div className="subtext-span magic-span">- Like Magic! </div>
+            <span className="emoji">🧞</span>
+          </motion.div>
+        </motion.div>
+
+        <motion.div className="secondSubText" variants={content}>
           Upload any landing page design and watch WebGenie transform it into
           clean, responsive HTML & CSS in seconds
-        </div>
+        </motion.div>
 
-        <div className="secondFreeText">
-        Use Webgenie - For Free!
-        </div>
-      </div>
-    </>
+        <motion.button className="cta-button" variants={content}>
+          {/* <motion.div className="btn-highlight"></motion.div> */}
+          <Line1 className="line-1" />
+          Use Webgenie - <span className="btn-subtext">For Free!</span>
+          <Line1 className="line-2" />
+        </motion.button>
+      </motion.div>
+      <GridIllustration className="grid-illustration" />
+    </div>
   );
 };
 

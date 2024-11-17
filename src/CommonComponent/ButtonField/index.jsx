@@ -1,10 +1,10 @@
-import { Button, ConfigProvider } from "antd";
+// import { Button, ConfigProvider } from "antd";
 import React from "react";
 import "./style.css";
 const ButtonField = ({
   type,
   onClick,
-  text,
+  children,
   isLoading,
   buttonStyle,
   icon,
@@ -14,17 +14,7 @@ const ButtonField = ({
   isFocus,
 }) => {
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: "white",
-          borderRadius: 2,
-          colorBgContainer: "#d11ce9",
-          
-        },
-      }}
-    >
-      <Button
+      <button
         type={type}
         onClick={onClick}
         loading={isLoading}
@@ -34,11 +24,10 @@ const ButtonField = ({
         icon={icon ? icon : null}
         onFocus={onFocus}
         isFocus={isFocus}
-       
+        
       >
-        {isLoading ? "Loading..." : text}
-      </Button>
-    </ConfigProvider>
+        {isLoading ? "Loading..." : children}
+      </button>
   );
 };
 

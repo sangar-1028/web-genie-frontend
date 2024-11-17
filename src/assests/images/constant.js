@@ -1,7 +1,10 @@
 import  Brush from "./BrushClear.svg";
 import EditText from "./GenerateText.svg";
 import ImageUploader from "./ImageUpload.svg"
-import logo from "./WebgenieLogo.svg";
+import ImageUploaderLight from "../icons/image-ai-bright.svg"
+import TextGenerateLight from "../icons/text-ai-bright.svg"
+import logo from "../icons/logo.svg";
+import LogoIcon from "../icons/logo-icon.svg"
 import star from "./star.svg";
 import react from "./react.svg";
 import mic from "./mic.svg";
@@ -14,7 +17,10 @@ export const Icon = {
     Brush : Brush,
     EditText : EditText,
     ImageUploader : ImageUploader,
+    ImageUploaderLight: ImageUploaderLight,
+    EditTextLight: TextGenerateLight,
     logo : logo,
+    logoIcon: LogoIcon,
     star:star,
     react:react,
     mic:mic,

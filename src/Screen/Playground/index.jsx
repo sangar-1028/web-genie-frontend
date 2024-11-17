@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useState } from "react";
 import { calculateSize } from "../../utilies/constantFuntion";
 import "./style.scss";
 import { CgClose } from "react-icons/cg";
+import { ReactComponent as CodeBlockIcon } from "../../assests/icons/code-block.svg"
+import { motion } from "framer-motion";
 
 import {
   DetailContainer,
@@ -10,15 +12,20 @@ import {
   UploadImageContainer,
   CollapseContainer,
 } from "./Components";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { TextGenerateContainer } from "./Components/TextGenerateContainer";
+import { Link } from "react-router-dom";
+import PageTransition from "../../CommonComponent/PageTransition";
 const Playground = () => {
-  const navigate = useNavigate();
 
+  const [image, setImage] = useState(null);
   const [enableUploadImage, setEnableUploadImage] = useState(false);
-  const [uploadedImage, setUploadedImage] = useState(null);
+  const [enableText, setEnableText] = useState(false);
+  const [textGenerate, setTextGenerate] = useState("")
+  const [generatedImage, setGeneratedImage] = useState(null);
   const [searchText, setSearchText] = useState("");
   const [enableCollapse, setEnableCollapse] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false)
 
   const [screenSize, setScreenSize] = useState({
     width: calculateSize(window.innerWidth),
@@ -39,11 +46,33 @@ const Playground = () => {
     });
   };
 
-  const handleGenerateButton = useCallback(() => {
-    if (uploadedImage || searchText) {
-      setEnableCollapse(!enableCollapse);
+  const handleGenerateButton = useCallback((event, cancel = false) => {
+    console.log(textGenerate)
+    console.log(image)
+    console.log(searchText)
+
+    if (cancel) {
+      setIsGenerating(false)
+      setEnableCollapse(false)
+      return;
+    }
+
+    if (image || textGenerate || searchText) {
+      setIsGenerating(true)
+      setTimeout(() => {
+        // Display the code editor
+        // setEnableCollapse(true);
+        // Remove all loading UI
+        setIsGenerating(false);
+        // Set Image to display
+        setGeneratedImage(image);
+
+        // Close all modals
+        setEnableText(false);
+        setEnableUploadImage(false);
+      }, 5000)
     } else handleGenerateInfo();
-  }, [searchText, uploadedImage, enableCollapse]);
+  }, [searchText, generatedImage, textGenerate, enableCollapse, isGenerating, image]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -59,85 +88,169 @@ const Playground = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const containerVariant = {
+    visible: {
+      opacity: 1,
+      scaleY: 1,
+      originY: 1,
+      transition: {
+        duration: 0.6,
+        when: "beforeChildren",
+        staggerChildren: 0.3,
+      }
+    },
+    hidden: {
+      opacity: 0,
+      scaleY: 0,
+      originY: 1,
+      transition: {
+        duration: 3,
+        when: "afterChildren"
+      }
+    }
+  }
+
+  const componentVariant = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+      }
+    },
+    hidden: {
+      opacity: 0,
+      y: 20,
+      transition: {
+        duration: 0.7
+      }
+    }
+  }
+
+  const visibleParent = {
+    visible: {
+      opacity: 1,
+      transition: {
+        // duration: 1,
+        when: "beforeChildren",
+        staggerChildren: 0.3,
+      }
+    },
+    hidden: {
+      opacity: 0,
+      transition: {
+        duration: 1
+      }
+    }
+  }
+
   return (
-    <div className="playgroundModal">
-      <div className="playgroundHeader">
-        <div className="PlaygroundTitle">Playground</div>
-        <CgClose
-          color="#939393"
-          size={24}
-          onClick={() => navigate("/dashboard")}
-        />
-      </div>
+    <PageTransition>
+      <motion.div className="modal">
+        <motion.div className={`playgroundModal ${enableCollapse ? "editor-showing" : ""}`}>
+          {/* <motion.div > */}
+            <motion.div className="playgroundHeader" variants={componentVariant}>
+              <div className="PlaygroundTitle">Playground</div>
+              <Link to="/">
+                <button className="">
+                {/* onClick={onClose} */}
+                  <CgClose
+                    color="#939393"
+                    size={24}
+                  />
+                  {/* <CloseIcon /> */}
+                </button>
+              </Link>
+            </motion.div>
 
-      <div className="playgroundContainer">
-        <div className="playgroudMenuContainer">
-          <MenuContainer
-            screenSize={screenSize}
-            setEnableUploadImage={setEnableUploadImage}
-            enableUploadImage={enableUploadImage}
-          />
-        </div>
-        {enableUploadImage && (
-          <div className="playgroundModalUploadContainer">
-            <UploadImageContainer
-              setEnableUploadImage={setEnableUploadImage}
-              setUploadedImage={setUploadedImage}
-              handleGenerateButton={handleGenerateButton}
-            />
-          </div>
-        )}
+            <motion.div className="playgroundContainer" variants={componentVariant}>
+              <div className="playgroundMenus">
+                <MenuContainer
+                  screenSize={screenSize}
+                  setEnableUploadImage={setEnableUploadImage}
+                  enableUploadImage={enableUploadImage}
+                  enableText={enableText}
+                  setEnableText={setEnableText}
+                />
+                {enableUploadImage && (
+                  <div className="playgroundModalUploadContainer">
+                    <UploadImageContainer
+                      setEnableUploadImage={setEnableUploadImage}
+                      handleGenerateButton={handleGenerateButton}
+                      isGenerating={isGenerating}
+                      image={image}
+                      setImage={setImage}
+                    />
+                  </div>
+                )}
+                {enableText && (
+                  <div className="playgroundModalUploadContainer">
+                    <TextGenerateContainer
+                      setEnableText={setEnableText}
+                      setTextGenerate={setTextGenerate}
+                      handleGenerateButton={handleGenerateButton}
+                      textGenerate={textGenerate}
+                      isGenerating={isGenerating}
+                    />
+                  </div>
+                )}
+              </div>
 
-        <div
-          className="playgroudContentContainer"
-          style={{
-            width:
-              screenSize.size > 1024 && enableUploadImage
-                ? "70%"
-                : screenSize.size > 1024
-                ? "85%"
-                : "100%",
-          }}
-        >
-          {uploadedImage ? (
-            <img src={URL.createObjectURL(uploadedImage)} alt="uploadedimage" />
+              <div
+                className={`playgroudContentContainer`}
+                style={{
+                  // width:
+                  //   screenSize.size > 1024 && enableUploadImage
+                  //     ? "70%"
+                  //     : screenSize.size > 1024
+                  //     ? "85%"
+                  //     : "100%",
+                }}
+              >
+                {generatedImage ? (
+                  <img className="generated-img" src={URL.createObjectURL(generatedImage)} alt="Website generated" />
+                ) : (
+                  <DetailContainer
+                    searchText={searchText}
+                    setSearchText={setSearchText}
+                    handleGenerateButton={handleGenerateButton}
+                    isGenerating={isGenerating}
+                  />
+                )}
+              </div>
+              {screenSize.size > 1024 && (
+                <div className="playgroudSizeContainer">
+                  <RotateContainer />
+                </div>
+              )}
+              
+              <CollapseContainer
+                enableCollapse={enableCollapse}
+                setEnableCollapse={setEnableCollapse}
+                img={generatedImage}
+                searchText={searchText}
+                screenSize={screenSize}
+              />
+            </motion.div>
+          {/* </motion.div> */}
+
+          {/* {generatedImage ? (
           ) : (
-            <DetailContainer
-              setSearchText={setSearchText}
-              handleGenerateButton={handleGenerateButton}
-            />
-          )}
-        </div>
-        {screenSize.size > 1024 && (
-          <div className="playgroudSizeContainer">
-            <RotateContainer />
-          </div>
-        )}
-      </div>
-
-      {enableCollapse ? (
-        <div className="playgroundFooterContainer">
-          <CollapseContainer
-            setEnableCollapse={setEnableCollapse}
-            img={uploadedImage}
-            searchText={searchText}
-            screenSize={screenSize}
-          />
-        </div>
-      ) : (
-        <div
-          className="playgroundFooterContainer"
-          onClick={() => setEnableCollapse(!enableCollapse)}
-        >
-          <div className="playgroundFooterBarContainer">
-            <div className="playgroundFooterBar">
-              <p>{"</>"}</p>
-              <p>Tap here to open code editor</p>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
+            <button
+              className="playgroundFooterContainer"
+              onClick={() => setEnableCollapse(!enableCollapse)}
+            >
+              <div className="playgroundFooterBarContainer">
+                <div className="playgroundFooterBar">
+                  <CodeBlockIcon />
+                  <p>Tap here to open code editor</p>
+                </div>
+              </div>
+            </button>
+          )} */}
+        </motion.div>
+      </motion.div>
+    </PageTransition>
   );
 };
 

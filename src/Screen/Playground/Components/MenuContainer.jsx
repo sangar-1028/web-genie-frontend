@@ -2,7 +2,18 @@ import React, { useMemo } from "react";
 import { Icon } from "../../../assests/images/constant";
 import "./style.scss";
 import { Divider } from "antd";
-const MenuContainer = ({ screenSize, setEnableUploadImage, enableUploadImage }) => {
+const MenuContainer = ({ screenSize, setEnableUploadImage, enableUploadImage, enableText, setEnableText }) => {
+
+  const openModal = (modal) => {
+    if (modal === "image") {
+      setEnableUploadImage(!enableUploadImage);
+      setEnableText(false);
+    }
+    if (modal === "text") {
+      setEnableUploadImage(false);
+      setEnableText(!enableText);
+    }
+  }
 
   const isScreenSmall = useMemo(() => {
     if (window.innerWidth > 1024) {
@@ -13,31 +24,31 @@ const MenuContainer = ({ screenSize, setEnableUploadImage, enableUploadImage }) 
   }, [screenSize]);
 
   return (
-    <>
-      <div className="logoContainer">
-        <img src={Icon.logo} alt="logo style" />
-      </div>
-      <div className="itemContainer">
-        <img src={Icon.EditText} alt="edit icon" width={32} height={32} />
-        <div className="itemText">Text to Code</div>
-      </div>
+    <div className="playgroudMenuContainer">
+      <button className="logoContainer">
+        <img src={Icon.logoIcon} alt="logo style" />
+      </button>
+      <button className={`itemContainer ${enableText ? "is-active" : ""}`} onClick={() => openModal("text")}>
+        <img src={enableText ? Icon.EditTextLight : Icon.EditText} alt="edit icon" width={32} height={32} />
+        <div className="itemText">Text to code</div>
+      </button>
 
-      <div className="itemContainer" onClick={() => setEnableUploadImage(!enableUploadImage)}>
+      <button className={`itemContainer ${enableUploadImage ? "is-active" : ""}`} onClick={() => openModal("image")}>
         <img
-          src={Icon.ImageUploader}
+          src={enableUploadImage ? Icon.ImageUploaderLight : Icon.ImageUploader}
           alt="upload icon"
           width={32}
           height={32}
         />
-        <div className="itemText">Image to Code</div>
-      </div>
-      {isScreenSmall && <Divider style={{ borderColor: "#939393", marginTop: "60px" }} />}
+        <div className="itemText">Image to code</div>
+      </button>
+      {isScreenSmall && <Divider className="divider" style={{ borderColor: "rgba(255, 255, 255, 0.05)", minWidth: "unset", maxWidth: "73px" }} />}
 
-      <div className="itemContainer" style={{ marginTop: "20px" }}>
+      <button className="itemContainer">
         <img src={Icon.Brush} alt="clear icon" width={32} height={32} />
         <div className="itemText">Clear Canvas</div>
-      </div>
-    </>
+      </button>
+    </div>
   );
 };
 
