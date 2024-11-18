@@ -7,6 +7,10 @@ import {ReactComponent as Line1} from "../../assests/icons/line-1.svg"
 import {ReactComponent as Line2} from "../../assests/icons/line-2.svg"
 import { motion } from "framer-motion"
 import Grid from "./Grid";
+import '@vidstack/react/player/styles/default/theme.css';
+import '@vidstack/react/player/styles/default/layouts/video.css';
+import { MediaPlayer, MediaProvider } from '@vidstack/react';
+import { defaultLayoutIcons, DefaultVideoLayout } from '@vidstack/react/player/layouts/default';
 
 const SecondContainer = () => {
   const variants = {
@@ -69,12 +73,20 @@ const SecondContainer = () => {
           clean, responsive HTML & CSS in seconds
         </motion.div>
 
-        <motion.button className="cta-button" variants={content}>
+        <motion.button className="mb-10 cta-button" variants={content}>
           {/* <motion.div className="btn-highlight"></motion.div> */}
           <Line1 className="line-1" />
           Use Webgenie - <span className="btn-subtext">For Free!</span>
           <Line1 className="line-2" />
         </motion.button>
+
+        <motion.div className="w-full max-w-4xl rounded-3xl marketing-video" variants={content}>
+          <MediaPlayer title="Webgenie Marketing Video" src="/marketing.mp4">
+            <MediaProvider />
+            <DefaultVideoLayout icons={defaultLayoutIcons} />
+          </MediaPlayer>
+          {/* <video className="rounded-3xl" src="/marketing.mp4"></video> */}
+        </motion.div>
       </motion.div>
       <GridIllustration className="grid-illustration" />
     </div>

@@ -532,3 +532,11 @@
   // opacity: 0.6;
   max-width: 100%;
 }
+
+.marketing-video {
+  --video-border-radius: 16px
+}
+
+.marketing-video video {
+  border-radius: 16px;
+}
