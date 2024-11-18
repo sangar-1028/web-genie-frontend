@@ -188,8 +188,8 @@ const FourthContainer = () => {
       </motion.div>
 
       <div className="boxItemsContainer w-full max-w-[720px] xsm:pl-12" variants={timeline} initial="hidden" whileInView="visible">
-        {itemArray.map((item) => {
-          return <BoxItem item={item} selectPhase={selectPhase} setSelectPhase={setSelectPhase} />;
+        {itemArray.map((item, index) => {
+          return <BoxItem key={index} item={item} selectPhase={selectPhase} setSelectPhase={setSelectPhase} />;
         })}
       </div>
     </motion.div>

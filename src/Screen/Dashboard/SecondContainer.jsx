@@ -2,6 +2,7 @@ import React from "react";
 import "./style.scss";
 import image from "../../assests/images/pic1.svg";
 import image2 from "../../assests/images/pic2.svg";
+import Genie from "../../assests/icons/genie-2.png";
 import {ReactComponent as GridIllustration} from "../../assests/icons/grid.svg"
 import {ReactComponent as Line1} from "../../assests/icons/line-1.svg"
 import {ReactComponent as Line2} from "../../assests/icons/line-2.svg"
@@ -11,6 +12,7 @@ import '@vidstack/react/player/styles/default/theme.css';
 import '@vidstack/react/player/styles/default/layouts/video.css';
 import { MediaPlayer, MediaProvider } from '@vidstack/react';
 import { defaultLayoutIcons, DefaultVideoLayout } from '@vidstack/react/player/layouts/default';
+import { Link } from "react-router-dom";
 
 const SecondContainer = () => {
   const variants = {
@@ -64,7 +66,8 @@ const SecondContainer = () => {
             <div className="secondSubHeaderText">code</div>
             <img className="header-txt-img" src={image2} alt="image3" />
             <div className="subtext-span magic-span">&nbsp;- Like Magic! </div>
-            <span className="emoji">🧞</span>
+            {/* <span className="emoji">🧞</span> */}
+            <img className="ml-2" width={54} height={54} src={Genie} />
           </motion.div>
         </motion.div>
 
@@ -73,15 +76,17 @@ const SecondContainer = () => {
           clean, responsive HTML & CSS in seconds
         </motion.div>
 
-        <motion.button className="mb-10 cta-button" variants={content}>
-          {/* <motion.div className="btn-highlight"></motion.div> */}
-          <Line1 className="line-1" />
-          Use Webgenie - <span className="btn-subtext">For Free!</span>
-          <Line1 className="line-2" />
-        </motion.button>
+        <Link to="/playground">
+          <motion.button className="mb-10 cta-button" variants={content}>
+            {/* <motion.div className="btn-highlight"></motion.div> */}
+            <Line1 className="line-1" />
+            Use Webgenie - <span className="btn-subtext">For Free!</span>
+            <Line1 className="line-2" />
+          </motion.button>
+        </Link>
 
         <motion.div className="w-full max-w-4xl rounded-3xl marketing-video" variants={content}>
-          <MediaPlayer title="Webgenie Marketing Video" src="/marketing.mp4">
+          <MediaPlayer title="Webgenie Marketing Video" src="/marketing.mp4" muted={false}>
             <MediaProvider />
             <DefaultVideoLayout icons={defaultLayoutIcons} />
           </MediaPlayer>

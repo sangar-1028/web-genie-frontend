@@ -18,12 +18,12 @@ const ButtonField = ({
         type={type}
         onClick={onClick}
         loading={isLoading}
-        iconPosition={iconPosition ? iconPosition : null}
+        // iconPosition={iconPosition ? iconPosition : null}
         className={disabled ? "custom-button" : buttonStyle}
         disabled={disabled}
         icon={icon ? icon : null}
         onFocus={onFocus}
-        isFocus={isFocus}
+        // isFocus={isFocus}
         
       >
         {isLoading ? "Loading..." : children}
