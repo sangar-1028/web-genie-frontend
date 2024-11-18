@@ -3,7 +3,7 @@ import { calculateSize } from "../../utilies/constantFuntion";
 import "./style.scss";
 import { CgClose } from "react-icons/cg";
 import { ReactComponent as CodeBlockIcon } from "../../assests/icons/code-block.svg"
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import {
   DetailContainer,
@@ -163,8 +163,8 @@ const Playground = () => {
               </Link>
             </motion.div>
 
-            <motion.div className="playgroundContainer" variants={componentVariant}>
-              <div className="playgroundMenus">
+            <motion.div className="flex justify-between gap-8 p-4 playgroundContainer" variants={componentVariant}>
+              <div className="flex justify-center w-full gap-3 lg:w-fit lg:justify-start playgroundMenus">
                 <MenuContainer
                   screenSize={screenSize}
                   setEnableUploadImage={setEnableUploadImage}
@@ -172,32 +172,36 @@ const Playground = () => {
                   enableText={enableText}
                   setEnableText={setEnableText}
                 />
-                {enableUploadImage && (
-                  <div className="playgroundModalUploadContainer">
-                    <UploadImageContainer
-                      setEnableUploadImage={setEnableUploadImage}
-                      handleGenerateButton={handleGenerateButton}
-                      isGenerating={isGenerating}
-                      image={image}
-                      setImage={setImage}
-                    />
-                  </div>
-                )}
-                {enableText && (
-                  <div className="playgroundModalUploadContainer">
-                    <TextGenerateContainer
-                      setEnableText={setEnableText}
-                      setTextGenerate={setTextGenerate}
-                      handleGenerateButton={handleGenerateButton}
-                      textGenerate={textGenerate}
-                      isGenerating={isGenerating}
-                    />
-                  </div>
-                )}
+                {/* <AnimatePresence mode="sync"> */}
+                  {enableUploadImage && (
+                    <div className="playgroundModalUploadContainer">
+                      <UploadImageContainer
+                        setEnableUploadImage={setEnableUploadImage}
+                        handleGenerateButton={handleGenerateButton}
+                        isGenerating={isGenerating}
+                        image={image}
+                        setImage={setImage}
+                      />
+                    </div>
+                  )}
+                {/* </AnimatePresence> */}
+                {/* <AnimatePresence mode="sync"> */}
+                  {enableText && (
+                    <div className="playgroundModalUploadContainer">
+                      <TextGenerateContainer
+                        setEnableText={setEnableText}
+                        setTextGenerate={setTextGenerate}
+                        handleGenerateButton={handleGenerateButton}
+                        textGenerate={textGenerate}
+                        isGenerating={isGenerating}
+                      />
+                    </div>
+                  )}
+                {/* </AnimatePresence> */}
               </div>
 
               <div
-                className={`playgroudContentContainer`}
+                className="playgroudContentContainer w-full mt-72 xs2:mt-52 lg:mt-36 mb-48 flex flex-col items-center rounded-[20px] mx-8"
                 style={{
                   // width:
                   //   screenSize.size > 1024 && enableUploadImage

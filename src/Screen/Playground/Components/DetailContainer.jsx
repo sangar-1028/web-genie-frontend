@@ -11,21 +11,21 @@ const DetailContainer = ({ searchText, setSearchText, handleGenerateButton, isGe
     const [isFocus, setIsFocus] = useState(false)
 
   return (
-    <>
-      <div className="headerLogoStyle">
+    <div className="flex flex-col items-center text-center [&>*]:relative [&>*]:z-10">
+      <div className="w-32 h-12 p-3 md:w-40 headerLogoStyle">
         <img src={Icon.logo} alt="logo style" />
       </div>
 
-      <div className="subHeaderText">Your Design-to-Code Genie</div>
+      <div className="text-4xl italic font-semibold lg:text-5xl subHeaderText">Your Design-to-Code Genie</div>
 
       <div className="subHeading">
         Upload any landing page design and watch WebGenie transform it into
         clean, responsive HTML & CSS in seconds
       </div>
-      <div className="text-form">
+      <div className="text-form w-full max-w-xl xl:max-w-[622px] flex flex-col items-center">
         <div className="inputstyle">
           <AttachmentIcon />
-          <div className="search-input" placeholder="Describe your landing page" contentEditable onInput={(e) => setSearchText(e.currentTarget.textContent)}>Describe your landing page</div>
+          <div className="search-input text-start" placeholder="Describe your landing page" contentEditable onInput={(e) => setSearchText(e.currentTarget.textContent)}>Describe your landing page</div>
         </div>
         {/* <InputField
           placeholder="Describe your landing page"
@@ -46,7 +46,7 @@ const DetailContainer = ({ searchText, setSearchText, handleGenerateButton, isGe
 
       </div>
       <Ellipse3 className="ellipse-3" />
-    </>
+    </div>
   );
 };
 
