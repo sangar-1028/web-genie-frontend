@@ -147,7 +147,7 @@ const Playground = () => {
   return (
     <PageTransition>
       <motion.div className="modal">
-        <motion.div className={`playgroundModal ${enableCollapse ? "editor-showing" : ""}`}>
+        <motion.div className={`flex flex-col playgroundModal ${enableCollapse ? "editor-showing" : ""}`}>
           {/* <motion.div > */}
             <motion.div className="playgroundHeader" variants={componentVariant}>
               <div className="PlaygroundTitle">Playground</div>
@@ -163,7 +163,7 @@ const Playground = () => {
               </Link>
             </motion.div>
 
-            <motion.div className="flex justify-between gap-8 p-4 playgroundContainer" variants={componentVariant}>
+            <motion.div className="flex justify-between flex-1 gap-8 p-4 playgroundContainer" variants={componentVariant}>
               <div className="flex justify-center w-full gap-3 lg:w-fit lg:justify-start playgroundMenus">
                 <MenuContainer
                   screenSize={screenSize}

@@ -24,7 +24,7 @@ const MenuContainer = ({ screenSize, setEnableUploadImage, enableUploadImage, en
   }, [screenSize]);
 
   return (
-    <div className="flex flex-row flex-wrap items-center justify-center xs2:justify-normal xs2:flex-nowrap gap-x-2 gap-y-10 lg:flex-col playgroudMenuContainer">
+    <div className="flex flex-row flex-wrap items-center justify-center py-0 lg:py-5 xs2:justify-normal xs2:flex-nowrap gap-x-2 gap-y-10 lg:flex-col playgroudMenuContainer">
       <button className="logoContainer">
         <img src={Icon.logoIcon} alt="logo style" />
       </button>
