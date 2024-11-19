@@ -135,6 +135,7 @@ export const UploadImageContainer = ({
                 display: "flex",
                 alignItems: "center",
               }}
+              onClick={handleClick}
             >
               <img
                 src={Icon.ImageUploaderLight}

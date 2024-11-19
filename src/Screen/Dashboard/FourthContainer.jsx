@@ -29,8 +29,8 @@ const BoxItem = ({ selectPhase, setSelectPhase, item }) => {
       }
     },
     hover: {
-      border: selectPhase === item.key ? "1px solid #d11ce9" : "1px solid #313131",
-      background: selectPhase === item.key ? "#d11ce933" : "rgba(0,0,0,0)",
+      border: selectPhase === item.key || item?.isActive ? "1px solid #d11ce9" : "1px solid #313131",
+      background: selectPhase === item.key || item?.isActive ? "#d11ce933" : "rgba(0,0,0,0)",
       transition: {
         duration: 0.4
       }
@@ -53,23 +53,25 @@ const BoxItem = ({ selectPhase, setSelectPhase, item }) => {
 
   const circleAnims = {
     circle: {
-      background: selectPhase === item.key ? "rgba(209, 28, 233, 0.3)" : "rgba(72, 72, 72, 0.3)",
-      border: selectPhase === item.key ? "0.38px solid rgba(209, 28, 233, 1)" : "0.38px solid rgba(72, 72, 72, 1)",
+      background: selectPhase === item.key || item?.isActive ? "rgba(209, 28, 233, 0.3)" : "rgba(72, 72, 72, 0.3)",
+      border: selectPhase === item.key || item?.isActive ? "0.38px solid rgba(209, 28, 233, 1)" : "0.38px solid rgba(72, 72, 72, 1)",
       transition: {
         duration: 0.4
       }
     },
     innerCircle: {
-      background: selectPhase === item.key ? "rgba(209, 28, 233, 1)" : "rgba(72, 72, 72, 1)",
+      background: selectPhase === item.key || item?.isActive ? "rgba(209, 28, 233, 1)" : "rgba(72, 72, 72, 1)",
       transition: {
         duration: 0.4
       }
     }
   }
 
+  console.log(item?.isActive)
+
   return (
     <div
-      className={`phase ${selectPhase === item.key ? "phaseFilled" : "phaseUnfilled"}`}
+      className={`phase ${selectPhase === item.key || item?.isActive ? "phaseFilled" : "phaseUnfilled"}`}
       key={item.key}
       onMouseOver={() => setSelectPhase(item.key)}
     >
@@ -104,12 +106,14 @@ const FourthContainer = () => {
       icon: Icon.EditText,
       Title: "Phase 1",
       subTitle: "Generate HTML/CSS projects from text prompts.",
+      isActive: true
     },
     {
       key: "phase2",
       icon: Icon.ImageUploader,
       Title: "Phase 2",
       subTitle: "Generate HTML/CSS projects from image based prompts.",
+      isActive: true
     },
     {
       key: "phase3",
@@ -175,7 +179,7 @@ const FourthContainer = () => {
   }
 
   return (
-    <motion.div className="pt-28 mx-7 xsm:mx-14 secondContainer" variants={variants} initial="hidden" whileInView="visible">
+    <motion.div className="pt-28 mx-7 xsm:mx-14 secondContainer fourthContainer" variants={variants} initial="hidden" whileInView="visible">
       {/* <Ellipse1 className="ellipse-1" />
       <Ellipse2 className="ellipse-2" /> */}
       <motion.div className="seoondHeader" variants={variants}>The roadmap of magic</motion.div>
