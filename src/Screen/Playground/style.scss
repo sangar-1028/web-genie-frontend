@@ -78,6 +78,16 @@ body::-webkit-scrollbar {
   // gap: 0.75rem;
 }
 
+@media (max-width: 453px) {
+  .playgroundMenus {
+    left: 0;
+  }
+
+  .itemContainer {
+    padding: 1rem !important;
+  }
+}
+
 .playgroudMenuContainer {
   height: fit-content;
   // padding: 1.25rem 0;

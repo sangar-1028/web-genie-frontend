@@ -216,7 +216,7 @@ const Playground = () => {
               </div>
 
               <div
-                className="playgroudContentContainer w-full mt-72 xs2:mt-52 lg:mt-36 mb-48 flex flex-col items-center rounded-[20px] mx-8"
+                className="playgroudContentContainer w-full mt-72 xs2:mt-52 lg:mt-36 mb-48 flex flex-col items-center rounded-[20px] mx-1 xs2:mx-8"
                 style={{
                   // width:
                   //   screenSize.size > 1024 && enableUploadImage

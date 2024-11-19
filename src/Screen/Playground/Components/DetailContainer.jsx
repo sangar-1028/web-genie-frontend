@@ -21,12 +21,12 @@ const DetailContainer = ({ searchText, setSearchText, handleGenerateButton, isGe
     }, [clearInput])
 
   return (
-    <div className="flex flex-col items-center text-center [&>*]:relative [&>*]:z-10">
+    <div className="flex flex-col justify-center items-center text-center [&>*]:relative [&>*]:z-10">
       <div className="w-32 h-12 p-3 md:w-40 headerLogoStyle">
         <img src={Icon.logo} alt="logo style" />
       </div>
 
-      <div className="text-4xl italic font-semibold lg:text-5xl subHeaderText">Your Design-to-Code Genie</div>
+      <div className="text-3xl italic font-bold xs2:font-semibold xs2:text-4xl lg:text-5xl subHeaderText">Your Design-to-Code Genie</div>
 
       <div className="subHeading">
         Upload any landing page design and watch WebGenie transform it into
@@ -59,7 +59,7 @@ const DetailContainer = ({ searchText, setSearchText, handleGenerateButton, isGe
         </ButtonField>
 
       </div>
-      <Ellipse3 className="ellipse-3" />
+      <div className="ellipse-3"></div>
     </div>
   );
 };
