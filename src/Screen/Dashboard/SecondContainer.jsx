@@ -51,7 +51,7 @@ const SecondContainer = () => {
 
   return (
     <div className="container-2">
-      <motion.div className="secondContainer !py-28 md:pt-32 lg:pt-[136px]" variants={variants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
+      <motion.div className="secondContainer pt-28 pb-12 lg:py-16 xl:py-28 md:pt-32 lg:pt-[136px]" variants={variants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
         <motion.div className="seoondHeader" variants={content}>
           Your Design-to-Code Genie, Just One Wish Away
         </motion.div>

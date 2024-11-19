@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { Icon } from "../../../assests/images/constant";
 import "./style.scss";
 import { Divider } from "antd";
+import { Link } from "react-router-dom";
 const MenuContainer = ({ screenSize, setEnableUploadImage, enableUploadImage, enableText, setEnableText }) => {
 
   const openModal = (modal) => {
@@ -25,9 +26,11 @@ const MenuContainer = ({ screenSize, setEnableUploadImage, enableUploadImage, en
 
   return (
     <div className="flex flex-row flex-wrap items-center justify-center py-0 lg:py-5 xs2:justify-normal xs2:flex-nowrap gap-x-2 gap-y-10 lg:flex-col playgroudMenuContainer">
-      <button className="logoContainer">
-        <img src={Icon.logoIcon} alt="logo style" />
-      </button>
+      <Link to="/">
+        <button className="logoContainer">
+          <img src={Icon.logoIcon} alt="logo style" />
+        </button>
+      </Link>
       <button className={`itemContainer ${enableText ? "is-active" : ""}`} onClick={() => openModal("text")}>
         <img src={enableText ? Icon.EditTextLight : Icon.EditText} alt="edit icon" width={32} height={32} />
         <div className="itemText">Text to code</div>
