@@ -12,7 +12,7 @@ import {
   UploadImageContainer,
   CollapseContainer,
 } from "./Components";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { TextGenerateContainer } from "./Components/TextGenerateContainer";
 import { Link } from "react-router-dom";
 import PageTransition from "../../CommonComponent/PageTransition";
@@ -61,12 +61,12 @@ const Playground = () => {
       setIsGenerating(true)
       setTimeout(() => {
         // Display the code editor
-        // setEnableCollapse(true);
+        setEnableCollapse(true);
         // Remove all loading UI
         setIsGenerating(false);
         // Set Image to display
         setGeneratedImage(image);
-
+        
         // Close all modals
         setEnableText(false);
         setEnableUploadImage(false);
@@ -252,6 +252,7 @@ const Playground = () => {
               </div>
             </button>
           )} */}
+          <ToastContainer />
         </motion.div>
       </motion.div>
     </PageTransition>

@@ -153,7 +153,6 @@ class App extends SatelessWidget {
           <CodeEditor parentId="editor-parent-2" value={codeText} />
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 };

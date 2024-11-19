@@ -148,8 +148,6 @@ export const UploadImageContainer = ({
           </>
         )}
       </div>
-
-      <ToastContainer />
     </>
   );
 };

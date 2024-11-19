@@ -72,8 +72,6 @@ export const TextGenerateContainer = ({
           {!isGenerating ? <Line3 className="line-1" /> : ""}
         </button>
       </div>
-
-      <ToastContainer />
     </>
   );
 };
