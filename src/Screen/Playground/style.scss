@@ -57,14 +57,14 @@ body::-webkit-scrollbar {
   width: 230px;
   height: fit-content;
   border-radius: 20px;
-  background: #FFFFFF05;
+  // background: rgba(255, 255, 255, 0.02);
   padding: 1.25rem;
   border: 1px solid #FFFFFF0D;
 }
 
 .playgroundMenus {
   position: absolute;
-  z-index: 2;
+  // z-index: 2;
   top: 1.25rem;
   left: 1.25rem;
   // display: flex;
@@ -142,9 +142,6 @@ body::-webkit-scrollbar {
   //   margin-top: 0rem;
   //   height: auto;
   // }
-  .playgroundModalUploadContainer {
-    width: auto;
-  }
 }
 
 .playgroundFooterContainer {
@@ -223,7 +220,17 @@ body::-webkit-scrollbar {
   //   margin-top: 0rem;
   //   height: auto;
   // }
+  // .playgroundModalUploadContainer {
+  //   width: auto;
+  // }
+}
+
+@media (max-width: 1200px) {
   .playgroundModalUploadContainer {
     width: auto;
+  }
+  .playgroundModalUploadContainer.text-generate-modal {
+    width: 100%;
+    max-width: 350px;
   }
 }

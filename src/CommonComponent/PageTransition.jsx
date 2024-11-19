@@ -3,17 +3,20 @@ import { motion } from "framer-motion";
 export const pageVariant = {
     visible: {
         opacity: 1,
-        // transition: {
-        //     // duration: 1,
-        //     when: "beforeChildren",
-        //     staggerChildren: 0.3,
-        // }
+        transition: {
+            // duration: 1,
+            when: "beforeChildren",
+            // staggerChildren: 0.3,
+        }
     },
     hidden: {
         opacity: 0
     },
     remove: {
         opacity: 0,
+        transition: {
+            when: "afterChildren"
+        }
     }
 }
 

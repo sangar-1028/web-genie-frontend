@@ -15,7 +15,7 @@ import {
 import { toast, ToastContainer } from "react-toastify";
 import { TextGenerateContainer } from "./Components/TextGenerateContainer";
 import { Link } from "react-router-dom";
-import PageTransition from "../../CommonComponent/PageTransition";
+import PageTransition, { pageVariant } from "../../CommonComponent/PageTransition";
 const Playground = () => {
 
   const [image, setImage] = useState(null);
@@ -164,7 +164,7 @@ const Playground = () => {
             </motion.div>
 
             <motion.div className="flex justify-between flex-1 gap-8 p-4 playgroundContainer" variants={componentVariant}>
-              <div className="flex justify-center w-full gap-3 lg:w-fit lg:justify-start playgroundMenus">
+              <div className="z-20 flex justify-center w-full gap-3 lg:w-fit lg:justify-start playgroundMenus xl:z-10">
                 <MenuContainer
                   screenSize={screenSize}
                   setEnableUploadImage={setEnableUploadImage}
@@ -172,9 +172,9 @@ const Playground = () => {
                   enableText={enableText}
                   setEnableText={setEnableText}
                 />
-                {/* <AnimatePresence mode="sync"> */}
+                <AnimatePresence mode="sync">
                   {enableUploadImage && (
-                    <div className="playgroundModalUploadContainer">
+                    <motion.div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black xl:bg-transparent bg-opacity-80 xl:relative px-4" variants={pageVariant} initial="hidden" animate="visible" exit="remove" transition={{duration: 0.2, staggerChildren: 0.3}}>
                       <UploadImageContainer
                         setEnableUploadImage={setEnableUploadImage}
                         handleGenerateButton={handleGenerateButton}
@@ -182,22 +182,20 @@ const Playground = () => {
                         image={image}
                         setImage={setImage}
                       />
-                    </div>
+                    </motion.div>
                   )}
-                {/* </AnimatePresence> */}
-                {/* <AnimatePresence mode="sync"> */}
                   {enableText && (
-                    <div className="playgroundModalUploadContainer">
+                    <motion.div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black xl:bg-transparent bg-opacity-80 xl:relative px-4" variants={pageVariant} initial="hidden" animate="visible" exit="remove" transition={{duration: 0.2, staggerChildren: 0.3}}>
                       <TextGenerateContainer
-                        setEnableText={setEnableText}
-                        setTextGenerate={setTextGenerate}
-                        handleGenerateButton={handleGenerateButton}
-                        textGenerate={textGenerate}
-                        isGenerating={isGenerating}
-                      />
-                    </div>
+                          setEnableText={setEnableText}
+                          setTextGenerate={setTextGenerate}
+                          handleGenerateButton={handleGenerateButton}
+                          textGenerate={textGenerate}
+                          isGenerating={isGenerating}
+                        />
+                    </motion.div>
                   )}
-                {/* </AnimatePresence> */}
+                </AnimatePresence>
               </div>
 
               <div
