@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Icon } from "../../../assests/images/constant";
 import "./style.scss";
 import { ButtonField, InputField } from "../../../CommonComponent";
@@ -9,6 +9,11 @@ import { ReactComponent as Ellipse3 } from "../../../assests/icons/ellipse-3.svg
 
 const DetailContainer = ({ searchText, setSearchText, handleGenerateButton, isGenerating}) => {
     const [isFocus, setIsFocus] = useState(false)
+    const searchInputRef = useRef(null);
+
+    useEffect(() => {
+      searchInputRef.current.focus();
+    }, [])
 
   return (
     <div className="flex flex-col items-center text-center [&>*]:relative [&>*]:z-10">
@@ -25,7 +30,11 @@ const DetailContainer = ({ searchText, setSearchText, handleGenerateButton, isGe
       <div className="text-form w-full max-w-xl xl:max-w-[622px] flex flex-col items-center">
         <div className="inputstyle">
           <AttachmentIcon />
-          <div className="search-input text-start" placeholder="Describe your landing page" contentEditable onInput={(e) => setSearchText(e.currentTarget.textContent)}>Describe your landing page</div>
+          <div className="relative w-full">
+            <div ref={searchInputRef} className="relative z-10 search-input text-start" placeholder="Describe your landing page" contentEditable onInput={(e) => setSearchText(e.currentTarget.textContent)}>
+            </div>
+            <div className={`absolute inset-0 search-input placeholder text-start ${searchText ? "!invisible" : ""}`}>Describe your landing page</div>
+          </div>
         </div>
         {/* <InputField
           placeholder="Describe your landing page"
