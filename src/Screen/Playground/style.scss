@@ -22,6 +22,13 @@ body::-webkit-scrollbar {
   position: relative;
 }
 
+@media (max-width: 640px) {
+  .playgroundModal {
+    box-shadow: unset;
+    border: unset;
+  }
+}
+
 .playgroundHeader {
   display: flex;
   flex-direction: row;
@@ -148,7 +155,7 @@ body::-webkit-scrollbar {
   width: 100%;
   position: absolute;
   bottom: 0;
-  z-index: 3;
+  // z-index: 3;
   display: flex;
   align-items: flex-end;
   transition: all 0.3s ease-in-out;
