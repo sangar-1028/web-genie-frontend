@@ -7,13 +7,18 @@ import { ReactComponent as GenerateIcon } from "../../../assests/icons/generate.
 import { ReactComponent as Line4 } from "../../../assests/icons/line-4.svg";
 import { ReactComponent as Ellipse3 } from "../../../assests/icons/ellipse-3.svg";
 
-const DetailContainer = ({ searchText, setSearchText, handleGenerateButton, isGenerating}) => {
+const DetailContainer = ({ searchText, setSearchText, handleGenerateButton, isGenerating, clearInput}) => {
     const [isFocus, setIsFocus] = useState(false)
-    const searchInputRef = useRef(null);
+    let searchInputRef = useRef(null);
 
     useEffect(() => {
       searchInputRef.current.focus();
-    }, [])
+    }, []);
+
+    useEffect(() => {
+      searchInputRef.current.textContent = "";
+      searchInputRef.current.focus();
+    }, [clearInput])
 
   return (
     <div className="flex flex-col items-center text-center [&>*]:relative [&>*]:z-10">

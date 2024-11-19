@@ -3,8 +3,9 @@ import { Icon } from "../../../assests/images/constant";
 import "./style.scss";
 import { Divider } from "antd";
 import { Link } from "react-router-dom";
-const MenuContainer = ({ screenSize, setEnableUploadImage, enableUploadImage, enableText, setEnableText }) => {
 
+
+const MenuContainer = ({ screenSize, setEnableUploadImage, enableUploadImage, enableText, setEnableText, clearCanvas }) => {
   const openModal = (modal) => {
     if (modal === "image") {
       setEnableUploadImage(!enableUploadImage);
@@ -47,7 +48,7 @@ const MenuContainer = ({ screenSize, setEnableUploadImage, enableUploadImage, en
       </button>
       {isScreenSmall && <Divider className="divider" style={{ borderColor: "rgba(255, 255, 255, 0.05)", minWidth: "unset", maxWidth: "73px" }} />}
 
-      <button className="itemContainer">
+      <button className="itemContainer" onClick={clearCanvas}>
         <img src={Icon.Brush} alt="clear icon" width={32} height={32} />
         <div className="itemText">Clear Canvas</div>
       </button>

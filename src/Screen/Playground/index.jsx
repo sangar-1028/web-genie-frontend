@@ -26,6 +26,7 @@ const Playground = () => {
   const [searchText, setSearchText] = useState("");
   const [enableCollapse, setEnableCollapse] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false)
+  const [clearInput, setClearInput] = useState(0);
 
   const [screenSize, setScreenSize] = useState({
     width: calculateSize(window.innerWidth),
@@ -144,6 +145,21 @@ const Playground = () => {
     }
   }
 
+  function clearCanvas() {
+    setClearInput(former => former + 1);
+    setSearchText("");
+    setTextGenerate("");
+    setImage(null);
+
+    setEnableCollapse(false);
+    setIsGenerating(false);
+    setGeneratedImage(null);
+    
+    // Close all modals
+    setEnableText(false);
+    setEnableUploadImage(false);
+  }
+
   return (
     <PageTransition>
       <motion.div className="modal">
@@ -171,6 +187,7 @@ const Playground = () => {
                   enableUploadImage={enableUploadImage}
                   enableText={enableText}
                   setEnableText={setEnableText}
+                  clearCanvas={clearCanvas}
                 />
                 <AnimatePresence mode="sync">
                   {enableUploadImage && (
@@ -217,6 +234,7 @@ const Playground = () => {
                     setSearchText={setSearchText}
                     handleGenerateButton={handleGenerateButton}
                     isGenerating={isGenerating}
+                    clearInput={clearInput}
                   />
                 )}
               </div>
