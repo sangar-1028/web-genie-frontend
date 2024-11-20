@@ -179,7 +179,7 @@ body::-webkit-scrollbar {
   bottom: 0;
 }
 
-.playgroundFooterContainer.fullscreen {
+.playgroundFooterContainer.fullscreen:not(.is-collapsed) {
   inset: 0;
   background: rgba(10, 10, 10, 0.1);
   backdrop-filter: blur(12px)

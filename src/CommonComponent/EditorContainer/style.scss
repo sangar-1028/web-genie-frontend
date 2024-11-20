@@ -29,7 +29,7 @@
   height: 490px;
 }
 
-.playgroundFooterContainer.mini, .playgroundFooterContainer.fullscreen {
+.playgroundFooterContainer.mini:not(.is-collapsed), .playgroundFooterContainer.fullscreen:not(.is-collapsed) {
   top: 0;
   backdrop-filter: blur(20px);
 } 
