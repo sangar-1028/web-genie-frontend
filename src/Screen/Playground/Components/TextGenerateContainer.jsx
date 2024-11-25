@@ -8,6 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ReactComponent as Line3 } from "../../../assests/icons/line-2.svg"
 import { ReactComponent as GenerateIcon } from "../../../assests/icons/generate.svg";
 import { ReactComponent as LoadingIcon } from "../../../assests/icons/loading.svg"
+import { pageVariant } from "../../../CommonComponent/PageTransition";
+import { motion } from "framer-motion";
 
 export const TextGenerateContainer = ({
   setEnableText,
@@ -31,7 +33,7 @@ export const TextGenerateContainer = ({
 
   return (
     <>
-      <div className="text-generate-modal">
+      <motion.div className="playgroundModalUploadContainer bg-[rgba(10,10,10,1)] xl:bg-white xl:bg-opacity-[0.02] text-generate-modal" variants={pageVariant}>
         <div className="uploadImageContainer">
           <div className="uploadHeaderText">Text to code</div>
           <button onClick={() => {setEnableText(false); setTextGenerate("")}}>
@@ -71,9 +73,7 @@ export const TextGenerateContainer = ({
           <span>{isGenerating ? "Generating code..." : "Generate Code"}</span>
           {!isGenerating ? <Line3 className="line-1" /> : ""}
         </button>
-      </div>
-
-      <ToastContainer />
+      </motion.div>
     </>
   );
 };

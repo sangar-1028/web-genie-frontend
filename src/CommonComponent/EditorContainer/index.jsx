@@ -141,19 +141,18 @@ class App extends SatelessWidget {
 
   return (
     <div className="editorContainer">
-      <div className="CodePathContainer">
+      <div className="CodePathContainer code-container">
         <HeaderContainer title="HTML Code" ext="jsx" codeText={codeText} action="code" />
         <div id="editor-parent-1" className="editor-parent">
-          <CodeEditor parentId="editor-parent-1" value={codeText} />
+          <CodeEditor parentId="editor-parent-1" value={codeText} defaultLanguage="html" />
         </div>
       </div>
-      <div className="CSSPathContainer">
+      <div className="CSSPathContainer code-container">
         <HeaderContainer title="CSS Code" ext="css" codeText={codeText} action="css" />
         <div id="editor-parent-2" className="editor-parent">
-          <CodeEditor parentId="editor-parent-2" value={codeText} />
+          <CodeEditor parentId="editor-parent-2" value={codeText} defaultLanguage="css" />
         </div>
       </div>
-      <ToastContainer />
     </div>
   );
 };

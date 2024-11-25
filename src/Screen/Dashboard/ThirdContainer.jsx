@@ -40,7 +40,7 @@ function Feature({icon, title, desc}) {
   }
 
   return (
-    <motion.div className="thirdBoxContainer" variants={individual} initial="hidden" whileInView="visible">
+    <motion.div className="p-10 lg:p-4 thirdBoxContainer max-w-[450px] lg:max-w-[333px] h-[268px] xl:p-10" variants={individual} initial="hidden" whileInView="visible">
       <motion.div className="thirdIconBox" variants={content}>
         {icon}
       </motion.div>
@@ -73,7 +73,7 @@ const ThirdContainer = () => {
   }
 
   return (
-    <motion.div className="thirdContainer" variants={variants} initial="hidden" animate="visible" viewport={{ once: true }}>
+    <motion.div className="flex flex-col items-center justify-center gap-y-1 xsm:gap-y-2 gap-x-0 lg:gap-5 lg:flex-row thirdContainer" variants={variants} initial="hidden" animate="visible" viewport={{ once: true }}>
       <Feature icon={<LiaPenNibSolid size={"24px"} color="#D11CE9" />} title="Pixel-Perfect Accuracy" desc="Our AI aligns code with design, minimizing developer-designer back-and-forth." />
       <Feature icon={<LiaPenNibSolid size={"24px"} color="#D11CE9" />} title="Clean, Semantic Code" desc="Use clean, semantic HTML and optimized CSS. Keep code lean and avoid unnecessary divs." />
       <Feature icon={<LightningBolt size={"24px"} color="#D11CE9" />} title="Instant Generation" desc="Turn designs into production-ready code in seconds. What took hours now happens instantly." />

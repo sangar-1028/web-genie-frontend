@@ -5,6 +5,21 @@
   display: flex;
 }
 
+.code-container {
+  width: 50%;
+  padding: 1rem 2rem;
+}
+
+@media (max-width: 992px) {
+  .editorContainer {
+    flex-direction: column;
+  }
+
+  .code-container {
+    width: 100%;
+  }  
+}
+
 .editor-parent {
   height: 205px;
   transition: all 0.3s ease-in-out;
@@ -13,6 +28,11 @@
 .playgroundFooterContainer.fullscreen .editor-parent {
   height: 490px;
 }
+
+.playgroundFooterContainer.mini:not(.is-collapsed), .playgroundFooterContainer.fullscreen:not(.is-collapsed) {
+  top: 0;
+  backdrop-filter: blur(20px);
+} 
 
 .editorHeaderContainer {
   display: flex;
@@ -29,15 +49,8 @@
   align-items: center;
 }
 
-.CodePathContainer {
-  width: 50%;
-  padding: 1rem 2rem;
-}
-
 .CSSPathContainer {
-  width: 50%;
   border-left: 1px solid #ffffff1a;
-  padding: 1rem 2rem;
 }
 
 .headerText {

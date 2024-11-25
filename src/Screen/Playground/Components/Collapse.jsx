@@ -52,9 +52,9 @@ const CollapseContainer = ({
   }
 
   return (
-    <div className={`playgroundFooterContainer ${enableCollapse ? "" : "is-collapsed"} ${display}`}>
+    <div className={`playgroundFooterContainer z-50 ${enableCollapse ? "" : "is-collapsed"} ${display}`}>
       <Collapse
-        className="custom collapse-container"
+        className="mx-3 custom collapse-container md:mx-5"
         items={items}
         // defaultActiveKey={["1"]}
         activeKey={activeKey}

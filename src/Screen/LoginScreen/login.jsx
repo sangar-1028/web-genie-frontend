@@ -14,7 +14,7 @@ const LoginScreen = () => {
   }
 
   return (
-    <div className="mainContainer">
+    <div className="mainContainer pb-5 xsm:pb-[50px]">
       <div className="loginContainer">
         <div className="halfBox detailBox">
           <p className="heading">Join Chat Room!</p>

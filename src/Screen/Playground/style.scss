@@ -15,10 +15,18 @@ body::-webkit-scrollbar {
 
 .playgroundModal {
   width: 100%;
+  min-height: calc(100vh - 4px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0px 4px 4px 0px rgba(209, 28, 233, 1);
   // border-radius: 20px;
   position: relative;
+}
+
+@media (max-width: 640px) {
+  .playgroundModal {
+    box-shadow: unset;
+    border: unset;
+  }
 }
 
 .playgroundHeader {
@@ -43,11 +51,11 @@ body::-webkit-scrollbar {
 }
 
 .playgroundContainer {
-  display: flex;
-  flex-direction: row;
-  justify-items: space-between;
-  padding: 1rem;
-  gap: 2rem;
+  // display: flex;
+  // flex-direction: row;
+  // justify-items: space-between;
+  // padding: 1rem;
+  // gap: 2rem;
   // background: rgba(10, 10, 10, 1);
   position: relative;
 }
@@ -56,41 +64,51 @@ body::-webkit-scrollbar {
   width: 230px;
   height: fit-content;
   border-radius: 20px;
-  background: #FFFFFF05;
+  // background: rgba(255, 255, 255, 0.02);
   padding: 1.25rem;
   border: 1px solid #FFFFFF0D;
 }
 
 .playgroundMenus {
   position: absolute;
-  z-index: 2;
+  // z-index: 2;
   top: 1.25rem;
   left: 1.25rem;
-  display: flex;
-  gap: 0.75rem;
+  // display: flex;
+  // gap: 0.75rem;
+}
+
+@media (max-width: 453px) {
+  .playgroundMenus {
+    left: 0;
+  }
+
+  .itemContainer {
+    padding: 1rem !important;
+  }
 }
 
 .playgroudMenuContainer {
   height: fit-content;
-  padding: 1.25rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2.5rem;
+  // padding: 1.25rem 0;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // gap: 2.5rem;
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: 20px;
   background: rgba(255, 255, 255, 0.02);
 }
 
-.playgroudContentContainer {
-  width: 100%;
-  margin-top: 133px;
-  margin-bottom: 196px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 20px;
-}
+// .playgroudContentContainer {
+  // width: 100%;
+  // margin-top: 133px;
+  // margin-bottom: 196px;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // border-radius: 20px;
+// }
 
 // .editor-showing .playgroudContentContainer {
 //   margin-top: 73px;
@@ -126,31 +144,28 @@ body::-webkit-scrollbar {
     flex-direction: column;
     gap: 1rem;
   }
-  .playgroudContentContainer {
-    width: auto;
-    display: flex;
-    margin-top: 0rem;
-    gap: 0rem;
-  }
-  .playgroudMenuContainer {
-    width: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 0rem;
-    height: auto;
-  }
-  .playgroundModalUploadContainer {
-    width: auto;
-  }
+  // .playgroudContentContainer {
+  //   width: auto;
+  //   display: flex;
+  //   margin-top: 0rem;
+  //   gap: 0rem;
+  // }
+  // .playgroudMenuContainer {
+  //   width: auto;
+  //   display: flex;
+  //   flex-direction: row;
+  //   align-items: center;
+  //   justify-content: space-between;
+  //   margin-top: 0rem;
+  //   height: auto;
+  // }
 }
 
 .playgroundFooterContainer {
   width: 100%;
   position: absolute;
   bottom: 0;
-  z-index: 3;
+  // z-index: 3;
   display: flex;
   align-items: flex-end;
   transition: all 0.3s ease-in-out;
@@ -164,7 +179,7 @@ body::-webkit-scrollbar {
   bottom: 0;
 }
 
-.playgroundFooterContainer.fullscreen {
+.playgroundFooterContainer.fullscreen:not(.is-collapsed) {
   inset: 0;
   background: rgba(10, 10, 10, 0.1);
   backdrop-filter: blur(12px)
@@ -206,23 +221,33 @@ body::-webkit-scrollbar {
     gap: 1rem;
   }
 
-  .playgroudContentContainer {
-    width: auto;
-    display: flex;
-    margin-top: 0rem;
-    gap: 0rem;
-  }
+  // .playgroudContentContainer {
+  //   width: auto;
+  //   display: flex;
+  //   margin-top: 0rem;
+  //   gap: 0rem;
+  // }
 
-  .playgroudMenuContainer {
-    width: auto;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-items: space-between;
-    margin-top: 0rem;
-    height: auto;
-  }
+  // .playgroudMenuContainer {
+  //   width: auto;
+  //   display: flex;
+  //   flex-direction: row;
+  //   align-items: center;
+  //   justify-items: space-between;
+  //   margin-top: 0rem;
+  //   height: auto;
+  // }
+  // .playgroundModalUploadContainer {
+  //   width: auto;
+  // }
+}
+
+@media (max-width: 1200px) {
   .playgroundModalUploadContainer {
     width: auto;
+  }
+  .playgroundModalUploadContainer.text-generate-modal {
+    width: 100%;
+    max-width: 350px;
   }
 }

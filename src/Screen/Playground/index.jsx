@@ -3,7 +3,7 @@ import { calculateSize } from "../../utilies/constantFuntion";
 import "./style.scss";
 import { CgClose } from "react-icons/cg";
 import { ReactComponent as CodeBlockIcon } from "../../assests/icons/code-block.svg"
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 import {
   DetailContainer,
@@ -12,10 +12,10 @@ import {
   UploadImageContainer,
   CollapseContainer,
 } from "./Components";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { TextGenerateContainer } from "./Components/TextGenerateContainer";
 import { Link } from "react-router-dom";
-import PageTransition from "../../CommonComponent/PageTransition";
+import PageTransition, { pageVariant } from "../../CommonComponent/PageTransition";
 const Playground = () => {
 
   const [image, setImage] = useState(null);
@@ -26,6 +26,7 @@ const Playground = () => {
   const [searchText, setSearchText] = useState("");
   const [enableCollapse, setEnableCollapse] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false)
+  const [clearInput, setClearInput] = useState(0);
 
   const [screenSize, setScreenSize] = useState({
     width: calculateSize(window.innerWidth),
@@ -61,12 +62,12 @@ const Playground = () => {
       setIsGenerating(true)
       setTimeout(() => {
         // Display the code editor
-        // setEnableCollapse(true);
+        setEnableCollapse(true);
         // Remove all loading UI
         setIsGenerating(false);
         // Set Image to display
         setGeneratedImage(image);
-
+        
         // Close all modals
         setEnableText(false);
         setEnableUploadImage(false);
@@ -144,10 +145,25 @@ const Playground = () => {
     }
   }
 
+  function clearCanvas() {
+    setClearInput(former => former + 1);
+    setSearchText("");
+    setTextGenerate("");
+    setImage(null);
+
+    setEnableCollapse(false);
+    setIsGenerating(false);
+    setGeneratedImage(null);
+    
+    // Close all modals
+    setEnableText(false);
+    setEnableUploadImage(false);
+  }
+
   return (
     <PageTransition>
       <motion.div className="modal">
-        <motion.div className={`playgroundModal ${enableCollapse ? "editor-showing" : ""}`}>
+        <motion.div className={`flex flex-col playgroundModal ${enableCollapse ? "editor-showing" : ""}`}>
           {/* <motion.div > */}
             <motion.div className="playgroundHeader" variants={componentVariant}>
               <div className="PlaygroundTitle">Playground</div>
@@ -163,41 +179,44 @@ const Playground = () => {
               </Link>
             </motion.div>
 
-            <motion.div className="playgroundContainer" variants={componentVariant}>
-              <div className="playgroundMenus">
+            <motion.div className="flex justify-between flex-1 gap-8 p-4 playgroundContainer" variants={componentVariant}>
+              <div className="z-20 flex justify-center w-full gap-3 lg:w-fit lg:justify-start playgroundMenus xl:z-10">
                 <MenuContainer
                   screenSize={screenSize}
                   setEnableUploadImage={setEnableUploadImage}
                   enableUploadImage={enableUploadImage}
                   enableText={enableText}
                   setEnableText={setEnableText}
+                  clearCanvas={clearCanvas}
                 />
-                {enableUploadImage && (
-                  <div className="playgroundModalUploadContainer">
-                    <UploadImageContainer
-                      setEnableUploadImage={setEnableUploadImage}
-                      handleGenerateButton={handleGenerateButton}
-                      isGenerating={isGenerating}
-                      image={image}
-                      setImage={setImage}
-                    />
-                  </div>
-                )}
-                {enableText && (
-                  <div className="playgroundModalUploadContainer">
-                    <TextGenerateContainer
-                      setEnableText={setEnableText}
-                      setTextGenerate={setTextGenerate}
-                      handleGenerateButton={handleGenerateButton}
-                      textGenerate={textGenerate}
-                      isGenerating={isGenerating}
-                    />
-                  </div>
-                )}
+                <AnimatePresence mode="sync">
+                  {enableUploadImage && (
+                    <motion.div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black xl:bg-transparent bg-opacity-80 xl:relative px-4" variants={pageVariant} initial="hidden" animate="visible" exit="remove" transition={{duration: 0.2, staggerChildren: 0.3}}>
+                      <UploadImageContainer
+                        setEnableUploadImage={setEnableUploadImage}
+                        handleGenerateButton={handleGenerateButton}
+                        isGenerating={isGenerating}
+                        image={image}
+                        setImage={setImage}
+                      />
+                    </motion.div>
+                  )}
+                  {enableText && (
+                    <motion.div className="fixed inset-0 z-[1000] flex items-center justify-center bg-black xl:bg-transparent bg-opacity-80 xl:relative px-4" variants={pageVariant} initial="hidden" animate="visible" exit="remove" transition={{duration: 0.2, staggerChildren: 0.3}}>
+                      <TextGenerateContainer
+                          setEnableText={setEnableText}
+                          setTextGenerate={setTextGenerate}
+                          handleGenerateButton={handleGenerateButton}
+                          textGenerate={textGenerate}
+                          isGenerating={isGenerating}
+                        />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               <div
-                className={`playgroudContentContainer`}
+                className="playgroudContentContainer w-full mt-72 xs2:mt-52 lg:mt-36 mb-48 flex flex-col items-center rounded-[20px] mx-1 xs2:mx-8"
                 style={{
                   // width:
                   //   screenSize.size > 1024 && enableUploadImage
@@ -215,6 +234,7 @@ const Playground = () => {
                     setSearchText={setSearchText}
                     handleGenerateButton={handleGenerateButton}
                     isGenerating={isGenerating}
+                    clearInput={clearInput}
                   />
                 )}
               </div>
@@ -248,6 +268,7 @@ const Playground = () => {
               </div>
             </button>
           )} */}
+          <ToastContainer />
         </motion.div>
       </motion.div>
     </PageTransition>

@@ -7,6 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ReactComponent as Line3 } from "../../../assests/icons/line-2.svg"
 import { ReactComponent as LoadingIcon } from "../../../assests/icons/loading.svg"
+import { pageVariant } from "../../../CommonComponent/PageTransition";
+import { motion } from "framer-motion";
 
 export const UploadImageContainer = ({
   setEnableUploadImage,
@@ -49,7 +51,7 @@ export const UploadImageContainer = ({
 
   return (
     <>
-      <div>
+      <motion.div className="playgroundModalUploadContainer bg-[rgba(10,10,10,1)] xl:bg-white xl:bg-opacity-[0.02]" variants={pageVariant}>
         <div className="uploadImageContainer">
           <div className="uploadHeaderText">Upload Image</div>
           <button onClick={() => {setEnableUploadImage(false); setImage(null)}}>
@@ -133,6 +135,7 @@ export const UploadImageContainer = ({
                 display: "flex",
                 alignItems: "center",
               }}
+              onClick={handleClick}
             >
               <img
                 src={Icon.ImageUploaderLight}
@@ -147,9 +150,7 @@ export const UploadImageContainer = ({
             <div className="preCautionText">Maximum size: 1MB</div>
           </>
         )}
-      </div>
-
-      <ToastContainer />
+      </motion.div>
     </>
   );
 };
