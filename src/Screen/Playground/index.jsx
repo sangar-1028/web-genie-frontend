@@ -23,7 +23,6 @@ const Playground = () => {
   const [enableText, setEnableText] = useState(false);
   const [textGenerate, setTextGenerate] = useState("")
   const [generatedImage, setGeneratedImage] = useState(null);
-  const [searchText, setSearchText] = useState("");
   const [enableCollapse, setEnableCollapse] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false)
   const [clearInput, setClearInput] = useState(0);
@@ -50,7 +49,6 @@ const Playground = () => {
   const handleGenerateButton = useCallback((event, cancel = false) => {
     console.log(textGenerate)
     console.log(image)
-    console.log(searchText)
 
     if (cancel) {
       setIsGenerating(false)
@@ -58,7 +56,7 @@ const Playground = () => {
       return;
     }
 
-    if (image || textGenerate || searchText) {
+    if (image || textGenerate) {
       setIsGenerating(true)
       setTimeout(() => {
         // Display the code editor
@@ -73,7 +71,7 @@ const Playground = () => {
         setEnableUploadImage(false);
       }, 5000)
     } else handleGenerateInfo();
-  }, [searchText, generatedImage, textGenerate, enableCollapse, isGenerating, image]);
+  }, [generatedImage, textGenerate, enableCollapse, isGenerating, image]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -147,7 +145,6 @@ const Playground = () => {
 
   function clearCanvas() {
     setClearInput(former => former + 1);
-    setSearchText("");
     setTextGenerate("");
     setImage(null);
 
@@ -230,8 +227,8 @@ const Playground = () => {
                   <img className="generated-img" src={URL.createObjectURL(generatedImage)} alt="Website generated" />
                 ) : (
                   <DetailContainer
-                    searchText={searchText}
-                    setSearchText={setSearchText}
+                    textGenerate={textGenerate}
+                    setTextGenerate={setTextGenerate}
                     handleGenerateButton={handleGenerateButton}
                     isGenerating={isGenerating}
                     clearInput={clearInput}
@@ -248,7 +245,6 @@ const Playground = () => {
                 enableCollapse={enableCollapse}
                 setEnableCollapse={setEnableCollapse}
                 img={generatedImage}
-                searchText={searchText}
                 screenSize={screenSize}
               />
             </motion.div>

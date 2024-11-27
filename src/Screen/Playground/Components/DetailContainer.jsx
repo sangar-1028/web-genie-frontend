@@ -7,7 +7,7 @@ import { ReactComponent as GenerateIcon } from "../../../assests/icons/generate.
 import { ReactComponent as Line4 } from "../../../assests/icons/line-4.svg";
 import { ReactComponent as Ellipse3 } from "../../../assests/icons/ellipse-3.svg";
 
-const DetailContainer = ({ searchText, setSearchText, handleGenerateButton, isGenerating, clearInput}) => {
+const DetailContainer = ({ textGenerate, setTextGenerate, handleGenerateButton, isGenerating, clearInput}) => {
     const [isFocus, setIsFocus] = useState(false)
     let searchInputRef = useRef(null);
 
@@ -36,16 +36,16 @@ const DetailContainer = ({ searchText, setSearchText, handleGenerateButton, isGe
         <div className="inputstyle">
           <AttachmentIcon />
           <div className="relative w-full">
-            <div ref={searchInputRef} className="relative z-10 search-input text-start" placeholder="Describe your landing page" contentEditable onInput={(e) => setSearchText(e.currentTarget.textContent)}>
+            <div ref={searchInputRef} className="relative z-10 search-input text-start" placeholder="Describe your landing page" contentEditable onInput={(e) => setTextGenerate(e.currentTarget.textContent)}>
             </div>
-            <div className={`absolute inset-0 search-input placeholder text-start ${searchText ? "!invisible" : ""}`}>Describe your landing page</div>
+            <div className={`absolute inset-0 search-input placeholder text-start ${textGenerate ? "!invisible" : ""}`}>Describe your landing page</div>
           </div>
         </div>
         {/* <InputField
           placeholder="Describe your landing page"
           styleBox={isFocus ? "inputstylefocus" : "inputstyle"}
           prefix={<RiAttachment2 />}
-          onChange={(event) => setSearchText(event.target.value)}
+          onChange={(event) => setTextGenerate(event.target.value)}
         /> */}
         <ButtonField
           buttonStyle={`buttonStyle generate-btn ${isGenerating ? "is-generating" : ""}`}

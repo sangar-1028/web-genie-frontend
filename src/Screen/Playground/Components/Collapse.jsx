@@ -10,7 +10,6 @@ const CollapseContainer = ({
   enableCollapse,
   setEnableCollapse,
   img,
-  searchText,
   screenSize,
 }) => {
   const [activeKey, setActiveKey] = useState(0)
@@ -28,7 +27,7 @@ const CollapseContainer = ({
     {
       key: "1",
       label: title,
-      children: <EditorContainer uploadedImg={img} searchText={searchText} />,
+      children: <EditorContainer />,
     },
   ];
 

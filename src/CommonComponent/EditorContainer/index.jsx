@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import "./style.scss";
 import { BiCopy, BiDownload } from "react-icons/bi";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { Icon } from "../../assests/images/constant";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import Editor from '@monaco-editor/react';
 
 
@@ -109,32 +109,8 @@ function CodeEditor({ parentId, value, ...props }) {
   />)
 }
 
-const EditorContainer = ({ uploadedImg, searchText }) => {
-  const codeText = `import ‘package:flutter/material.dart’; 
-import ‘package:google_fonts/google_fonts.dart; 
-import ‘package:solar_system/scenes/home_scene.dart’; 
-class App extends SatelessWidget { 
-  const App({ 
-    super.key, 
-  });
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: ‘Solar System’,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-      primarySwatch: Colors.blue,
-      textTheme: GoogleFonts.latoTextTheme(),`
-
-  // const codeText =
-  //   (` <p><span class="line-number">1</span> {"import React from 'react';"}</p>
-  // <p><span class="line-number">2</span> {"const App = () => {"}</p>
-  // <p><span class="line-number">3</span> {"  return ("}</p>
-  // <p><span class="line-number">4</span> {"    <h1>Hello, world!</h1>"}</p>
-  // <p><span class="line-number">5</span> {"  );"}</p>
-  // <p><span class="line-number">6</span> {"};"}</p>
-  // <p><span class="line-number">7</span> {"export default App;"}</p>
-  //   `);
+const EditorContainer = () => {
+  const codeText = ``
 
   const editorRef1 = useRef(null)
   const editorRef2 = useRef(null)
