@@ -11,6 +11,7 @@ const CollapseContainer = ({
   setEnableCollapse,
   img,
   screenSize,
+  solution
 }) => {
   const [activeKey, setActiveKey] = useState(0)
   const [display, setDisplay] = useState("mini")
@@ -27,7 +28,7 @@ const CollapseContainer = ({
     {
       key: "1",
       label: title,
-      children: <EditorContainer />,
+      children: <EditorContainer solution={solution} />,
     },
   ];
 
