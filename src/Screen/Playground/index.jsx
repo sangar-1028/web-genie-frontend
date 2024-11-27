@@ -48,27 +48,32 @@ const Playground = () => {
     });
   };
 
-  useEffect(() => {
-    console.log('=== textGenerate ===>', textGenerate)
-    handleGenerateButton()
-  }, [textGenerate])
+  // useEffect(() => {
+  //   console.log('=== textGenerate ===>', textGenerate)
+  //   handleGenerateButton()
+  // }, [textGenerate])
 
-  const handleGenerateButton = useCallback(async (cancel = false) => {
-
+  const handleGenerateButton = useCallback(async (prompt, cancel = false) => {
     if (cancel) {
       setIsGenerating(false)
       setEnableCollapse(false)
       return;
     }
 
-    if (image || (textGenerate && textGenerate.length > 0)) {
+    if (image || (prompt && prompt.length > 0)) {
+      setTextGenerate(prompt)
       setIsGenerating(true)
-      const {solution} = await generateCode(textGenerate)
+      const {solution} = await generateCode(prompt)
 
       console.log('=== solution ===>', solution)
       setSolution(solution)
       // Display the code editor
-      setEnableCollapse(true);
+      if (solution) {
+        setSolution(solution)
+        setEnableCollapse(true);
+      } else {
+        toast.warning("Something went wrong, please try again");
+      }
       // Remove all loading UI
       setIsGenerating(false);
       // Set Image to display
@@ -78,7 +83,7 @@ const Playground = () => {
       setEnableText(false);
       setEnableUploadImage(false);
     } else handleGenerateInfo();
-  }, [generatedImage, textGenerate, enableCollapse, isGenerating, image]);
+  }, [generatedImage, enableCollapse, isGenerating, image]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -238,6 +243,7 @@ const Playground = () => {
                     setTextGenerate={setTextGenerate}
                     isGenerating={isGenerating}
                     clearInput={clearInput}
+                    submit={handleGenerateButton}
                   />
                 )}
               </div>

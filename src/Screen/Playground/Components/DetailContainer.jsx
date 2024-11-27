@@ -7,7 +7,7 @@ import { ReactComponent as GenerateIcon } from "../../../assests/icons/generate.
 import { ReactComponent as Line4 } from "../../../assests/icons/line-4.svg";
 import { ReactComponent as Ellipse3 } from "../../../assests/icons/ellipse-3.svg";
 
-const DetailContainer = ({textGenerate, setTextGenerate, isGenerating, clearInput}) => {
+const DetailContainer = ({textGenerate, isGenerating, clearInput, submit}) => {
   let searchInputRef = useRef(null);
 
   const [prompt, setPrompt] = useState("")
@@ -26,7 +26,7 @@ const DetailContainer = ({textGenerate, setTextGenerate, isGenerating, clearInpu
   }, [clearInput])
 
   const handleGenerateButton = useCallback(() => {
-    setTextGenerate(prompt)
+    submit(prompt)
   }, [prompt])
 
   return (

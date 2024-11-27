@@ -18,18 +18,6 @@ export const TextGenerateContainer = ({
   isGenerating,
   textGenerate,
 }) => {
-  const handleGenerateError = () => {
-    toast.error("File size exceeds 1MB! Please upload a smaller image.", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
-  };
 
   return (
     <>
@@ -67,7 +55,7 @@ export const TextGenerateContainer = ({
 
         <button
           className={`uploadButtonContainer ${isGenerating ? "is-generating" : ""}`}
-          onClick={handleGenerateButton}
+          onClick={() => handleGenerateButton(textGenerate)}
         >
           <GenerateIcon className="text-generate-icon" />
           <span>{isGenerating ? "Generating code..." : "Generate Code"}</span>

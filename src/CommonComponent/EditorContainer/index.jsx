@@ -6,7 +6,6 @@ import { Icon } from "../../assests/images/constant";
 import { toast } from "react-toastify";
 import Editor from '@monaco-editor/react';
 
-
 const HeaderContainer = ({title, ext, codeText, action}) => {
   const handleGenerateError = () => {
     toast.info("Code Copied", {
@@ -79,7 +78,7 @@ function CodeEditor({ parentId, value, ...props }) {
     width="100%"
     height="100%"
     defaultLanguage="javascript"
-    defaultValue={value}
+    value={value}
     onMount={handleEditorDidMount}
     theme="vs-dark"
     options={{
@@ -93,21 +92,20 @@ function CodeEditor({ parentId, value, ...props }) {
 }
 
 const EditorContainer = ({ solution }) => {
-  const editorRef1 = useRef(null)
-  const editorRef2 = useRef(null)
-
+  const htmlCode = solution?.html || ''
+  const cssCode = solution?.css || ''
   return (
     <div className="editorContainer">
       <div className="CodePathContainer code-container">
-        <HeaderContainer title="HTML Code" ext="jsx" codeText={solution?.html || ''} action="code" />
+        <HeaderContainer title="HTML Code" ext="jsx" codeText={htmlCode} action="code" />
         <div id="editor-parent-1" className="editor-parent">
-          <CodeEditor parentId="editor-parent-1" value={solution?.html || ''} defaultLanguage="html" />
+          <CodeEditor parentId="editor-parent-1" value={htmlCode} defaultLanguage="html" />
         </div>
       </div>
       <div className="CSSPathContainer code-container">
-        <HeaderContainer title="CSS Code" ext="css" codeText={solution?.css || ''} action="css" />
+        <HeaderContainer title="CSS Code" ext="css" codeText={cssCode} action="css" />
         <div id="editor-parent-2" className="editor-parent">
-          <CodeEditor parentId="editor-parent-2" value={solution?.css || ''} defaultLanguage="css" />
+          <CodeEditor parentId="editor-parent-2" value={cssCode} defaultLanguage="css" />
         </div>
       </div>
     </div>
