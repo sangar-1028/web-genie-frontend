@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import "./style.scss";
 import { Icon } from "../../assests/images/constant";
-import { ReactComponent as Ellipse1 } from "../../assests/icons/ellipse-1.svg";
-import { ReactComponent as Ellipse2 } from "../../assests/icons/ellipse-2.svg";
 import { motion } from "framer-motion"
 
+const content = {
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5
+    }
+  },
+  hidden: {
+    opacity: 0,
+    y: 10
+  }
+}
+
 const BoxItem = ({ selectPhase, setSelectPhase, item }) => {
-  const animate = {
+  const animate = useMemo(() => ({
     visible: {
       opacity: 1,
       scaleY: 1,
@@ -35,23 +47,9 @@ const BoxItem = ({ selectPhase, setSelectPhase, item }) => {
         duration: 0.4
       }
     }
-  }
+  }), [selectPhase, item.key, item?.isActive]);
 
-  const content = {
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5
-      }
-    },
-    hidden: {
-      opacity: 0,
-      y: 10
-    }
-  }
-
-  const circleAnims = {
+  const circleAnims = useMemo(() => ({
     circle: {
       background: selectPhase === item.key || item?.isActive ? "rgba(209, 28, 233, 0.3)" : "rgba(72, 72, 72, 0.3)",
       border: selectPhase === item.key || item?.isActive ? "0.38px solid rgba(209, 28, 233, 1)" : "0.38px solid rgba(72, 72, 72, 1)",
@@ -65,15 +63,14 @@ const BoxItem = ({ selectPhase, setSelectPhase, item }) => {
         duration: 0.4
       }
     }
-  }
-
-  console.log(item?.isActive)
+  }), [selectPhase, item.key, item?.isActive]);
 
   return (
     <div
       className={`phase ${selectPhase === item.key || item?.isActive ? "phaseFilled" : "phaseUnfilled"}`}
       key={item.key}
       onMouseOver={() => setSelectPhase(item.key)}
+      onMouseLeave={() => setSelectPhase("")}
     >
       <div className="hidden timeline xsm:block">
         <motion.div className="circle" variants={circleAnims} animate="circle">
@@ -97,91 +94,89 @@ const BoxItem = ({ selectPhase, setSelectPhase, item }) => {
   );
 };
 
+const itemArray = [
+  {
+    key: "phase1",
+    icon: Icon.EditText,
+    Title: "Phase 1",
+    subTitle: "Generate HTML/CSS projects from text prompts.",
+    isActive: true
+  },
+  {
+    key: "phase2",
+    icon: Icon.ImageUploader,
+    Title: "Phase 2",
+    subTitle: "Generate HTML/CSS projects from image based prompts.",
+    isActive: false
+  },
+  {
+    key: "phase3",
+    icon: Icon.mic,
+    Title: "Phase 3",
+    subTitle: "Enable voice prompts for project generation.",
+  },
+  {
+    key: "phase4",
+    icon: Icon.figmaLogo,
+    Title: "Phase 4",
+    subTitle: "Integrate Figma designs as input for project generation.",
+  },
+  {
+    key: "phase5",
+    icon: Icon.folderDownload,
+    Title: "Phase 5",
+    subTitle: "Automate the downloading of fully functional project folders.",
+  },
+  {
+    key: "phase6",
+    icon: Icon.react,
+    Title: "Phase 6",
+    subTitle:
+      "Expand to generate full framework-based projects like React, Angular, etc.",
+  },
+];
+
+const variants = {
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.2,
+      duration: 0.6,
+    }
+  },
+  hidden: {
+    opacity: 0,
+    y: 10,
+    transition: {
+      when: "afterChildren"
+    }
+  }
+}
+
+const timeline = {
+  visible: {
+    opacity: 1,
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 3,
+      duration: 1
+    }
+  },
+  hidden: {
+    opacity: 0,
+    transition: {
+      when: "afterChildren",
+    }
+  }
+}
+
 const FourthContainer = () => {
   const [selectPhase, setSelectPhase] = useState("phase1");
 
-  const itemArray = [
-    {
-      key: "phase1",
-      icon: Icon.EditText,
-      Title: "Phase 1",
-      subTitle: "Generate HTML/CSS projects from text prompts.",
-      isActive: true
-    },
-    {
-      key: "phase2",
-      icon: Icon.ImageUploader,
-      Title: "Phase 2",
-      subTitle: "Generate HTML/CSS projects from image based prompts.",
-      isActive: true
-    },
-    {
-      key: "phase3",
-      icon: Icon.mic,
-      Title: "Phase 3",
-      subTitle: "Enable voice prompts for project generation.",
-    },
-    {
-      key: "phase4",
-      icon: Icon.figmaLogo,
-      Title: "Phase 4",
-      subTitle: "Integrate Figma designs as input for project generation.",
-    },
-    {
-      key: "phase5",
-      icon: Icon.folderDownload,
-      Title: "Phase 5",
-      subTitle: "Automate the downloading of fully functional project folders.",
-    },
-    {
-      key: "phase6",
-      icon: Icon.react,
-      Title: "Phase 6",
-      subTitle:
-        "Expand to generate full framework-based projects like React, Angular, etc.",
-    },
-  ];
-
-  const variants = {
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        when: "beforeChildren",
-        staggerChildren: 0.2,
-        duration: 0.6,
-      }
-    },
-    hidden: {
-      opacity: 0,
-      y: 10,
-      transition: {
-        when: "afterChildren"
-      }
-    }
-  }
-
-  const timeline = {
-    visible: {
-      opacity: 1,
-      transition: {
-        when: "beforeChildren",
-        staggerChildren: 3,
-        duration: 1
-      }
-    },
-    hidden: {
-      opacity: 0,
-      transition: {
-        when: "afterChildren",
-      }
-    }
-  }
-
   return (
     <motion.div className="pt-28 mx-7 xsm:mx-14 secondContainer fourthContainer" variants={variants} initial="hidden" whileInView="visible">
-      {/* <Ellipse1 className="ellipse-1" />
-      <Ellipse2 className="ellipse-2" /> */}
       <motion.div className="seoondHeader" variants={variants}>The roadmap of magic</motion.div>
       <motion.div className="fourthSubHeader" variants={variants}>
         The Evolution of <span className="subtext-span">Webgenie</span>
