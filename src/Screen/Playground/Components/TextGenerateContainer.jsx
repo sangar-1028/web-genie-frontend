@@ -1,9 +1,7 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { CgClose } from "react-icons/cg";
 import "./style.scss";
 import { Divider } from "antd";
-import { Icon } from "../../../assests/images/constant";
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ReactComponent as Line3 } from "../../../assests/icons/line-2.svg"
 import { ReactComponent as GenerateIcon } from "../../../assests/icons/generate.svg";

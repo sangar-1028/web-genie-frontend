@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import { calculateSize } from "../../utilies/constantFuntion";
 import "./style.scss";
 import { CgClose } from "react-icons/cg";
-import { ReactComponent as CodeBlockIcon } from "../../assests/icons/code-block.svg"
 import { AnimatePresence, motion } from "framer-motion";
 
 import {
@@ -47,11 +46,6 @@ const Playground = () => {
       theme: "colored",
     });
   };
-
-  // useEffect(() => {
-  //   console.log('=== textGenerate ===>', textGenerate)
-  //   handleGenerateButton()
-  // }, [textGenerate])
 
   const handleGenerateButton = useCallback(async (prompt, cancel = false) => {
     if (cancel) {

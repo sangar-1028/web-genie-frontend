@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import { Icon } from "../../../assests/images/constant";
 import "./style.scss";
-import { ButtonField, InputField } from "../../../CommonComponent";
+import { ButtonField } from "../../../CommonComponent";
 import { ReactComponent as AttachmentIcon } from "../../../assests/icons/attachment.svg";
 import { ReactComponent as GenerateIcon } from "../../../assests/icons/generate.svg";
 import { ReactComponent as Line4 } from "../../../assests/icons/line-4.svg";
-import { ReactComponent as Ellipse3 } from "../../../assests/icons/ellipse-3.svg";
 
 const DetailContainer = ({textGenerate, isGenerating, clearInput, submit}) => {
   let searchInputRef = useRef(null);
