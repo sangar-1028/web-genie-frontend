@@ -16,6 +16,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { TextGenerateContainer } from "./Components/TextGenerateContainer";
 import { Link } from "react-router-dom";
 import PageTransition, { pageVariant } from "../../CommonComponent/PageTransition";
+import { generateCode } from "../../utilies/apiServices";
 const Playground = () => {
 
   const [image, setImage] = useState(null);
@@ -23,10 +24,10 @@ const Playground = () => {
   const [enableText, setEnableText] = useState(false);
   const [textGenerate, setTextGenerate] = useState("")
   const [generatedImage, setGeneratedImage] = useState(null);
-  const [searchText, setSearchText] = useState("");
   const [enableCollapse, setEnableCollapse] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false)
   const [clearInput, setClearInput] = useState(0);
+  const [solution, setSolution] = useState(null)
 
   const [screenSize, setScreenSize] = useState({
     width: calculateSize(window.innerWidth),
@@ -47,33 +48,42 @@ const Playground = () => {
     });
   };
 
-  const handleGenerateButton = useCallback((event, cancel = false) => {
-    console.log(textGenerate)
-    console.log(image)
-    console.log(searchText)
+  // useEffect(() => {
+  //   console.log('=== textGenerate ===>', textGenerate)
+  //   handleGenerateButton()
+  // }, [textGenerate])
 
+  const handleGenerateButton = useCallback(async (prompt, cancel = false) => {
     if (cancel) {
       setIsGenerating(false)
       setEnableCollapse(false)
       return;
     }
 
-    if (image || textGenerate || searchText) {
+    if (image || (prompt && prompt.length > 0)) {
+      setTextGenerate(prompt)
       setIsGenerating(true)
-      setTimeout(() => {
-        // Display the code editor
+      const {solution} = await generateCode(prompt)
+
+      console.log('=== solution ===>', solution)
+      setSolution(solution)
+      // Display the code editor
+      if (solution) {
+        setSolution(solution)
         setEnableCollapse(true);
-        // Remove all loading UI
-        setIsGenerating(false);
-        // Set Image to display
-        setGeneratedImage(image);
-        
-        // Close all modals
-        setEnableText(false);
-        setEnableUploadImage(false);
-      }, 5000)
+      } else {
+        toast.warning("Something went wrong, please try again");
+      }
+      // Remove all loading UI
+      setIsGenerating(false);
+      // Set Image to display
+      // setGeneratedImage(image);
+      
+      // Close all modals
+      setEnableText(false);
+      setEnableUploadImage(false);
     } else handleGenerateInfo();
-  }, [searchText, generatedImage, textGenerate, enableCollapse, isGenerating, image]);
+  }, [generatedImage, enableCollapse, isGenerating, image]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -147,7 +157,6 @@ const Playground = () => {
 
   function clearCanvas() {
     setClearInput(former => former + 1);
-    setSearchText("");
     setTextGenerate("");
     setImage(null);
 
@@ -230,11 +239,11 @@ const Playground = () => {
                   <img className="generated-img" src={URL.createObjectURL(generatedImage)} alt="Website generated" />
                 ) : (
                   <DetailContainer
-                    searchText={searchText}
-                    setSearchText={setSearchText}
-                    handleGenerateButton={handleGenerateButton}
+                    textGenerate={textGenerate}
+                    setTextGenerate={setTextGenerate}
                     isGenerating={isGenerating}
                     clearInput={clearInput}
+                    submit={handleGenerateButton}
                   />
                 )}
               </div>
@@ -248,26 +257,10 @@ const Playground = () => {
                 enableCollapse={enableCollapse}
                 setEnableCollapse={setEnableCollapse}
                 img={generatedImage}
-                searchText={searchText}
                 screenSize={screenSize}
+                solution={solution}
               />
             </motion.div>
-          {/* </motion.div> */}
-
-          {/* {generatedImage ? (
-          ) : (
-            <button
-              className="playgroundFooterContainer"
-              onClick={() => setEnableCollapse(!enableCollapse)}
-            >
-              <div className="playgroundFooterBarContainer">
-                <div className="playgroundFooterBar">
-                  <CodeBlockIcon />
-                  <p>Tap here to open code editor</p>
-                </div>
-              </div>
-            </button>
-          )} */}
           <ToastContainer />
         </motion.div>
       </motion.div>

@@ -1,11 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import "./style.scss";
 import { BiCopy, BiDownload } from "react-icons/bi";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { Icon } from "../../assests/images/constant";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import Editor from '@monaco-editor/react';
-
 
 const HeaderContainer = ({title, ext, codeText, action}) => {
   const handleGenerateError = () => {
@@ -75,28 +74,11 @@ function CodeEditor({ parentId, value, ...props }) {
     editorRef.current = editor;
   }
 
-  // useEffect(() => {
-  //   const parent = document.getElementById('editor-parent-1')
-  //   console.log(parent)
-  //   window.addEventListener('resize', () => {
-  //     console.log("Resizing")
-  //     // make editor as small as possible
-  //     editorRef.current.layout({ width: 0, height: 0 })
-
-  //     // wait for next frame to ensure last layout finished
-  //     window.requestAnimationFrame(() => {
-  //       // get the parent dimensions and re-layout the editor
-  //       const rect = parent.getBoundingClientRect()
-  //       editorRef.current.layout({ width: rect.width, height: rect.height })
-  //     })
-  //   })
-  // }, [])
-
   return (<Editor
     width="100%"
     height="100%"
     defaultLanguage="javascript"
-    defaultValue={value}
+    value={value}
     onMount={handleEditorDidMount}
     theme="vs-dark"
     options={{
@@ -109,48 +91,21 @@ function CodeEditor({ parentId, value, ...props }) {
   />)
 }
 
-const EditorContainer = ({ uploadedImg, searchText }) => {
-  const codeText = `import ‘package:flutter/material.dart’; 
-import ‘package:google_fonts/google_fonts.dart; 
-import ‘package:solar_system/scenes/home_scene.dart’; 
-class App extends SatelessWidget { 
-  const App({ 
-    super.key, 
-  });
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: ‘Solar System’,
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-      primarySwatch: Colors.blue,
-      textTheme: GoogleFonts.latoTextTheme(),`
-
-  // const codeText =
-  //   (` <p><span class="line-number">1</span> {"import React from 'react';"}</p>
-  // <p><span class="line-number">2</span> {"const App = () => {"}</p>
-  // <p><span class="line-number">3</span> {"  return ("}</p>
-  // <p><span class="line-number">4</span> {"    <h1>Hello, world!</h1>"}</p>
-  // <p><span class="line-number">5</span> {"  );"}</p>
-  // <p><span class="line-number">6</span> {"};"}</p>
-  // <p><span class="line-number">7</span> {"export default App;"}</p>
-  //   `);
-
-  const editorRef1 = useRef(null)
-  const editorRef2 = useRef(null)
-
+const EditorContainer = ({ solution }) => {
+  const htmlCode = solution?.html || ''
+  const cssCode = solution?.css || ''
   return (
     <div className="editorContainer">
       <div className="CodePathContainer code-container">
-        <HeaderContainer title="HTML Code" ext="jsx" codeText={codeText} action="code" />
+        <HeaderContainer title="HTML Code" ext="jsx" codeText={htmlCode} action="code" />
         <div id="editor-parent-1" className="editor-parent">
-          <CodeEditor parentId="editor-parent-1" value={codeText} defaultLanguage="html" />
+          <CodeEditor parentId="editor-parent-1" value={htmlCode} defaultLanguage="html" />
         </div>
       </div>
       <div className="CSSPathContainer code-container">
-        <HeaderContainer title="CSS Code" ext="css" codeText={codeText} action="css" />
+        <HeaderContainer title="CSS Code" ext="css" codeText={cssCode} action="css" />
         <div id="editor-parent-2" className="editor-parent">
-          <CodeEditor parentId="editor-parent-2" value={codeText} defaultLanguage="css" />
+          <CodeEditor parentId="editor-parent-2" value={cssCode} defaultLanguage="css" />
         </div>
       </div>
     </div>
