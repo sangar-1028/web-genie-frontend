@@ -25,7 +25,7 @@ const DetailContainer = ({textGenerate, isGenerating, clearInput, submit}) => {
   }, [clearInput])
 
   const handleGenerateButton = useCallback(() => {
-    submit(prompt)
+    submit(prompt, true)
   }, [prompt])
 
   return (

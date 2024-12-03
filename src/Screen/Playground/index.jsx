@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { calculateSize } from "../../utilies/constantFuntion";
+import { calculateSize } from "../../utilies/helpers";
 import "./style.scss";
 import { CgClose } from "react-icons/cg";
 import { AnimatePresence, motion } from "framer-motion";
-
+import { imgToBase64 } from "../../utilies/helpers";
 import {
   DetailContainer,
   MenuContainer,
@@ -15,7 +15,7 @@ import { toast, ToastContainer } from "react-toastify";
 import { TextGenerateContainer } from "./Components/TextGenerateContainer";
 import { Link } from "react-router-dom";
 import PageTransition, { pageVariant } from "../../CommonComponent/PageTransition";
-import { generateCode } from "../../utilies/apiServices";
+import { generateCodeFromPrompt, generateCodeFromImg } from "../../utilies/apiServices";
 const Playground = () => {
 
   const [image, setImage] = useState(null);
@@ -35,7 +35,7 @@ const Playground = () => {
   });
 
   const handleGenerateInfo = () => {
-    toast.warning("Please upload an image or write to generate", {
+    toast.warning("Please upload an image or write prompt to generate", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -47,36 +47,48 @@ const Playground = () => {
     });
   };
 
-  const handleGenerateButton = useCallback(async (prompt, cancel = false) => {
+  const handleGenerateButton = useCallback(async (prompt, isPrompt, cancel = false) => {
     if (cancel) {
       setIsGenerating(false)
       setEnableCollapse(false)
       return;
     }
 
-    if (image || (prompt && prompt.length > 0)) {
-      setTextGenerate(prompt)
-      setIsGenerating(true)
-      const {solution} = await generateCode(prompt)
+    if (!image && !prompt) {
+      handleGenerateInfo();
+      return;
+    }
 
-      console.log('=== solution ===>', solution)
-      setSolution(solution)
-      // Display the code editor
-      if (solution) {
-        setSolution(solution)
-        setEnableCollapse(true);
-      } else {
-        toast.warning("Something went wrong, please try again");
-      }
-      // Remove all loading UI
-      setIsGenerating(false);
-      // Set Image to display
-      // setGeneratedImage(image);
-      
-      // Close all modals
-      setEnableText(false);
-      setEnableUploadImage(false);
-    } else handleGenerateInfo();
+    let result = null;
+
+    setIsGenerating(true)
+    if (prompt && prompt.length > 0 && isPrompt ) {
+      setTextGenerate(prompt)
+      result = await generateCodeFromPrompt(prompt)
+    } else if (image && !isPrompt) {
+      const base64Image = await imgToBase64(image);
+      result = await generateCodeFromImg(base64Image);
+    } else {
+      handleGenerateInfo();
+      setIsGenerating(false)
+      return;
+    }
+    console.log('=== result ===>', result)
+    // Display the code editor
+    if (result) {
+      setSolution(result)
+      setEnableCollapse(true);
+    } else {
+      toast.warning("Something went wrong, please try again");
+    }
+    // Remove all loading UI
+    setIsGenerating(false);
+    // Set Image to display
+    // setGeneratedImage(image);
+    
+    // Close all modals
+    setEnableText(false);
+    setEnableUploadImage(false);
   }, [generatedImage, enableCollapse, isGenerating, image]);
 
   useEffect(() => {
@@ -93,28 +105,6 @@ const Playground = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const containerVariant = {
-    visible: {
-      opacity: 1,
-      scaleY: 1,
-      originY: 1,
-      transition: {
-        duration: 0.6,
-        when: "beforeChildren",
-        staggerChildren: 0.3,
-      }
-    },
-    hidden: {
-      opacity: 0,
-      scaleY: 0,
-      originY: 1,
-      transition: {
-        duration: 3,
-        when: "afterChildren"
-      }
-    }
-  }
-
   const componentVariant = {
     visible: {
       opacity: 1,
@@ -128,23 +118,6 @@ const Playground = () => {
       y: 20,
       transition: {
         duration: 0.7
-      }
-    }
-  }
-
-  const visibleParent = {
-    visible: {
-      opacity: 1,
-      transition: {
-        // duration: 1,
-        when: "beforeChildren",
-        staggerChildren: 0.3,
-      }
-    },
-    hidden: {
-      opacity: 0,
-      transition: {
-        duration: 1
       }
     }
   }
@@ -220,14 +193,6 @@ const Playground = () => {
 
               <div
                 className="playgroudContentContainer w-full mt-72 xs2:mt-52 lg:mt-36 mb-48 flex flex-col items-center rounded-[20px] mx-1 xs2:mx-8"
-                style={{
-                  // width:
-                  //   screenSize.size > 1024 && enableUploadImage
-                  //     ? "70%"
-                  //     : screenSize.size > 1024
-                  //     ? "85%"
-                  //     : "100%",
-                }}
               >
                 {generatedImage ? (
                   <img className="generated-img" src={URL.createObjectURL(generatedImage)} alt="Website generated" />

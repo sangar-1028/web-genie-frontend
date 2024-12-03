@@ -53,7 +53,7 @@ export const TextGenerateContainer = ({
 
         <button
           className={`uploadButtonContainer ${isGenerating ? "is-generating" : ""}`}
-          onClick={() => handleGenerateButton(textGenerate)}
+          onClick={() => handleGenerateButton(textGenerate, true)}
         >
           <GenerateIcon className="text-generate-icon" />
           <span>{isGenerating ? "Generating code..." : "Generate Code"}</span>

@@ -86,7 +86,7 @@ export const UploadImageContainer = ({
 
             <button
               className={`uploadButtonContainer ${isGenerating ? "is-generating" : ""}`}
-              onClick={handleGenerateButton}
+              onClick={() => handleGenerateButton(null, false)}
             >
               <img
                 src={Icon.star}
