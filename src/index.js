@@ -23,6 +23,10 @@ const router = createBrowserRouter(
           name: "PLAYGROUND",
           path: "/playground",
           element: React.createElement(Playground),
+        },
+        {
+          path: "*",
+          element: React.createElement(Dashboard),
         }
       ]
     },

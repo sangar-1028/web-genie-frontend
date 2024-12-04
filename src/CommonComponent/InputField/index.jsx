@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Input from "antd/es/input/Input";
 import "./style.css";
 import { LuEye, LuEyeOff } from "react-icons/lu";
-import { PASSWORD } from "../../utilies/constant";
+import { PASSWORD } from "../../utilies/helpers";
 const InputField = ({
   type,
   maxRows,

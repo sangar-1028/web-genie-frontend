@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./style.scss";
 import { ButtonField } from "../../CommonComponent";
 import { Icon } from "../../assests/images/constant";
@@ -6,7 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { ReactComponent as StarsIllustration } from "../../assests/icons/stars.svg"
 import { ReactComponent as RaysIllustration } from "../../assests/icons/rays.svg"
 import { ReactComponent as Line3 } from "../../assests/icons/line-3.svg"
-import Playground from "../../Screen/Playground";
 import { motion } from "framer-motion"
 
 const Header = () => {

@@ -5,9 +5,7 @@ import image2 from "../../assests/images/pic2.svg";
 import Genie from "../../assests/icons/genie-2.png";
 import {ReactComponent as GridIllustration} from "../../assests/icons/grid.svg"
 import {ReactComponent as Line1} from "../../assests/icons/line-1.svg"
-import {ReactComponent as Line2} from "../../assests/icons/line-2.svg"
 import { motion } from "framer-motion"
-import Grid from "./Grid";
 import '@vidstack/react/player/styles/default/theme.css';
 import '@vidstack/react/player/styles/default/layouts/video.css';
 import { MediaPlayer, MediaProvider } from '@vidstack/react';
