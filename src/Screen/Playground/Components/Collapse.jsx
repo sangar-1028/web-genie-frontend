@@ -4,55 +4,58 @@ import "./style.scss";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import { useEffect, useMemo, useState } from "react";
 import { EditorContainer } from "../../../CommonComponent";
-import { ReactComponent as CodeBlockPurple } from "../../../assests/icons/code-block-purple.svg"
+import { ReactComponent as CodeBlockPurple } from "../../../assests/icons/code-block-purple.svg";
 
 const CollapseContainer = ({
   enableCollapse,
   setEnableCollapse,
   img,
   screenSize,
-  solution
+  solution,
+  isCodeDeleted,
+  setIsCodeDeleted,
 }) => {
-  const [activeKey, setActiveKey] = useState(0)
-  const [display, setDisplay] = useState("mini")
-
+  const [activeKey, setActiveKey] = useState(0);
+  const [display, setDisplay] = useState("fullscreen");
   const title = useMemo(() => {
     return (
-      <div className="header-text" style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+      <div
+        className="header-text"
+        style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}
+      >
         <CodeBlockPurple />
         <p>Code Editor</p>
       </div>
     );
   }, []);
+
   const items = [
     {
       key: "1",
       label: title,
-      children: <EditorContainer solution={solution} />,
+      children: <EditorContainer solution={solution} isCodeDeleted={isCodeDeleted} setIsCodeDeleted={setIsCodeDeleted} />,
     },
   ];
 
   useEffect(() => {
     if (enableCollapse) {
-      setActiveKey(1)
+      setActiveKey(1);
     } else {
-      setActiveKey(0)
+      setActiveKey(0);
     }
-  }, [enableCollapse])
+  }, [enableCollapse]);
 
   const handleShowing = (action) => {
-    if (action === "up" && !enableCollapse) {
-      setDisplay("mini")
-      setEnableCollapse(true)
-    } else if (action === "up" && enableCollapse) {
-      setDisplay("fullscreen")
-    } else if (action === "down") {
-      setEnableCollapse(false)
-    }
-  }
+    setDisplay("fullscreen");
+    setEnableCollapse(action === "up" ? true : false);
+  };
 
   return (
-    <div className={`playgroundFooterContainer z-50 ${enableCollapse ? "" : "is-collapsed"} ${display}`}>
+    <div
+      className={`playgroundFooterContainer z-50 ${
+        enableCollapse ? "" : "is-collapsed"
+      } ${display}`}
+    >
       <Collapse
         className="mx-3 custom collapse-container md:mx-5"
         items={items}
@@ -62,29 +65,26 @@ const CollapseContainer = ({
         expandIconPosition="end"
         expandIcon={({ isActive }) => (
           <div className="collapseExpand">
-              <button onClick={() => handleShowing("up")}>
-                  <MdKeyboardArrowUp size={32} color="white" />
-              </button>
-              {
-                isActive ? (
-                  <>
-                    <button onClick={() => handleShowing("down")}>
-                        <MdKeyboardArrowDown size={32} color="white" />
-                    </button>
-                  </>
-                ) : ""
-              }
+            <button onClick={() => handleShowing("up")}>
+              <MdKeyboardArrowUp size={32} color="white" />
+            </button>
+            {isActive ? (
+              <>
+                <button onClick={() => handleShowing("down")}>
+                  <MdKeyboardArrowDown size={32} color="white" />
+                </button>
+              </>
+            ) : (
+              ""
+            )}
 
-              {
-                !enableCollapse ? (
-                  <button>
-                    <CgClose
-                      color="#939393"
-                      size={24}
-                    />
-                  </button>
-                ) : ""
-              }
+            {!enableCollapse ? (
+              <button>
+                <CgClose color="#939393" size={24} />
+              </button>
+            ) : (
+              ""
+            )}
           </div>
         )}
       />

@@ -27,6 +27,7 @@ const Playground = () => {
   const [isGenerating, setIsGenerating] = useState(false)
   const [clearInput, setClearInput] = useState(0);
   const [solution, setSolution] = useState(null)
+  const [isCodeDeleted, setIsCodeDeleted] = useState(false)
 
   const [screenSize, setScreenSize] = useState({
     width: calculateSize(window.innerWidth),
@@ -89,7 +90,7 @@ const Playground = () => {
     // Close all modals
     setEnableText(false);
     setEnableUploadImage(false);
-  }, [generatedImage, enableCollapse, isGenerating, image]);
+  }, [image]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -134,6 +135,8 @@ const Playground = () => {
     // Close all modals
     setEnableText(false);
     setEnableUploadImage(false);
+    // Set code deleted state
+    setIsCodeDeleted(true)
   }
 
   return (
@@ -218,6 +221,8 @@ const Playground = () => {
                 img={generatedImage}
                 screenSize={screenSize}
                 solution={solution}
+                isCodeDeleted={isCodeDeleted}
+                setIsCodeDeleted={setIsCodeDeleted}
               />
             </motion.div>
           <ToastContainer />

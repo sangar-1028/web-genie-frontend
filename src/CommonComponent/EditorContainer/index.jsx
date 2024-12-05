@@ -1,13 +1,17 @@
-import React, { useRef } from "react";
-import "./style.scss";
+import React, { useEffect, useRef, useState } from "react";
 import { BiCopy, BiDownload } from "react-icons/bi";
-import { MdKeyboardArrowDown } from "react-icons/md";
-import { Icon } from "../../assests/images/constant";
 import { toast } from "react-toastify";
-import Editor from '@monaco-editor/react';
+import Editor from "@monaco-editor/react";
+import "./style.scss";
 
-const HeaderContainer = ({title, ext, codeText, action}) => {
-  const handleGenerateError = () => {
+const HeaderContainer = ({
+  currentTab,
+  ext,
+  codeText,
+  onTabChange,
+}) => {
+  const handleCopy = () => {
+    navigator.clipboard.writeText(codeText);
     toast.info("Code Copied", {
       position: "top-right",
       autoClose: 5000,
@@ -20,46 +24,36 @@ const HeaderContainer = ({title, ext, codeText, action}) => {
     });
   };
 
-  const onHandleCopy = () => {
-    navigator.clipboard.writeText(codeText);
-    handleGenerateError();
-  };
-
-  const onHandleDownload = (ext) => {
+  const handleDownload = () => {
     const element = document.createElement("a");
-    const file = new Blob([codeText], {
-      type: "text/plain",
-    });
+    const file = new Blob([codeText], { type: "text/plain" });
     element.href = URL.createObjectURL(file);
     element.download = `code.${ext}`;
     document.body.appendChild(element);
     element.click();
   };
 
-
   return (
     <div className="editorHeaderContainer">
-      <p className="headerText">{title}</p>
+      <div className="flex items-center gap-4">
+        {["html", "css"].map((tab) => (
+          <button
+            key={tab}
+            className={`headerText ${
+              currentTab === tab ? "!text-purple-300" : ""
+            }`}
+            onClick={() => onTabChange(tab)}
+            disabled={currentTab === tab}
+          >
+            {tab === "html" ? "HTML" : "CSS"}
+          </button>
+        ))}
+      </div>
       <div className="actionConatiner">
-        <div className="actionSelectionContainer">
-          <div>
-            <img src={Icon.ReactColorVector} alt="react icon"/>
-          </div>
-
-          <p className="actionText"> React</p>
-          <div>
-            <MdKeyboardArrowDown
-              size={24}
-              color="white"
-              style={{ marginTop: "2px" }}
-            />
-          </div>
-        </div>
-
-        <div className="headerItem" onClick={() => onHandleDownload(ext)}>
+        <div className="headerItem" onClick={handleDownload}>
           <BiDownload size={18} color="#939393" />
         </div>
-        <div className="headerItem" onClick={() => onHandleCopy()}>
+        <div className="headerItem" onClick={handleCopy}>
           <BiCopy size={18} color="#939393" />
         </div>
       </div>
@@ -67,46 +61,123 @@ const HeaderContainer = ({title, ext, codeText, action}) => {
   );
 };
 
-function CodeEditor({ parentId, value, ...props }) {
+const CodeEditor = ({ parentId, value, ...props }) => {
   const editorRef = useRef(null);
 
-  function handleEditorDidMount(editor, monaco) {
+  const handleEditorDidMount = (editor) => {
     editorRef.current = editor;
-  }
+  };
 
-  return (<Editor
-    width="100%"
-    height="100%"
-    defaultLanguage="javascript"
-    value={value}
-    onMount={handleEditorDidMount}
-    theme="vs-dark"
-    options={{
-      roundedSelection: false,
-      scrollBeyondLastLine: false,
-      readOnly: false,
-      automaticLayout: true
-    }}
-    {...props}
-  />)
-}
+  return (
+    <Editor
+      width="100%"
+      height="100%"
+      value={value}
+      onMount={handleEditorDidMount}
+      theme="vs-dark"
+      options={{
+        roundedSelection: false,
+        scrollBeyondLastLine: false,
+        readOnly: false,
+        automaticLayout: true,
+      }}
+      defaultLanguage="html"
+      {...props}
+    />
+  );
+};
 
-const EditorContainer = ({ solution }) => {
-  const htmlCode = solution?.html || ''
-  const cssCode = solution?.css || ''
+const EditorContainer = ({ solution, isCodeDeleted, setIsCodeDeleted }) => {
+  const iframeRef = useRef(null);
+
+  const [editorState, setEditorState] = useState({
+    currentTab: "html",
+    html: { type: "html", title: "HTML Code", code: "", action: "code" },
+    css: { type: "css", title: "CSS Code", code: "", action: "css" },
+  });
+
+  useEffect(() => {
+    setEditorState((prevState) => ({
+      ...prevState,
+      html: { ...prevState.html, code: solution?.html || "" },
+      css: { ...prevState.css, code: solution?.css || "" },
+    }));
+    setIsCodeDeleted(false)
+  }, [solution, setIsCodeDeleted]);
+
+  useEffect(() => {
+    if (isCodeDeleted) {
+      setEditorState((prevState) => ({
+        ...prevState,
+        html: { ...prevState.html, code: "" },
+        css: { ...prevState.css, code: "" },
+      }));
+    }
+  }, [isCodeDeleted]);
+
+  useEffect(() => {
+    if (iframeRef.current) {
+      const preview = `
+        <!DOCTYPE html>
+        <html lang="en">
+          <head><style>${editorState.css.code}</style></head>
+          <body>${editorState.html.code}</body>
+        </html>`;
+      const iframeDocument = iframeRef.current.contentDocument;
+      if (iframeDocument) {
+        iframeDocument.open();
+        iframeDocument.write(preview);
+        iframeDocument.close();
+      }
+    }
+  }, [editorState.html.code, editorState.css.code]);
+
+  const handleTabChange = (type) => {
+    setEditorState((prevState) => ({ ...prevState, currentTab: type }));
+  };
+
+  const handleEditorChange = (code) => {
+    setEditorState((prevState) => ({
+      ...prevState,
+      [prevState.currentTab]: { ...prevState[prevState.currentTab], code },
+    }));
+  };
+
   return (
     <div className="editorContainer">
       <div className="CodePathContainer code-container">
-        <HeaderContainer title="HTML Code" ext="jsx" codeText={htmlCode} action="code" />
-        <div id="editor-parent-1" className="editor-parent">
-          <CodeEditor parentId="editor-parent-1" value={htmlCode} defaultLanguage="html" />
+        <HeaderContainer
+          ext={editorState[editorState.currentTab].type}
+          codeText={editorState[editorState.currentTab].code}
+          currentTab={editorState.currentTab}
+          onTabChange={handleTabChange}
+        />
+        <div
+          id={`editor-parent-${editorState.currentTab}`}
+          className="editor-parent"
+        >
+          <CodeEditor
+            parentId={`editor-parent-${editorState.currentTab}`}
+            value={editorState[editorState.currentTab].code || ""}
+            language={editorState[editorState.currentTab].type || "html"}
+            onChange={handleEditorChange}
+          />
         </div>
       </div>
-      <div className="CSSPathContainer code-container">
-        <HeaderContainer title="CSS Code" ext="css" codeText={cssCode} action="css" />
-        <div id="editor-parent-2" className="editor-parent">
-          <CodeEditor parentId="editor-parent-2" value={cssCode} defaultLanguage="css" />
+      <div className="CSSPathContainer code-container overflow-hidden">
+        <div className="editorHeaderContainer">
+          <span className="headerText">Preview</span>
         </div>
+        <iframe
+          ref={iframeRef}
+          title="Live Preview"
+          style={{
+            width: "100%",
+            height: "100%",
+            border: "none",
+            background: "white",
+          }}
+        />
       </div>
     </div>
   );
